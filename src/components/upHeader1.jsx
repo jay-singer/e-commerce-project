@@ -25,7 +25,7 @@ const UpperHeader1 = ({ displayingForm }) => {
 
   return (
     <>
-      <div className="fixed top-navHeight h-navHeight flex items-center justify-between  lg:px-7 md:px-3  pe-3 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0">
+      <div className="fixed top-navHeight h-navHeight flex items-center justify-between  lg:px-7 md:px-3  pe-3 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white">
         {/* log section*/}
         <div>
           <img
@@ -53,7 +53,7 @@ const UpperHeader1 = ({ displayingForm }) => {
 
         <div className=" flex items-center gap-2 md:flex-row ">
           <select className="outline-non w-12   outline-none">
-            <option selected>English</option>
+            <option defaultValue="selected">English</option>
             <option>Kinyarwanda</option>
             <option>France</option>
           </select>

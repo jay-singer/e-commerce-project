@@ -1,0 +1,24 @@
+.labelClass {
+  position: absolute;
+  left: 0.75rem; /* Adjust for padding */
+  top: 0.75rem; /* Starting position */
+  transition: all 0.3s ease-in-out;
+  color: #6b7280; /* Default label color */
+  transform-origin: left top; /* Transform from the top left */
+}
+
+.peer-placeholder-shown ~ .labelClass {
+  transform: translateY(0);
+  font-size: 1rem; /* Normal size when input is empty */
+  color: #6b7280; /* Gray when input is empty */
+}
+
+.peer:focus ~ .labelClass,
+.peer:not(:placeholder-shown) ~ .labelClass {
+  transform: translateY(-1.3rem) scale(0.99);
+  font-size: 0.75rem; /* Smaller size when focused */
+  color: #338e03; /* Change color on focus */
+  background: white;
+  padding: 0 5px;
+  border-radius: 5px;
+}
