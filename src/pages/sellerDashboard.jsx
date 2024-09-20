@@ -12,10 +12,10 @@ const SellerDashboard = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="flex h-screen flex-col bg-black">
+    <div className=" bg-black">
       {/** upper */}
 
-      <div className="bg-yellow-300  flex justify-end pe-10 py-2 gap-4 items-center text-primary">
+      <div className="bg-slate-100  flex justify-end pe-10 py-2 gap-4 items-center text-primary fixed top-0 left-0 right-0 border border-black">
         <Link to="/sell">Back</Link>
         <Link to="/">Home</Link>
 
@@ -28,10 +28,10 @@ const SellerDashboard = () => {
         </Link>
       </div>
       {/** section */}
-      <div className="flex">
+      <div className="flex mt-[58px]">
         {/* Sidebar */}
         <div
-          className={`bg-slate-100 text-primary h-full transition-all duration-500 ease-in-out ${
+          className={`bg-slate-100 text-primary h-screen transition-all duration-500 ease-in-out ${
             isHovered ? "md:w-48" : "w-20"
           }`}
           onMouseEnter={() => setIsHovered(true)}
