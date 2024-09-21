@@ -15,7 +15,6 @@ const SellComp = () => {
             </button>
           </div>
 
-          {/* middle: Navigation Links and Contact Info */}
           <div className="flex items-center">
             {/* Navigation Links */}
             <ul className="flex lg:space-x-8 space-x-4 lg:text-lg text-base font-semibold">
