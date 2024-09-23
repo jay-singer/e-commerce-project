@@ -2,15 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
-import LoginForm from "./logIn";
 
-const SignForm = () => {
+const SignForm = ({ hideForm, formStatus }) => {
   const formRef = useRef(null);
-  const [logInState, setLogInState] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Zod schema for validation
   const schema = z.object({
@@ -20,6 +19,9 @@ const SignForm = () => {
     password: z.string().min(8, "Password must be at least 8 characters"),
   });
 
+  {
+    /**UseForm Hook validation */
+  }
   const {
     register,
     handleSubmit,
@@ -29,44 +31,55 @@ const SignForm = () => {
     resolver: zodResolver(schema),
   });
 
-  // Function to store data in localStorage after form submission
+  {
+    /** Trying to storing information in the localStorage */
+  }
   const storingData = async (id) => {
     try {
-      localStorage.setItem("seller", JSON.stringify(id)); // Store seller ID as string
+      localStorage.setItem("seller", JSON.stringify(id));
     } catch (error) {
       console.error("Error storing data in localStorage", error);
     }
   };
 
+  const navigate = useNavigate();
+
+  {
+    /**Trying to post data on db server by axios library and make many staff after the data submitted */
+  }
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
     try {
       const response = await axios.post("http://localhost:3000/formData", data);
 
       if (response.status === 201) {
         const sellerId = response.data.id;
+        navigate("/sell");
         storingData(sellerId);
-
         toast.success("Form submitted successfully!", {
           position: "top-right",
           autoClose: 3000,
         });
 
         reset(); // Reset form after successful submission
-
-        setLogInState(true); // Show login form and hide sign-up form
+        hideForm();
       }
     } catch (error) {
       toast.error("Error submitting form. Please try again.", {
         position: "top-right",
         autoClose: 3000,
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
+  {
+    /** To make function out side of form that trigged  for removing form*/
+  }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (formRef.current && !formRef.current.contains(event.target)) {
-        setLogInState(false); // Reset to sign-up form if clicked outside
+        hideForm(); // Close the form if clicked outside
       }
     };
 
@@ -74,22 +87,28 @@ const SignForm = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [hideForm]);
 
+  {
+    /** go back function help to return to home */
+  }
+  const handleGoBack = () => {
+    hideForm();
+    navigate("/"); // Navigate to home
+  };
   return (
-    <div>
-      {!logInState ? (
+    <>
+      {formStatus && (
         <div
           ref={formRef}
           className="bg-white rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4"
         >
           <div className="flex w-full justify-between md:flex-row flex-col-reverse">
-            {/* Left Section */}
             <div className="flex items-center justify-around lg:max-w-[600px] relative md:w-[30%] w-full flex-1">
               <div className="h-full z-50 flex flex-col gap-2 lg:gap-0 justify-center ps-2 flex-1 pt-3 md:pt-0 items-center lg:items-start">
                 <h2 className="text-2xl font-bold md:block hidden">Sign Up</h2>
                 <p>Already a user?</p>
-                <Link to="/notFound" className="text-secondary">
+                <Link to="/login" className="text-secondary">
                   Sign In!
                 </Link>
               </div>
@@ -178,21 +197,26 @@ const SignForm = () => {
                   <button
                     type="submit"
                     className="bg-secondary hover:opacity-75 transition-all duration-300 ease-in-out text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/2"
+                    disabled={isSubmitting}
                   >
-                    Sign Up
+                    {isSubmitting ? "Submitting..." : "Sign Up"}
                   </button>
                 </div>
               </form>
             </div>
           </div>
-        </div>
-      ) : (
-        // Login Form Component
-        <div className="mt-8">
-          <LoginForm />
+          {/* Go Back button */}
+          <div className="flex md:justify-start justify-center mt-4">
+            <Link
+              className="bg-gray-500 py-2 rounded-md text-white px-3"
+              onClick={handleGoBack}
+            >
+              Go Back
+            </Link>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

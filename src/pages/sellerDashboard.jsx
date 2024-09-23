@@ -7,6 +7,7 @@ import {
   MdSpaceDashboard,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
+import DashboardTable from "../components/dashboard";
 
 const SellerDashboard = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -119,10 +120,7 @@ const SellerDashboard = () => {
         <div className="flex-1 bg-gray-100 p-6">
           <section id="dashboard">
             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-            <p>
-              Welcome to your dashboard! Here, you can manage all the important
-              aspects of your seller account.
-            </p>
+            <DashboardTable />
           </section>
 
           <section id="products" className="mt-10">

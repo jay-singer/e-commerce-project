@@ -1,85 +1,68 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { z } from "zod";
+
+// Zod schema definition
+const loginSchema = z.object({
+  email: z
+    .string()
+    .email("Invalid email address")
+    .nonempty("Email is required"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .nonempty("Password is required"),
+});
 
 const LoginForm = () => {
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
+  const navigate = useNavigate();
+
+  // Use `useForm` from react-hook-form and Zod for validation
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(loginSchema),
   });
 
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData({ ...loginData, [name]: value });
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!loginData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(loginData.email)) {
-      newErrors.email = "Invalid email address";
-    }
-
-    if (!loginData.password) {
-      newErrors.password = "Password is required";
-    } else if (loginData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
-    }
-
-    return newErrors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-
-    if (Object.keys(validationErrors).length === 0) {
-      setErrors({});
-      setLoading(true);
-
-      try {
-        const response = await axios.post(
-          "http://localhost:3000/login",
-          loginData
-        ); // replace with your endpoint
-
-        if (response.status === 200) {
-          toast.success("Logged in successfully!", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-
-          // Handle successful login (e.g., redirect to dashboard or store token)
-        } else {
-          toast.error("Login failed. Please try again.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        }
-      } catch (error) {
-        if (error.response && error.response.status === 401) {
-          toast.error("Invalid credentials. Please try again.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        } else {
-          toast.error("An error occurred. Please try again later.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        }
-      } finally {
-        setLoading(false);
+  const onSubmit = async (loginData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/login",
+        loginData
+      );
+      if (response.status === 200) {
+        navigate("/sell");
+        toast.success("Logged in successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        reset(); // Reset form after successful submission
+      } else {
+        toast.error("Login failed. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
-    } else {
-      setErrors(validationErrors);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        toast.error("Invalid credentials. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      } else {
+        toast.error("An error occurred. Please try again later.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      }
     }
   };
 
@@ -105,7 +88,10 @@ const LoginForm = () => {
 
       {/* Right Section (Form) */}
       <div className="md:p-4 flex-1">
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col space-y-6"
+        >
           {/* Header for small devices */}
           <div className="border text-center text-2xl block md:hidden">
             Sign In
@@ -118,14 +104,15 @@ const LoginForm = () => {
               name="email"
               type="email"
               placeholder=" "
-              value={loginData.email}
-              onChange={handleChange}
+              {...register("email")}
               className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
             />
             <label htmlFor="email" className="labelClass">
               Email
             </label>
-            {errors.email && <p className="text-red-500">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
           </div>
 
           {/* Password input */}
@@ -135,15 +122,14 @@ const LoginForm = () => {
               name="password"
               type="password"
               placeholder=" "
-              value={loginData.password}
-              onChange={handleChange}
+              {...register("password")}
               className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
             />
             <label htmlFor="password" className="labelClass">
               Password
             </label>
             {errors.password && (
-              <p className="text-red-500">{errors.password}</p>
+              <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
 
@@ -152,9 +138,8 @@ const LoginForm = () => {
             <button
               type="submit"
               className="bg-secondary hover:opacity-75 transition-all duration-300 ease-in-out text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/2"
-              disabled={loading}
             >
-              {loading ? "Signing In..." : "Sign In"}
+              Sign In
             </button>
           </div>
         </form>
