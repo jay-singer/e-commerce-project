@@ -1,11 +1,5 @@
 {
-  "products": [
-    {
-      "name": "",
-      "price": "",
-      "id": "cf91"
-    }
-  ],
+  "products": [],
   "formData": [
     {
       "id": "a845",
@@ -34,6 +28,27 @@
       "lastName": "flex",
       "email": "mbonimaflex@gmail.com",
       "password": "111ggnamdkdkd"
+    },
+    {
+      "id": "2ec4",
+      "firstName": "Jean Paul",
+      "lastName": "Niyizurugero",
+      "email": "djfkdjf@gmail.com",
+      "password": "khuihjhjhujhjjhj"
+    },
+    {
+      "id": "0230",
+      "firstName": "Jean Paul",
+      "lastName": "MANISHIMWE MUGISHA",
+      "email": "manishimwemugishaj40@gmail.com",
+      "password": "jdfjdhfjdfjdfjjdfkjjk"
+    },
+    {
+      "id": "b02c",
+      "firstName": "Jean Paul",
+      "lastName": "MANISHIMWE MUGISHA",
+      "email": "manishimwemugishaj40@gmail.com",
+      "password": "kjkdfjdjfkfdffd"
     }
   ]
 }
