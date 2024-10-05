@@ -7,12 +7,13 @@ import {
   MdSpaceDashboard,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
+import DashboardTable from "../components/dashboard";
 
 const SellerDashboard = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className=" bg-black">
+    <div className=" ">
       {/** upper */}
 
       <div className="bg-slate-100  flex justify-end pe-10 py-2 gap-4 items-center text-primary fixed top-0 left-0 right-0 border border-black">
@@ -31,7 +32,7 @@ const SellerDashboard = () => {
       <div className="flex mt-[58px]">
         {/* Sidebar */}
         <div
-          className={`bg-slate-100 text-primary h-screen transition-all duration-500 ease-in-out ${
+          className={`bg-slate-100 text-primary  transition-all duration-500 ease-in-out ${
             isHovered ? "md:w-48" : "w-20"
           }`}
           onMouseEnter={() => setIsHovered(true)}
@@ -119,10 +120,7 @@ const SellerDashboard = () => {
         <div className="flex-1 bg-gray-100 p-6">
           <section id="dashboard">
             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-            <p>
-              Welcome to your dashboard! Here, you can manage all the important
-              aspects of your seller account.
-            </p>
+            <DashboardTable />
           </section>
 
           <section id="products" className="mt-10">
