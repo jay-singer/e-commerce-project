@@ -25,7 +25,9 @@ const UpperHeader1 = ({ displayingForm }) => {
 
   return (
     <>
-      <div className="fixed top-navHeight h-navHeight flex items-center justify-between  lg:px-7 md:px-3  pe-3 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white">
+      <div
+        className={`fixed top-navHeight h-navHeight flex items-center justify-between  lg:px-7 md:px-3  pe-3 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white border border-black z-50`}
+      >
         {/* log section*/}
         <div>
           <img
@@ -35,7 +37,11 @@ const UpperHeader1 = ({ displayingForm }) => {
           />
         </div>
         {/* Search BarSection */}
-        <SearchComp setInput={screen} />
+        <div className={`${screen ? "hidden" : "block"}`}>
+          {" "}
+          <SearchComp setInput={screen} />
+        </div>
+
         {/** Header Icon */}
         <div
           className={`flex items-center gap-3  ${

@@ -70,6 +70,27 @@
       "lastName": "jean",
       "email": "og@gmail.com",
       "password": "hellow one"
+    },
+    {
+      "id": "743b",
+      "firstName": "Jean Paul",
+      "lastName": "MANISHIMWE MUGISHA",
+      "email": "manishimwemugishaj@gmail.com",
+      "password": "sfdfdfdfdf"
+    },
+    {
+      "id": "c154",
+      "firstName": "Jean Paul",
+      "lastName": "Niyizurugero",
+      "email": "manishimwemugishaj@gmail.com",
+      "password": "wefsddsfdf"
+    },
+    {
+      "id": "a34c",
+      "firstName": "man",
+      "lastName": "Niyizurugero",
+      "email": "manishimwemugishaj@gmail.com",
+      "password": "ehksdkjfkdf"
     }
   ]
 }
