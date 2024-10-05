@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DashboardTable = () => {
   const [products, setProducts] = useState([]);
@@ -35,7 +36,7 @@ const DashboardTable = () => {
   const handleAddProduct = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("name ", data.name);
+      formData.append("name", data.name);
       formData.append("price", data.price);
       formData.append("image", data.image[0]); // Assuming the server accepts the image as 'image'
 

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import NavBar from "../components/navibar";
+import Product from "../components/Product";
 import SignForm from "../components/signIn";
 import UpperHeader from "../components/upHeader";
 import UpperHeader1 from "../components/upHeader1";
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
+  const [showCategory, setShowCategory] = useState(true);
 
   const displayingForm = () => {
     setShowForm(true);
@@ -25,6 +28,7 @@ const LandingPage = () => {
       >
         <UpperHeader />
         <UpperHeader1 displayingForm={displayingForm} />
+        <NavBar showCategory={showCategory} setShowCategory={setShowCategory} />
       </div>
 
       {/* Form modal */}
@@ -36,6 +40,13 @@ const LandingPage = () => {
         </div>
       )}
       <Outlet />
+      <div
+        className={`bg-indigo-300 ${
+          showCategory && "absolute right-0   left-[14%] "
+        }`}
+      >
+        <Product showCategory={showCategory} />
+      </div>
     </div>
   );
 };

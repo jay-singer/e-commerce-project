@@ -34,13 +34,6 @@ const SignForm = ({ hideForm, formStatus }) => {
   {
     /** Trying to storing information in the localStorage */
   }
-  const storingData = async (id) => {
-    try {
-      localStorage.setItem("seller", JSON.stringify(id));
-    } catch (error) {
-      console.error("Error storing data in localStorage", error);
-    }
-  };
 
   const navigate = useNavigate();
 
@@ -53,9 +46,8 @@ const SignForm = ({ hideForm, formStatus }) => {
       const response = await axios.post("http://localhost:3000/formData", data);
 
       if (response.status === 201) {
-        const sellerId = response.data.id;
         navigate("/sell");
-        storingData(sellerId);
+
         toast.success("Form submitted successfully!", {
           position: "top-right",
           autoClose: 3000,
