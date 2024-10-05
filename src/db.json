@@ -56,6 +56,20 @@
       "lastName": "jean paul",
       "email": "manishimwemugishaj@gmail.com",
       "password": "hello my name"
+    },
+    {
+      "id": "1b77",
+      "firstName": "manishimwe",
+      "lastName": "jean paul",
+      "email": "manishimwemugishaj@gmail.com",
+      "password": "sdfdjfhdjfhdjf"
+    },
+    {
+      "id": "021a",
+      "firstName": "mani",
+      "lastName": "jean",
+      "email": "og@gmail.com",
+      "password": "hellow one"
     }
   ]
 }
