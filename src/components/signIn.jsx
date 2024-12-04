@@ -46,9 +46,9 @@ const SignForm = ({ hideForm, formStatus }) => {
       const response = await axios.post("http://localhost:3000/formData", data);
 
       if (response.status === 201) {
-        navigate("/sell");
+        navigate("/sellerDashboard");
 
-        toast.success("Form submitted successfully!", {
+        toast.success("SignUp successful!", {
           position: "top-right",
           autoClose: 3000,
         });
@@ -100,7 +100,7 @@ const SignForm = ({ hideForm, formStatus }) => {
               <div className="h-full z-50 flex flex-col gap-2 lg:gap-0 justify-center ps-2 flex-1 pt-3 md:pt-0 items-center lg:items-start">
                 <h2 className="text-2xl font-bold md:block hidden">Sign Up</h2>
                 <p>Already a user?</p>
-                <Link to="/login" className="text-secondary">
+                <Link to="/logIn" className="text-secondary">
                   Sign In!
                 </Link>
               </div>
