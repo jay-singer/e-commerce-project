@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
+import Products from "./components/products";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellComp from "./pages/sell";
@@ -14,7 +15,11 @@ function App() {
         <Route path="/" element={<LandingPage />}>
           <Route path="/sell" element={<SellComp />} />
         </Route>
-        <Route path="/sellerDashboard" element={<SellerDashboard />} />
+        <Route path="/products" element={<Products />} />
+        <Route
+          path="/components/sellerDashboard"
+          element={<SellerDashboard />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

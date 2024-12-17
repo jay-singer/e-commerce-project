@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/navibar";
 import Product from "../components/Product";
+import Products from "../components/products";
 import SignForm from "../components/signIn";
 import UpperHeader from "../components/upHeader";
 import UpperHeader1 from "../components/upHeader1";
@@ -41,11 +42,12 @@ const LandingPage = () => {
       )}
       <Outlet />
       <div
-        className={`bg-indigo-300 ${
+        className={`bg-indigo-100 ${
           showCategory && "absolute right-0   left-[14%] "
         }`}
       >
         <Product showCategory={showCategory} />
+        <Products />
       </div>
     </div>
   );
