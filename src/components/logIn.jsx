@@ -35,12 +35,12 @@ const LoginForm = () => {
   const onSubmit = async (loginData) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/login",
+        "https://e-commerce-backend-b8fd.onrender.com/signup/",
         loginData
       );
       if (response.status === 200) {
         navigate("/sell");
-        toast.success("Logged in successfully!", {
+        toast.success("Logged in successfully!bbbbbb", {
           position: "top-right",
           autoClose: 3000,
         });

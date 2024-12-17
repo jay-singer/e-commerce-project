@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Product({ showCategory }) {
-  console.log(showCategory);
-
   const [screen, setScreen] = useState(false);
   useEffect(() => {
     const screenResizing = () => {
       if (window.innerWidth < 500) {
-        setScreen(true);
+        setScreen((screen) => {
+          screen = true;
+        });
       } else {
-        setScreen(false);
+        setScreen((screen) => {
+          screen = false;
+        });
       }
     };
 
@@ -22,42 +25,60 @@ function Product({ showCategory }) {
 
   return (
     <div
-      className={`  bg-slate-400 mt-[10.1rem]
+      className={`  mt-[10.1rem] flex justify-center p-4 gap-4
  ${showCategory ? "w-full " : "w-full"} `}
     >
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores qui
-      explicabo necessitatibus dolor deleniti! Nesciunt porro quidem cumque
-      corporis at earum rerum voluptas voluptate dicta id nemo, reiciendis unde
-      quia? Ab molestias accusamus nostrum, eius corporis perferendis debitis
-      adipisci voluptatem totam fugiat odit consequuntur pariatur distinctio
-      aperiam quam a itaque odio commodi alias optio modi delectus obcaecati.
-      Necessitatibus, eaque reiciendis. Asperiores doloribus quod quasi nisi
-      unde expedita debitis quaerat voluptates in, ab, dignissimos laborum
-      voluptas aperiam et, adipisci modi suscipit delectus veritatis accusamus
-      magnam. Quia dolorum quisquam dolor voluptatum molestiae! Reiciendis rerum
-      provident accusantium atque optio, quidem soluta deserunt veritatis quod
-      modi tenetur enim fugiat eius labore animi odit rem, voluptate doloribus
-      delectus. Dolor dicta perferendis praesentium cum libero ex! Sunt
-      perferendis natus beatae quo molestiae enim commodi illo sequi ex nihil
-      delectus numquam rem, consectetur excepturi soluta laboriosam ab eos,
-      aspernatur in quod laborum? Sunt ab reiciendis eos ea! Commodi perferendis
-      sint deserunt consequuntur, possimus eius deleniti. Dolore, nesciunt
-      mollitia consequuntur, accusamus eos facilis unde est ipsa omnis molestias
-      animi esse saepe aspernatur recusandae earum cum provident labore
-      doloribus? Temporibus dicta hic quasi commodi, soluta voluptas ab
-      blanditiis fugiat iste aspernatur sed corporis voluptates ea magnam,
-      ratione unde eveniet expedita. Aut vitae sequi soluta tempore quo, nulla
-      amet cupiditate. Nihil blanditiis, commodi inventore quibusdam autem animi
-      accusamus, asperiores quis atque sed ad laboriosam. Adipisci est maxime
-      sint voluptates quisquam mollitia vel, asperiores ex alias, suscipit
-      magnam necessitatibus quam dolor! Vel, assumenda. Id ad nam recusandae
-      nisi soluta labore voluptatum! Debitis ducimus officia enim cum recusandae
-      iure quia unde veniam? Sequi ab ducimus incidunt autem voluptatibus
-      dolores at officia sapiente? Ex, suscipit! Accusamus accusantium illo
-      quidem labore, numquam fugit praesentium corrupti perspiciatis itaque
-      reprehenderit quas reiciendis quaerat, laudantium, quia inventore nihil
-      molestias magnam ducimus consectetur quos. Molestias accusantium excepturi
-      beatae.
+      <div className=" w-[200px] flex flex-col gap-4 self-center">
+        <h1 className="text-navColor text-sm">TOP COLLECTIONS 2023</h1>
+        <p className=" text-xl font-semibold relative z-20 ">
+          We Serve Your Dream Furniture
+          <span className=" ">
+            <img
+              className=" bg-navColor absolute bottom-1 -z-10 "
+              src="/public/assets/frame/Rectangle.png"
+              alt=""
+            />
+          </span>
+        </p>
+        <div className="text-white flex gap-3">
+          <Link
+            to="*"
+            className="bg-navColor flex items-center px-2 rounded text-[14px]"
+          >
+            SHOP NOW
+          </Link>
+          <span className="bg-navColor py-[8px] px-[5px] text-[14px] flex items-center justify-center rounded-full">
+            50%
+          </span>
+        </div>
+      </div>
+      <div className="w-[374px]">
+        <img src="/assets/products/Furniture 1.png" className="w-full" alt="" />
+      </div>
+      <div className=" space-y-3 text-[14px] flex flex-col justify-center items-center">
+        <div className="">
+          <img src="/assets/products/Rectangle.png" alt="" />
+          <div className="flex flex-col">
+            {" "}
+            <span className="text-navColor"></span>
+            <span>Office Desk Chair</span>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/products/Rectangle (1).png" alt="" />
+          <div className="flex flex-col justify-center items-center">
+            <span className="text-navColor">$180</span>
+            <span>Home Alisa Sofa</span>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/products/Rectangle (2).png" alt="" />
+          <div className="flex flex-col items-center">
+            <span className="text-navColor">$250</span>
+            <span>Modern Chair</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

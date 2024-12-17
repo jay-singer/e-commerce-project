@@ -33,33 +33,6 @@ const DashboardTable = () => {
   }, []);
 
   // Add new product (POST request with image)
-  const handleAddProduct = async (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("price", data.price);
-      formData.append("image", data.image[0]); // Assuming the server accepts the image as 'image'
-
-      const response = await axios.post(
-        "http://localhost:3000/products",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-
-      setProducts((prev) => [...prev, response.data]);
-      setAddingPost(false);
-      reset();
-      toast.success("Product added successfully!");
-    } catch (error) {
-      toast.error(
-        "Error adding product: " +
-          (error.response?.data?.message || error.message)
-      );
-      console.error("Error adding product:", error);
-    }
-  };
 
   // Delete product by ID (DELETE request)
   const handleDeleteProduct = async (id) => {
