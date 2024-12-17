@@ -35,7 +35,7 @@ function Product({ showCategory }) {
           <span className=" ">
             <img
               className=" bg-navColor absolute bottom-1 -z-10 "
-              src="/public/assets/frame/Rectangle.png"
+              src="/assets/frame/Rectangle.png"
               alt=""
             />
           </span>
