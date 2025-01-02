@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,26 +18,28 @@ const DashboardTable = () => {
   } = useForm();
 
   // Fetch products from API
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/products");
-      setProducts(response.data);
-    } catch (error) {
-      toast.error("Error fetching products.");
-      console.error("Error fetching products:", error);
-    }
-  };
+  // const fetchProducts = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://e-commerce-backend-b8fd.onrender.com"
+  //     );
+  //     setProducts(response.data);
+  //   } catch (error) {
+  //     toast.error("Error fetching products.");
+  //     console.error("Error fetching products:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  // });
 
   // Add new product (POST request with image)
 
   // Delete product by ID (DELETE request)
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/products/${id}`);
+      await axios.delete(`https://e-commerce-backend-b8fd.onrender.com${id}`);
       setProducts((prev) => prev.filter((product) => product.id !== id));
       toast.success("Product deleted successfully!");
     } catch (error) {
@@ -49,7 +51,10 @@ const DashboardTable = () => {
   // Edit product by ID (PUT request)
   const handleEditProduct = async (id) => {
     try {
-      await axios.put(`http://localhost:3000/products/${id}`, editingProduct);
+      await axios.put(
+        `https://e-commerce-backend-b8fd.onrender.com${id}`,
+        editingProduct
+      );
       setProducts((prev) =>
         prev.map((product) =>
           product.id === id ? { ...product, ...editingProduct } : product

@@ -41,11 +41,7 @@ const LandingPage = () => {
         </div>
       )}
       <Outlet />
-      <div
-        className={`bg-indigo-100 ${
-          showCategory && "absolute right-0   left-[14%] "
-        }`}
-      >
+      <div className={` ${showCategory && "absolute right-0   left-[14%] "}`}>
         <Product showCategory={showCategory} />
         <Products />
       </div>
