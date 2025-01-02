@@ -28,7 +28,7 @@ function Product({ showCategory }) {
       className={`  mt-[10.1rem] flex justify-center p-4 gap-4
  ${showCategory ? "w-full " : "w-full"} `}
     >
-      <div className=" w-[200px] flex flex-col gap-4 self-center">
+      <div className=" w-[200px] flex flex-col gap-4 self-center z-0">
         <h1 className="text-navColor text-sm">TOP COLLECTIONS 2023</h1>
         <p className=" text-xl font-semibold relative z-20 ">
           We Serve Your Dream Furniture

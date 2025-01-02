@@ -1,6 +1,7 @@
 import React from "react";
 import { MdSpaceDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
+import DashboardTable from "../components/dashboard";
 
 const SellComp = () => {
   return (
@@ -42,6 +43,7 @@ const SellComp = () => {
             </Link>
           </div>
         </nav>
+        <DashboardTable></DashboardTable>
       </div>
     </>
   );
