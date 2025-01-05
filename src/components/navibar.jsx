@@ -25,25 +25,27 @@ const Navbar = ({ showCategory, setShowCategory }) => {
     "text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium";
 
   return (
-    <nav className="bg-slate-100 shadow-md fixed w-full z-10 top-[100px]">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-[60px] bg-white">
-          <div className="flex space-x-1">
+    <nav className="bg-white left-0 right-0 shadow-md fixed w-full z-10 top-[100px] max-w-[1440px] mx-auto ">
+      <div className=" mx-auto px-2">
+        <div className="flex items-center justify-between md:h-[60px] h-[30px]  mt-1 md:m-0 bg-white ">
+          <div className="flex md:space-x-1 space-x-3">
             {/* Toggle Category List Button */}
             <button
               onClick={toggleCategoryMenu}
-              className="bg-green-500 text-white px-2 py-2 gap-1 rounded-lg flex items-center hover:bg-green-600"
+              className="bg-green-500 text-white md:p-2 md:gap-1  gap-[3px] rounded-lg flex items-center hover:bg-green-600  p-[3px]"
             >
               <span>
                 {" "}
-                <FaBarsStaggered />
+                <FaBarsStaggered size={15} />
               </span>
 
-              <span className="text-[12px] md:text-base">All Category</span>
+              <span className="text-[10px] md:text-base whitespace-nowrap">
+                All Category
+              </span>
             </button>
 
             {/* Search Component for small screens */}
-            {isSmallScreen && <SearchComp />}
+            {isSmallScreen && <SearchComp size={15} />}
           </div>
 
           <div>
@@ -67,9 +69,9 @@ const Navbar = ({ showCategory, setShowCategory }) => {
                 className="text-gray-800 hover:bg-gray-200  focus:outline-none"
               >
                 {isMenuOpen ? (
-                  <IoMdClose size={25} />
+                  <IoMdClose size={15} />
                 ) : (
-                  <FaBarsStaggered size={25} />
+                  <FaBarsStaggered size={15} />
                 )}
               </button>
             </div>
@@ -95,8 +97,8 @@ const Navbar = ({ showCategory, setShowCategory }) => {
       </div>
 
       {/* Category List */}
-      {showCategory && (
-        <div className="bg-white border border-secondary  px-2 absolute left-14">
+      {!showCategory && (
+        <div className="bg-white border border-secondary  px-2 absolute md:left-14">
           <ul className="space-y-2 text-gray-800">
             {[
               { name: "All", path: "/" },

@@ -4,27 +4,16 @@ const SingleProduct = ({ items }) => {
   return (
     <div
       style={{
-        width: "250px",
-
-        borderRadius: "8px",
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-        textAlign: "center",
-
-        backgroundColor: "#fff",
+        borderTopRightRadius: "8px",
+        borderTopLeftRadius: "8px",
       }}
-      className="flex flex-col space-y-4 p-2"
+      className=" mt-3 shadow-sm md:w-[235px]  md:mt-0 xl:w-[250px] sm:w-full md:shadow-none  shadow-gray-400 flex flex-col   space-y-4 overflow-hidden  text-center "
     >
-      <img
-        style={{
-          width: "100%",
-          height: "auto",
-          objectFit: "cover",
-        }}
-        src={items.pic}
-        alt={items.ProName}
-      />
-      <h3 className="whitespace-nowrap">{items.ProName}</h3>
-      <p className=" text-navColor">{items.price}</p>
+      <img src={items.pic} alt={items.ProName} />
+      <h3 className="whitespace-nowrap w-full hit-fit object-cover">
+        {items.ProName}
+      </h3>
+      <p className=" text-navColor ">{items.price}</p>
     </div>
   );
 };

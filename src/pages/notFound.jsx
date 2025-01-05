@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="flex items-center mx-auto p-10 justify-center lg:gap-10 md:flex-row flex-col">
+    <div className="flex items-center mx-auto p-10 justify-center lg:gap-10 md:flex-row flex-col gap-4">
       <div className="self-start">
         <Link
           to="/"
