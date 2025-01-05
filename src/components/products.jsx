@@ -79,9 +79,9 @@ const Products = () => {
   // };
 
   return (
-    <div className=" w-full md:grid md:grid-cols-3 md:gap-4 md:p-4 lg:grid-cols-4 lg:flex flex-wrap justify-center lg:gap-5 lg:p-36  lg:w-[1160px] max-w-[1440px] p-3 bg-slate-100 ">
+    <div className=" w-full md:grid md:grid-cols-3 md:gap-4 md:p-4    lg:flex flex-wrap  lg:gap-5 lg:p-5 lg:justify-center    xl:justify-between  lg:w-[1020px] max-w-[1440px]  bg-slate-100 ">
       {proStore.map((item) => (
-        <div className="" key={item.id}>
+        <div className=" m-6 md:m-0" key={item.id}>
           <SingleProduct items={item} />
         </div>
       ))}
