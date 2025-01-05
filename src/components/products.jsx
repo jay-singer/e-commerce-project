@@ -79,18 +79,9 @@ const Products = () => {
   // };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px",
-        justifyContent: "center",
-        padding: "20px",
-      }}
-      className=" "
-    >
+    <div className=" w-full md:grid md:grid-cols-3 md:gap-4 md:p-4 lg:grid-cols-4 lg:flex flex-wrap justify-center lg:gap-5 lg:p-36  lg:w-[1160px] max-w-[1440px] p-3 bg-slate-100 ">
       {proStore.map((item) => (
-        <div key={item.id}>
+        <div className="" key={item.id}>
           <SingleProduct items={item} />
         </div>
       ))}

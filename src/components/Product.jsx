@@ -25,10 +25,10 @@ function Product({ showCategory }) {
 
   return (
     <div
-      className={`  mt-[10.1rem] md:flex-row flex-col flex justify-center p-4 gap-4
+      className={`  mt-[10.1rem]  md:flex-row flex-col flex justify-center p-4 gap-4
  ${!showCategory ? "w-full " : "w-full"} `}
     >
-      <div className=" w-[200px] flex flex-col gap-4 self-center z-0">
+      <div className="  w-[200px] flex flex-col gap-4 self-center z-0">
         <h1 className="text-navColor text-sm">TOP COLLECTIONS 2023</h1>
         <p className=" text-xl font-semibold relative z-20 ">
           We Serve Your Dream Furniture
@@ -40,10 +40,10 @@ function Product({ showCategory }) {
             />
           </span>
         </p>
-        <div className="text-white flex gap-3">
+        <div className="text-white flex gap-3 ">
           <Link
             to="*"
-            className="bg-navColor flex items-center px-2 rounded text-[14px]"
+            className="bg-navColor flex items-center px-2 rounded text-[14px] text-nowrap"
           >
             SHOP NOW
           </Link>
@@ -55,7 +55,7 @@ function Product({ showCategory }) {
       <div className="w-[374px]">
         <img src="/assets/products/Furniture 1.png" className="w-full" alt="" />
       </div>
-      <div className=" space-y-3 md:text-[14px] text-[10px] flex md:flex-col md:justify-center justify-evenly items-center md:gap-0 ">
+      <div className=" space-y-3 md:text-[14px] text-[10px] flex md:flex-col md:justify-center md:w-[20%] w-full justify-evenly items-center md:gap-0 ">
         <div className="">
           <img src="/assets/products/Rectangle.png" alt="" />
           <div className="flex flex-col">

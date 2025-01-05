@@ -20,7 +20,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative max-w-[1440px]  box-border  ">
       {/* Blur the background elements when the form is shown */}
       <div
         className={`${
@@ -41,7 +41,11 @@ const LandingPage = () => {
         </div>
       )}
       <Outlet />
-      <div className={` ${!showCategory && "absolute right-0   left-[14%] "}`}>
+      <div
+        className={` flex flex-col justify-center items-center ${
+          !showCategory && "absolute right-0   left-[14%] "
+        }`}
+      >
         <Product showCategory={showCategory} />
         <Products />
       </div>
