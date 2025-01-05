@@ -4,7 +4,7 @@ const SearchComp = ({ setInput }) => {
   return (
     <>
       <div
-        className={` z-50 flex items-center border border-navColor bg-navColor h-10 rounded-md overflow-hidden pe-3 gap-3 md:gap-0 ${
+        className={` z-50 flex items-center border border-navColor bg-navColor md:h-10 h-7 rounded-md overflow-hidden md:pe-3 pe-1 gap-2 md:gap-0 ${
           setInput && "absolute -bottom-10 left-3 right-[20%]"
         }`}
       >

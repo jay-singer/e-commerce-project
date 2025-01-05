@@ -41,7 +41,7 @@ const LandingPage = () => {
         </div>
       )}
       <Outlet />
-      <div className={` ${showCategory && "absolute right-0   left-[14%] "}`}>
+      <div className={` ${!showCategory && "absolute right-0   left-[14%] "}`}>
         <Product showCategory={showCategory} />
         <Products />
       </div>
