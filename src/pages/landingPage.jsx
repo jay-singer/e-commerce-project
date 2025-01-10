@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import Footer from "../components/footer";
 import NavBar from "../components/navibar";
 import Product from "../components/Product";
 import Products from "../components/products";
 import SignForm from "../components/signIn";
+import Testimony from "../components/Testimony";
 import UpperHeader from "../components/upHeader";
 import UpperHeader1 from "../components/upHeader1";
 
@@ -49,6 +51,10 @@ const LandingPage = () => {
         <Product showCategory={showCategory} />
         <Products />
       </div>
+
+      <Testimony />
+
+      <Footer />
     </div>
   );
 };
