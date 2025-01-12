@@ -27,8 +27,8 @@ const Navbar = ({ showCategory, setShowCategory }) => {
   return (
     <nav className=" left-0 right-0 shadow-md fixed w-full z-10 top-[98px] max-w-[1440px] mx-auto bg-white">
       <div className=" mx-auto px-2">
-        <div className="flex items-center  md:h-[60px] h-[30px]  my-1 md:m-0 gap-2">
-          <div className="flex gap-2 md:space-x-1 space-x-2">
+        <div className="flex  items-center  md:h-[60px] h-[30px]  my-1 md:m-0 gap-3">
+          <div className="flex  md:space-x-1 space-x-2">
             {/* Toggle Category List Button */}
             <button
               onClick={toggleCategoryMenu}
@@ -48,7 +48,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
             {isSmallScreen && <SearchComp size={15} />}
           </div>
 
-          <div>
+          <div className="bg-red-400 ml-4">
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-4">
               <Link to="/" className={Style}>
