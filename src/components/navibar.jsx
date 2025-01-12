@@ -25,9 +25,9 @@ const Navbar = ({ showCategory, setShowCategory }) => {
     "text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium";
 
   return (
-    <nav className="bg-white left-0 right-0 shadow-md fixed w-full z-10 top-[100px] max-w-[1440px] mx-auto ">
+    <nav className="bg-white left-0 right-0 shadow-md fixed w-full z-10 top-[99px] max-w-[1440px] mx-auto ">
       <div className=" mx-auto px-2">
-        <div className="flex items-center justify-between md:h-[60px] h-[30px]  mt-1 md:m-0 bg-white ">
+        <div className="flex items-center justify-between md:h-[60px] h-[30px]  my-1 md:m-0 bg-white gap-2">
           <div className="flex md:space-x-1 space-x-3">
             {/* Toggle Category List Button */}
             <button
@@ -63,7 +63,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="md:hidden border ">
               <button
                 onClick={toggleMobileMenu}
                 className="text-gray-800 hover:bg-gray-200  focus:outline-none"

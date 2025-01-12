@@ -5,19 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/ecommerce-svgrepo-com.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YOUbuy.</title>
-  </head>
-  <body
-    style="
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    "
-  >
+      body {
+        margin: 0;
+        padding: 0;
+        max-width: 1440px; /* Restrict width on larger screens */
+        min-width: 320px; /* Ensure a reasonable min width */
+      }
+    </style>
+  </head>
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
