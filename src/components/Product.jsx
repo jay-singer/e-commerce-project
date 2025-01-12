@@ -25,7 +25,7 @@ function Product({ showCategory }) {
 
   return (
     <div
-      className={`  mt-[10.1rem]  md:flex-row flex-col flex justify-center p-4 gap-4
+      className={` mt-[10.1rem]  md:flex-row flex-col flex justify-center p-4 gap-4
  ${!showCategory ? "w-full " : "w-full"} `}
     >
       <div className="  w-[200px] flex flex-col gap-4 self-center z-0">
@@ -52,7 +52,7 @@ function Product({ showCategory }) {
           </span>
         </div>
       </div>
-      <div className="w-[374px]">
+      <div className="w-fit">
         <img src="/assets/products/Furniture 1.png" className="w-full" alt="" />
       </div>
       <div className=" space-y-3 md:text-[14px] text-[10px] flex md:flex-col md:justify-center md:w-[20%] w-full justify-evenly items-center md:gap-0 ">

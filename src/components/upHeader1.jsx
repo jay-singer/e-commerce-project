@@ -26,7 +26,7 @@ const UpperHeader1 = ({ displayingForm }) => {
   return (
     <>
       <div
-        className={`fixed top-navHeight h-navHeight flex items-center justify-between  lg:px-7 md:px-3  md:pe-3 pe-1 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white border border-black z-50`}
+        className={`fixed top-navHeight h-navHeight flex items-center justify-between  lg:px-7 md:px-3  md:pe-3 pe-1 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white z-50`}
       >
         {/* log section*/}
         <div>
@@ -40,7 +40,7 @@ const UpperHeader1 = ({ displayingForm }) => {
           </Link>
         </div>
         {/* Search BarSection */}
-        <div className={`${screen ? "hidden" : "block"}`}>
+        <div className={`${window.innerWidth < 500 ? "hidden" : "block"}`}>
           {" "}
           <SearchComp setInput={screen} />
         </div>
@@ -48,10 +48,12 @@ const UpperHeader1 = ({ displayingForm }) => {
         {/** Header Icon */}
         <div
           className={`flex items-center gap-3  ${
-            screen ? " rounded-full bg-navColor p-2" : " bg-white "
+            window.innerWidth < 500
+              ? " rounded-full bg-navColor p-2 text-white"
+              : " bg-white "
           }`}
         >
-          <BsBagDash size={20} className="md:block hidden" />
+          <BsBagDash size={20} className="md:block hidden " />
           <BsBell size={20} className="md:block hidden" />
           <BsPerson size={20} className="md:block hidden" />
           <MdOutlineInsertComment

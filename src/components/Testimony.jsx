@@ -20,7 +20,7 @@ const Testimony = () => {
           return (
             <div
               className="flex flex-col items-center lg:w-[40%] md:w-[30px)
-              gap-4 lg:m-0 me-2"
+              gap-4 lg:m-0 "
               key={index}
             >
               <img
@@ -29,7 +29,9 @@ const Testimony = () => {
                 alt={value.customerName}
               />
               <div className="flex flex-col gap-3">
-                <p className="lg:text-[16px]">{value.testimony}</p>
+                <p className="md:text-[16px] text-[13px] w-[310px] md:w-full md:p-0 text-center ">
+                  {value.testimony}
+                </p>
                 <h4 className="text-primary font-semibold xl:text-[24px] lg:text[18px] md:text-[16px]">
                   {value.customerName}
                 </h4>
