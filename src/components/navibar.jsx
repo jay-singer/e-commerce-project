@@ -63,7 +63,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center justify-center ml-2 ">
+            <div className="md:hidden flex items-center justify-center ml-[10px] ">
               <button
                 onClick={toggleMobileMenu}
                 className="text-gray-800 focus:outline-none"
