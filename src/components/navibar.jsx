@@ -27,7 +27,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
   return (
     <nav className=" left-0 right-0 shadow-md fixed w-full z-10 top-[99px] max-w-[1440px] mx-auto ">
       <div className=" mx-auto px-2">
-        <div className="flex items-center  md:h-[60px] h-[30px]  my-1 md:m-0 bg-white gap-2">
+        <div className="flex items-center  md:h-[60px] h-[30px]  my-1 md:m-0 gap-2">
           <div className="flex md:space-x-1 space-x-2">
             {/* Toggle Category List Button */}
             <button
@@ -63,15 +63,15 @@ const Navbar = ({ showCategory, setShowCategory }) => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden border ">
+            <div className="md:hidden flex items-center justify-center ">
               <button
                 onClick={toggleMobileMenu}
-                className="text-gray-800 hover:bg-gray-200  focus:outline-none"
+                className="text-gray-800 focus:outline-none"
               >
                 {isMenuOpen ? (
-                  <IoMdClose size={15} />
+                  <IoMdClose size={20} />
                 ) : (
-                  <FaBarsStaggered size={15} />
+                  <FaBarsStaggered size={20} />
                 )}
               </button>
             </div>
