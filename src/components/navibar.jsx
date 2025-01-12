@@ -78,7 +78,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-              <div className="md:hidden absolute left-0 right-0 bg-white z-50 top-[50px] ">
+              <div className="md:hidden absolute left-0 right-0 bg-white z-50 top-[38px] ">
                 <div className="flex flex-col px-2 py-3 space-y-1">
                   {["Home", "About", "Services", "Contact Us"].map((item) => (
                     <Link
