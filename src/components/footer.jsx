@@ -24,7 +24,7 @@ const Footer = () => {
                 B.quality is the popular Ecommerce site. Lorem ipsum dolor sit
                 amet, consectetur adipiscing elit, sed do eiusmod tempor.
               </p>
-              <div className="flex justify-center mt-4  gap-5 md:gap-0">
+              <div className="flex justify-center md:justify-start mt-4  gap-5 md:gap-4">
                 <Link
                   to="#"
                   className="text-gray-500 hover:text-gray-900 transition"

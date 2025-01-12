@@ -38,7 +38,7 @@ const SellComp = () => {
           </div>
           {/** Right navigation */}
           <div>
-            <Link to="/sellerDashboard">
+            <Link to="/sellDashboard">
               <MdSpaceDashboard className="lg:size-10 size-7" />
             </Link>
           </div>

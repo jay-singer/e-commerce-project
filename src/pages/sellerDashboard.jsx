@@ -22,9 +22,9 @@ const SellerDashboard = () => {
 
         <Link>
           <img
-            src="../assets/profile/Image Placeholder.png"
+            src="./assets/profile/profile1.jpeg"
             alt="Profile pic"
-            className="size-10"
+            className="size-10 rounded-full object-cover object-center"
           />
         </Link>
       </div>
