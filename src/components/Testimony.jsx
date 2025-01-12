@@ -1,5 +1,5 @@
 import React from "react";
-
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const Testimony = () => {
   const arrObject = [
     {
@@ -28,10 +28,16 @@ const Testimony = () => {
                 src={value.imageUrl}
                 alt={value.customerName}
               />
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 relative">
+                <span className="absolute  md:-left-32 md:top-[20%] bottom-7 cursor-pointer">
+                  <IoIosArrowBack size={30} />
+                </span>
                 <p className="md:text-[16px] text-[13px] w-[310px] md:w-full md:p-0 text-center ">
                   {value.testimony}
                 </p>
+                <span className="absolute  md:-right-32 md:top-[20%] bottom-7 cursor-pointer right-0">
+                  <IoIosArrowForward size={30} />
+                </span>
                 <h4 className="text-primary font-semibold xl:text-[24px] lg:text[18px] md:text-[16px]">
                   {value.customerName}
                 </h4>
