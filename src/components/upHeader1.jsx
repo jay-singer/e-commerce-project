@@ -53,13 +53,13 @@ const UpperHeader1 = ({ displayingForm }) => {
               : " bg-white "
           }`}
         >
-          <BsBagDash size={20} className="md:block hidden " />
+          <Link to="/sellDashboard">
+            {" "}
+            <BsBagDash size={20} color={`${screen ? "white" : "black"}`} />
+          </Link>
           <BsBell size={20} className="md:block hidden" />
           <BsPerson size={20} className="md:block hidden" />
-          <MdOutlineInsertComment
-            size={20}
-            color={`${screen ? "white" : "black"}`}
-          />
+          <MdOutlineInsertComment size={20} className="md:block hidden" />
         </div>
 
         <div className=" flex items-center gap-2 md:flex-row ">

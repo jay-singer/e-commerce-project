@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,28 +18,50 @@ const DashboardTable = () => {
   } = useForm();
 
   // Fetch products from API
-  // const fetchProducts = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://e-commerce-backend-b8fd.onrender.com"
-  //     );
-  //     setProducts(response.data);
-  //   } catch (error) {
-  //     toast.error("Error fetching products.");
-  //     console.error("Error fetching products:", error);
-  //   }
-  // };
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(
+        "https://e-commerce-backend-b8fd.onrender.com/api/products"
+      );
+      setProducts(response.data);
+    } catch (error) {
+      toast.error("Error fetching products.");
+      console.error("Error fetching products:", error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchProducts();
-  // });
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   // Add new product (POST request with image)
+  const handleAddProduct = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("price", data.price);
+      formData.append("image", data.image[0]);
+
+      const response = await axios.post(
+        "https://e-commerce-backend-b8fd.onrender.com/api/products",
+        formData
+      );
+      setProducts((prev) => [...prev, response.data]);
+      toast.success("Product added successfully!");
+      reset();
+      setAddingPost(false);
+    } catch (error) {
+      toast.error("Error adding product.");
+      console.error("Error adding product:", error);
+    }
+  };
 
   // Delete product by ID (DELETE request)
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`https://e-commerce-backend-b8fd.onrender.com${id}`);
+      await axios.delete(
+        `https://e-commerce-backend-b8fd.onrender.com/api/products/${id}`
+      );
       setProducts((prev) => prev.filter((product) => product.id !== id));
       toast.success("Product deleted successfully!");
     } catch (error) {
@@ -48,38 +70,15 @@ const DashboardTable = () => {
     }
   };
 
-  // Edit product by ID (PUT request)
-  const handleEditProduct = async (id) => {
-    try {
-      await axios.put(
-        `https://e-commerce-backend-b8fd.onrender.com${id}`,
-        editingProduct
-      );
-      setProducts((prev) =>
-        prev.map((product) =>
-          product.id === id ? { ...product, ...editingProduct } : product
-        )
-      );
-      setEditingProductId(null);
-      toast.success("Product updated successfully!");
-    } catch (error) {
-      toast.error("Error updating product.");
-      console.error("Error updating product:", error);
-    }
-  };
-
   return (
     <div className="container mx-auto p-8 border border-black">
-      {/* Toastify Container */}
       <ToastContainer />
 
-      {/* Overlay for form and blur background */}
       <div className={`relative ${addingPost ? "blur-sm" : ""}`}>
         <h2 className="text-2xl font-bold mb-6 md:text-start text-center">
           Product Dashboard
         </h2>
 
-        {/* Create new Product Button */}
         <div className="mb-6">
           <button
             onClick={() => setAddingPost(true)}
@@ -89,7 +88,6 @@ const DashboardTable = () => {
           </button>
         </div>
 
-        {/* Products Table */}
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-navColor text-white">
             <tr>
@@ -128,7 +126,6 @@ const DashboardTable = () => {
         </table>
       </div>
 
-      {/* Add Product Form Modal */}
       {addingPost && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg max-w-md w-full">
