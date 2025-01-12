@@ -20,11 +20,11 @@ const Footer = () => {
                   B.<i className="text-[12px]">quality</i>
                 </h2>
               </div>
-              <p className="md:text-sm text-[12px] text-gray-500 text-center">
+              <p className="md:text-sm text-[12px] text-gray-500 text-center px-1">
                 B.quality is the popular Ecommerce site. Lorem ipsum dolor sit
                 amet, consectetur adipiscing elit, sed do eiusmod tempor.
               </p>
-              <div className="flex justify-center mt-4 space-x-4 gap-5 md:gap-0">
+              <div className="flex justify-center mt-4  gap-5 md:gap-0">
                 <Link
                   to="#"
                   className="text-gray-500 hover:text-gray-900 transition"

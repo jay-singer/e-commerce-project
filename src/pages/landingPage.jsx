@@ -22,7 +22,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="relative max-w-[1440px] w-full ps-1">
+    <div className="relative max-w-[1440px] w-full ">
       {/* Blur the background elements when the form is shown */}
       <div
         className={`${
