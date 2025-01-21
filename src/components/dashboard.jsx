@@ -7,8 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 const DashboardTable = () => {
   const [products, setProducts] = useState([]);
   const [addingPost, setAddingPost] = useState(false);
-  const [editingProductId, setEditingProductId] = useState(null);
-  const [editingProduct, setEditingProduct] = useState({ name: "", price: "" });
 
   const {
     register,
@@ -21,8 +19,9 @@ const DashboardTable = () => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        "https://e-commerce-backend-b8fd.onrender.com/api/products"
+        "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
       );
+      console.log(response.data);
       setProducts(response.data);
     } catch (error) {
       toast.error("Error fetching products.");
@@ -34,16 +33,17 @@ const DashboardTable = () => {
     fetchProducts();
   }, []);
 
-  // Add new product (POST request with image)
+  // Add new product (POST request with image and description)
   const handleAddProduct = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("name", data.name);
+      formData.append("productName", data.productName);
       formData.append("price", data.price);
+      formData.append("productDescription", data.productDescription);
       formData.append("image", data.image[0]);
 
       const response = await axios.post(
-        "https://e-commerce-backend-b8fd.onrender.com/api/products",
+        "https://e-commerce-backend-b8fd.onrender.com/api/createProduct",
         formData
       );
       setProducts((prev) => [...prev, response.data]);
@@ -57,16 +57,19 @@ const DashboardTable = () => {
   };
 
   // Delete product by ID (DELETE request)
-  const handleDeleteProduct = async (id) => {
+  // Delete product by ID (DELETE request)
+  // Delete product by ID (DELETE request)
+  const handleDeleteProduct = async (_id) => {
     try {
+      console.log(`Attempting to delete product with ID: ${_id}`);
       await axios.delete(
-        `https://e-commerce-backend-b8fd.onrender.com/api/products/${id}`
+        `https://e-commerce-backend-b8fd.onrender.com/api/deleteProduct/${_id}`
       );
-      setProducts((prev) => prev.filter((product) => product.id !== id));
-      toast.success("Product deleted successfully!");
+      setProducts((prev) => prev.filter((product) => product._id !== _id));
+      toast.success(`Product with ID: ${_id} deleted successfully!`);
     } catch (error) {
-      toast.error("Error deleting product.");
-      console.error("Error deleting product:", error);
+      console.error(`Error deleting product with ID: ${_id}`, error);
+      toast.error(`Error deleting product with ID: ${_id}`);
     }
   };
 
@@ -94,27 +97,31 @@ const DashboardTable = () => {
               <th className="py-2 px-4 border-e border-white">ID</th>
               <th className="py-2 px-4 border-e border-white">Product Name</th>
               <th className="py-2 px-4 border-e border-white">Price</th>
+              <th className="py-2 px-4 border-e border-white">Description</th>
               <th className="py-2 px-4 border-e border-white">Actions</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr
-                key={product.id}
+                key={product._id}
                 className="border-e border-gray-400 hover:bg-gray-100"
               >
                 <td className="py-2 px-4 border-e border-gray-400 text-end">
-                  {product.id}
+                  {product._id}
                 </td>
                 <td className="py-2 px-4 border-e border-gray-400 text-end">
-                  {product.name}
+                  {product.productName}
                 </td>
                 <td className="py-2 px-4 border-e border-gray-400 text-end">
                   ${product.price}
                 </td>
+                <td className="py-2 px-4 border-e border-gray-400 text-end">
+                  {product.productDescription}
+                </td>
                 <td className="py-2 px-4 flex space-x-2 justify-end">
                   <button
-                    onClick={() => handleDeleteProduct(product.id)}
+                    onClick={() => handleDeleteProduct(product._id)}
                     className="bg-red-500 text-white py-1 px-3 rounded-md"
                   >
                     Delete
@@ -134,11 +141,13 @@ const DashboardTable = () => {
               <input
                 type="text"
                 placeholder="Product Name"
-                {...register("name", { required: "Product name is required" })}
+                {...register("productName", {
+                  required: "Product name is required",
+                })}
                 className="block w-full mb-4 p-2 border border-gray-300 rounded"
               />
-              {errors.name && (
-                <p className="text-red-500">{errors.name.message}</p>
+              {errors.productName && (
+                <p className="text-red-500">{errors.productName.message}</p>
               )}
               <input
                 type="text"
@@ -150,6 +159,18 @@ const DashboardTable = () => {
               />
               {errors.price && (
                 <p className="text-red-500">{errors.price.message}</p>
+              )}
+              <textarea
+                placeholder="Product Description"
+                {...register("productDescription", {
+                  required: "Product description is required",
+                })}
+                className="block w-full mb-4 p-2 border border-gray-300 rounded"
+              />
+              {errors.productDescription && (
+                <p className="text-red-500">
+                  {errors.productDescription.message}
+                </p>
               )}
               <input
                 type="file"

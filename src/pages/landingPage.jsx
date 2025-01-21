@@ -50,11 +50,10 @@ const LandingPage = () => {
       >
         <Product showCategory={showCategory} />
         <Products />
+        <Testimony />
+
+        <Footer />
       </div>
-
-      <Testimony />
-
-      <Footer />
     </div>
   );
 };

@@ -53,7 +53,7 @@ const UpperHeader1 = ({ displayingForm }) => {
               : " bg-white "
           }`}
         >
-          <Link to="/sellDashboard">
+          <Link to="/sell">
             {" "}
             <BsBagDash size={20} color={`${screen ? "white" : "black"}`} />
           </Link>
