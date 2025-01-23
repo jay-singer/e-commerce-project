@@ -15,17 +15,15 @@ const DashboardTable = () => {
     formState: { errors },
   } = useForm();
 
-  // Fetch products from API
+  // Fetch products from the API
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
         "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
       );
-      console.log(response.data);
       setProducts(response.data);
     } catch (error) {
       toast.error("Error fetching products.");
-      console.error("Error fetching products:", error);
     }
   };
 
@@ -33,7 +31,7 @@ const DashboardTable = () => {
     fetchProducts();
   }, []);
 
-  // Add new product (POST request with image and description)
+  // Add a new product
   const handleAddProduct = async (data) => {
     try {
       const formData = new FormData();
@@ -46,42 +44,40 @@ const DashboardTable = () => {
         "https://e-commerce-backend-b8fd.onrender.com/api/createProduct",
         formData
       );
+
+      // Log the API response for debugging
+      console.log("API Response:", response.data);
+
+      // Update state with the new product details
       setProducts((prev) => [...prev, response.data]);
       toast.success("Product added successfully!");
       reset();
       setAddingPost(false);
     } catch (error) {
       toast.error("Error adding product.");
-      console.error("Error adding product:", error);
     }
   };
 
-  // Delete product by ID (DELETE request)
-  // Delete product by ID (DELETE request)
-  // Delete product by ID (DELETE request)
+  // Delete a product by ID
   const handleDeleteProduct = async (_id) => {
     try {
-      console.log(`Attempting to delete product with ID: ${_id}`);
       await axios.delete(
         `https://e-commerce-backend-b8fd.onrender.com/api/deleteProduct/${_id}`
       );
       setProducts((prev) => prev.filter((product) => product._id !== _id));
-      toast.success(`Product with ID: ${_id} deleted successfully!`);
+      toast.success("Product deleted successfully!");
     } catch (error) {
-      console.error(`Error deleting product with ID: ${_id}`, error);
-      toast.error(`Error deleting product with ID: ${_id}`);
+      toast.error("Error deleting product.");
     }
   };
 
   return (
     <div className="container mx-auto p-8 border border-black">
       <ToastContainer />
-
       <div className={`relative ${addingPost ? "blur-sm" : ""}`}>
         <h2 className="text-2xl font-bold mb-6 md:text-start text-center">
           Product Dashboard
         </h2>
-
         <div className="mb-6">
           <button
             onClick={() => setAddingPost(true)}
@@ -90,11 +86,11 @@ const DashboardTable = () => {
             Create new product
           </button>
         </div>
-
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-navColor text-white">
             <tr>
-              <th className="py-2 px-4 border-e border-white">ID</th>
+              <th className="py-2 px-4 border-e border-white">#</th>
+              <th className="py-2 px-4 border-e border-white">Image</th>
               <th className="py-2 px-4 border-e border-white">Product Name</th>
               <th className="py-2 px-4 border-e border-white">Price</th>
               <th className="py-2 px-4 border-e border-white">Description</th>
@@ -102,21 +98,28 @@ const DashboardTable = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {products.map((product, index) => (
               <tr
                 key={product._id}
                 className="border-e border-gray-400 hover:bg-gray-100"
               >
                 <td className="py-2 px-4 border-e border-gray-400 text-end">
-                  {product._id}
+                  {index + 1}
                 </td>
-                <td className="py-2 px-4 border-e border-gray-400 text-end">
+                <td className="py-2 px-4 border-e border-gray-400">
+                  <img
+                    src={product.productImage || "https://via.placeholder.com/150"}
+                    alt={product.productName}
+                    className="w-16 h-16 object-cover"
+                  />
+                </td>
+                <td className="py-2 px-4 border-e border-gray-400">
                   {product.productName}
                 </td>
-                <td className="py-2 px-4 border-e border-gray-400 text-end">
+                <td className="py-2 px-4 border-e border-gray-400">
                   ${product.price}
                 </td>
-                <td className="py-2 px-4 border-e border-gray-400 text-end">
+                <td className="py-2 px-4 border-e border-gray-400">
                   {product.productDescription}
                 </td>
                 <td className="py-2 px-4 flex space-x-2 justify-end">

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] m pb-10">
-      <div className="container mx-auto ">
+    <footer className="bg-gray-100 text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10">
+      <div className="container mx-auto  ">
         {/* Top Section */}
-        <div className="flex justify-center lg:flex-row flex-col lg:gap-3  ">
-          <div className="flex md:justify-evenly flex-col md:flex-row ">
+        <div className="flex justify-center lg:flex-row flex-col lg:gap-3">
+          <div className="flex md:justify-evenly flex-col md:flex-row  items-center justify-center">
             {/* Brand Section */}
             <div className="w-full sm:w-1/2 md:w-1/3 ">
               <div className="flex items-center mb-4">
@@ -24,7 +24,7 @@ const Footer = () => {
                 B.quality is the popular Ecommerce site. Lorem ipsum dolor sit
                 amet, consectetur adipiscing elit, sed do eiusmod tempor.
               </p>
-              <div className="flex justify-center md:justify-start mt-4  gap-5 md:gap-4">
+              <div className="flex justify-center sm:justify-start mt-4  gap-5 md:gap-4">
                 <Link
                   to="#"
                   className="text-gray-500 hover:text-gray-900 transition"
@@ -164,12 +164,10 @@ const Footer = () => {
 
             {/* Help Section */}
             <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start">
-              <h3 className="font-semibold text-lg my-4 w-[90%] md:w-fit flex justify-center items-center gap-2">
-                <span className="bg-black h-[1px] w-full"></span>
-                <span>Help</span>
-                <span className="bg-black h-[1px] w-full"></span>
+              <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-y-2">
+                <span className="bg-white px-4 z-50">Help</span>
               </h3>
-              <ul className="md:space-y-2 flex flex-row text-center md:flex-col justify-center items-center space-x-2">
+              <ul className="md:space-y-2 flex flex-row text-center md:flex-col md:space-x-0 justify-center items-start space-x-2 md:text-nowrap marker:">
                 <li>
                   <Link to="/privacy-policy" className="hover:underline">
                     Privacy Policy
@@ -192,45 +190,46 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-          </div>
-
-          {/* Support Section */}
-          <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start">
-            <h3 className="font-semibold text-lg my-4 w-[90%] md:w-fit flex justify-center items-center gap-2">
-              <span className="bg-black h-[1px] w-full"></span>
-              <span>Supports</span>
-              <span className="bg-black h-[1px] w-full"></span>
-            </h3>
-            <ul className="md:space-y-2 flex flex-row text-center md:flex-col justify-center items-center space-x-2 ">
-              <li>
-                <Link to="/feedback" className="hover:underline ">
-                  Feedback
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact-us" className="hover:underline">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/download-app" className="hover:underline">
-                  Download App
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms-conditions" className="hover:underline">
-                  Terms & Conditions
-                </Link>
-              </li>
-            </ul>
+            {/* Support Section */}
+            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start ">
+              <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-2">
+                <span className="bg-white z-50">Supports</span>
+              </h3>
+              <ul className="md:space-y-2 flex flex-row text-center md:flex-col md:space-x-0 justify-center items-start space-x-2 ">
+                <li>
+                  <Link to="/feedback" className="hover:underline ">
+                    Feedback
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact-us" className="hover:underline">
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/download-app" className="hover:underline">
+                    Download App
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms-conditions" className="hover:underline">
+                    Terms & Conditions
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <hr className="bg-black  mt-2" />
+        <hr className="bg-slate-400  mt-2 p-[1px]" />
         {/* Bottom Section */}
         <div className="   pt-2">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-600">
-              © 2023 Vikings - All rights reserved.
+              © 2023{" "}
+              <Link to={`/`} className="font-semibold hover:underline">
+                BUY.quality
+              </Link>{" "}
+              - All rights reserved.
             </p>
             <div className="flex space-x-4 mt-2 md:mt-0">
               <Link

@@ -13,7 +13,15 @@ const SingleProduct = ({ items }) => {
       <h3 className="whitespace-nowrap  w-full object-cover ">
         {items.ProName}
       </h3>
-      <p className=" text-navColor ">{items.price}</p>
+      <p className=" text-navColor  flex justify-around  items-center ">
+        {items.price}
+        <div className="flex justify-center items-center b">
+          <span>{items.star}</span>
+          <span>{items.star}</span>
+          <span>{items.star}</span>
+          <span>{items.star}</span>
+        </div>
+      </p>
     </div>
   );
 };

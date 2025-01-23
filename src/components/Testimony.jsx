@@ -11,7 +11,7 @@ const Testimony = () => {
     },
   ];
   return (
-    <div className=" text-center text-textColor  pb-2 bg-gray-200 mx-1">
+    <div className=" text-center text-textColor  pb-2 bg-gray-200 mx-1 mt-4">
       <h3 className=" text-center font-bold text-primary lg:text-[36px] my-4">
         What our customers say
       </h3>
@@ -28,14 +28,14 @@ const Testimony = () => {
                 src={value.imageUrl}
                 alt={value.customerName}
               />
-              <div className="flex flex-col gap-3 relative">
-                <span className="absolute  md:-left-32 md:top-[20%] bottom-7 cursor-pointer">
+              <div className="flex flex-col justify-center items-center gap-3 relative">
+                <span className="absolute  md:left-10 left-0 md:top-[13%] bottom-7 cursor-pointer">
                   <IoIosArrowBack size={30} />
                 </span>
-                <p className="md:text-[16px] text-[13px] w-[310px] md:w-full md:p-0 text-center ">
+                <p className="md:text-[16px] text-[13px] w-[310px] md:w-[70%] md:p-0 text-center ">
                   {value.testimony}
                 </p>
-                <span className="absolute  md:-right-32 md:top-[20%] bottom-7 cursor-pointer right-0">
+                <span className="absolute  md:right-10 md:top-[13%] bottom-7 cursor-pointer right-0">
                   <IoIosArrowForward size={30} />
                 </span>
                 <h4 className="text-primary font-semibold xl:text-[24px] lg:text[18px] md:text-[16px]">
