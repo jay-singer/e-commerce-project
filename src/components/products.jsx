@@ -20,7 +20,7 @@ const Products = () => {
     handleResize(); // Initial call to set state
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  });
 
   const star = (
     <svg
