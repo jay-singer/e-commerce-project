@@ -163,11 +163,11 @@ const Footer = () => {
             </div>
 
             {/* Help Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start">
+            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start px-1">
               <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-y-2">
                 <span className="bg-white px-4 z-50">Help</span>
               </h3>
-              <ul className="md:space-y-2 flex flex-row text-center md:flex-col md:space-x-0 justify-center items-start space-x-2 md:text-nowrap marker:">
+              <ul className="md:space-y-2 flex flex-row text-center md:flex-col md:space-x-0 justify-center items-start space-x-2 md:text-nowrap text-wrap">
                 <li>
                   <Link to="/privacy-policy" className="hover:underline">
                     Privacy Policy
