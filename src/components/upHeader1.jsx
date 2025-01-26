@@ -34,7 +34,7 @@ const UpperHeader1 = ({ displayingForm }) => {
             {" "}
             <img
               className="md:w-[8rem] w-[100px] "
-              src="./assets/Logo.svg"
+              src="/assets/Logo.svg"
               alt="LogImage"
             />
           </Link>
