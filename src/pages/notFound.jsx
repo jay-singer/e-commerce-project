@@ -14,7 +14,7 @@ const NotFound = () => {
       </div>
       <div className="">
         <img
-          src="./assets/illustration/404.jpg"
+          src="/assets/illustration/404.jpg"
           className="lg:size-[300px] object-cover object-center"
           alt="Not found"
         />

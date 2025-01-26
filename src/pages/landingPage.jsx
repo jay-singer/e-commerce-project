@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/footer";
 import NavBar from "../components/navibar";
 import Product from "../components/Product";
@@ -13,6 +13,8 @@ const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
 
+  const location = useLocation();
+
   const displayingForm = () => {
     setShowForm(true);
   };
@@ -20,6 +22,9 @@ const LandingPage = () => {
   const hideForm = () => {
     setShowForm(false);
   };
+
+  // Determine if the route is for a single product
+  const isProductPage = location.pathname.startsWith("/product");
 
   return (
     <div className="relative max-w-[1440px] w-full ">
@@ -42,18 +47,27 @@ const LandingPage = () => {
           </div>
         </div>
       )}
-      <Outlet />
+
+      {/* Content Area */}
       <div
-        className={` flex flex-col justify-center items-center ${
-          !showCategory && "absolute right-0   left-[14%] "
+        className={`flex flex-col justify-center items-center ${
+          !showCategory && "absolute right-0 left-[14%]"
         }`}
       >
-        <Product showCategory={showCategory} />
-        <Products />
-        <Testimony />
+        {/* Only display Product, Products, and Testimony on non-product pages */}
+        {!isProductPage && (
+          <>
+            <Product showCategory={showCategory} />
+            <Products />
+          </>
+        )}
 
-        <Footer />
+        {/* Render child routes (e.g., ProductDetails) */}
+        <Outlet />
+        <Testimony />
       </div>
+
+      <Footer />
     </div>
   );
 };
