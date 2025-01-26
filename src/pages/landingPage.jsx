@@ -65,9 +65,9 @@ const LandingPage = () => {
         {/* Render child routes (e.g., ProductDetails) */}
         <Outlet />
         <Testimony />
-      </div>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };
