@@ -25,24 +25,26 @@ function Product({ showCategory }) {
 
   return (
     <div
-      className={` mt-[10.1rem]  md:flex-row flex-col flex justify-center p-4 gap-4
- ${!showCategory ? "w-full " : "w-full"} `}
+      className={` container mt-[12rem]  md:flex-row flex-col flex justify-center mb-10  pt-0 gap-4  h-full lg:h-[30rem] w-full`}
     >
       <div className="  w-[200px] flex flex-col gap-4 self-center z-0 ">
-        <h1 className="text-navColor text-sm">TOP COLLECTIONS 2023</h1>
-        <p className=" text-xl font-semibold relative z-20 ">
-          We Serve Your Dream Furniture
+        <h1 className="text-navColor text-sm">TOP COLLECTIONS 2025</h1>
+        <p className=" text-xl font-semibold relative  ">
+          <span className="z-50 bg-white  block  h-fit">
+            We Serve Your Dream Furniture
+          </span>
           <span className=" ">
             <img
-              className=" bg-navColor absolute bottom-1 -z-10 "
-              src="/assets/frame/Rectangle.png"
+              className="  absolute -bottom-1 right-10 -z-10 w-24 h-9 "
+              src="/assets/frame/5f27e907fbdca6cab0ba1f7d4c0b7ce9.png"
               alt=""
             />
           </span>
         </p>
+        <p className="text-primary">Get of 50% off All Products</p>
         <div className="text-white flex gap-3 ">
           <Link
-            to="*"
+            to="/signIn1"
             className="bg-navColor flex items-center px-2 rounded text-[14px] text-nowrap"
           >
             SHOP NOW
@@ -52,8 +54,8 @@ function Product({ showCategory }) {
           </span>
         </div>
       </div>
-      <div className="w-fit">
-        <img src="/assets/products/Furniture 1.png" className="w-full" alt="" />
+      <div className="w-fit ">
+        <img src="/assets/products/Furniture 1.png" className=" " alt="" />
       </div>
       <div className=" space-y-3 md:text-[14px] text-[10px] flex md:flex-col md:justify-center md:w-[20%] w-full justify-evenly items-center md:gap-0 ">
         <div className="">

@@ -30,9 +30,9 @@ const SellComp = () => {
                 </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-green-500 hidden">
+                <Link to={"/contact"} className="hover:text-green-500 hidden">
                   Contact Me
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

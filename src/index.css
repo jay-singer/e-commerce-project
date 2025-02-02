@@ -3,3 +3,24 @@
 @tailwind utilities;
 
 /*comment**/
+
+.categoryId {
+  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+  animation: scaleUp 0.5s ease-in-out;
+  width: 100% !important;
+  border-bottom: 1px solid gray;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.categoryId:hover {
+  transform: rotate(5deg);
+}
