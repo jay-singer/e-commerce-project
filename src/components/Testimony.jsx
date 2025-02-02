@@ -15,6 +15,7 @@ const Testimony = () => {
       <h3 className=" text-center font-bold text-primary lg:text-[36px] my-4">
         What our customers say
       </h3>
+
       <div className="w-full flex justify-center">
         {arrObject.map((value, index) => {
           return (

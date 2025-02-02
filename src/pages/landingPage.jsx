@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/footer";
 import NavBar from "../components/navibar";
-import Product from "../components/Product";
+import Product from "../components/ProductDisplay";
 import Products from "../components/products";
 import SignForm from "../components/signIn";
 import Testimony from "../components/Testimony";
@@ -12,49 +12,67 @@ import UpperHeader1 from "../components/upHeader1";
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   const location = useLocation();
+  const lastScrollY = useRef(window.scrollY);
 
-  const displayingForm = () => {
-    setShowForm(true);
-  };
+  const displayingForm = () => setShowForm(true);
+  const hideForm = () => setShowForm(false);
 
-  const hideForm = () => {
-    setShowForm(false);
-  };
-
-  // Determine if the route is for a single product
   const isProductPage = location.pathname.startsWith("/product");
 
+  // Handle scroll event to hide the UpperHeader on scroll down and show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current + 10) {
+        setIsHeaderVisible(false); // Hide when scrolling down
+      } else if (currentScrollY < lastScrollY.current - 10) {
+        setIsHeaderVisible(true); // Show when scrolling up
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="relative max-w-[1440px] w-full ">
-      {/* Blur the background elements when the form is shown */}
+    <div className="relative max-w-[1440px] w-full">
+      {/* Blur effect when form is open */}
       <div
-        className={`${
+        className={`transition duration-300 ease-in-out ${
           showForm ? "filter blur-sm" : ""
-        } transition duration-300 ease-in-out`}
+        }`}
       >
-        <UpperHeader />
-        <UpperHeader1 displayingForm={displayingForm} />
+        {/* Upper Header (hides on scroll down, shows on scroll up) */}
+        <div
+          className={`fixed top-0 left-0 right-0 z-20 bg-white shadow-md transition-transform duration-300 ${
+            isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+          }`}
+        >
+          <UpperHeader />
+          <UpperHeader1 displayingForm={displayingForm} />
+        </div>
+
+        {/* Navbar (always visible) */}
         <NavBar showCategory={showCategory} setShowCategory={setShowCategory} />
       </div>
 
-      {/* Form modal */}
+      {/* Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 md:flex md:items-center justify-center bg-black bg-opacity-25">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] md:p-4 h-full lg:h-fit">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-25">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-4 h-full lg:h-fit">
             <SignForm formStatus={showForm} hideForm={hideForm} />
           </div>
         </div>
       )}
 
       {/* Content Area */}
-      <div
-        className={`flex flex-col justify-center items-center ${
-          !showCategory && "absolute right-0 left-[14%]"
-        }`}
-      >
-        {/* Only display Product, Products, and Testimony on non-product pages */}
+      <div className="flex flex-col justify-center items-center">
         {!isProductPage && (
           <>
             <Product showCategory={showCategory} />
@@ -62,10 +80,8 @@ const LandingPage = () => {
           </>
         )}
 
-        {/* Render child routes (e.g., ProductDetails) */}
         <Outlet />
         <Testimony />
-
         <Footer />
       </div>
     </div>

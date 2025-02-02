@@ -10,13 +10,12 @@ import { z } from "zod";
 const SignForm = ({ hideForm, formStatus }) => {
   const formRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   // Zod schema for validation
   const schema = z.object({
-    Firstname: z.string().min(1, "First name is required"),
-    Secondname: z.string().min(1, "Last name is required"),
-    Email: z.string().email("Invalid email address"),
-    Password: z.string().min(8, "Password must be at least 8 characters"),
+    firstName: z.string().min(1, "First name is required"),
+    secondName: z.string().min(1, "Last name is required"),
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(8, "Password must be at least 8 characters"),
   });
 
   // React Hook Form setup
@@ -119,65 +118,66 @@ const SignForm = ({ hideForm, formStatus }) => {
                 {/* First Name */}
                 <div className="relative rounded-md">
                   <input
-                    id="Firstname"
-                    {...register("Firstname")}
+                    id="firstName"
+                    {...register("firstName")}
                     type="text"
                     placeholder=" "
                     className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
-                    aria-label="Firstname"
+                    ariaLabel="firstName"
                   />
-                  <label htmlFor="Firstname" className="labelClass">
+                  <label htmlFor="firstName" className="labelClass">
                     First Name
                   </label>
-                  <p className="text-red-500">{errors.Firstname?.message}</p>
+                  <p className="text-red-500">{errors.firstName?.message}</p>
                 </div>
 
                 {/* Last Name */}
                 <div className="relative rounded-md">
                   <input
                     id="Secondname"
-                    {...register("Secondname")}
+                    {...register("secondName")}
                     type="text"
                     placeholder=" "
                     className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
-                    aria-label="Secondname"
+                    ariaLabel="secondName"
                   />
-                  <label htmlFor="Secondname" className="labelClass">
+                  <label htmlFor="secondName" className="labelClass">
                     Last Name
                   </label>
-                  <p className="text-red-500">{errors.Secondname?.message}</p>
+                  <p className="text-red-500">{errors.secondName?.message}</p>
                 </div>
 
                 {/* Email */}
                 <div className="relative rounded-md">
                   <input
-                    id="Email"
-                    {...register("Email")}
-                    type="Email"
+                    id="email"
+                    {...register("email")}
+                    type="email"
                     placeholder=" "
                     className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
-                    aria-label="Email"
+                    ariaLabel="email"
                   />
-                  <label htmlFor="Email" className="labelClass">
+                  <label htmlFor="email" className="labelClass">
                     Email
                   </label>
-                  <p className="text-red-500">{errors.Email?.message}</p>
+                  <p className="text-red-500">{errors.email?.message}</p>
                 </div>
 
                 {/* Password */}
                 <div className="relative rounded-md">
                   <input
-                    id="Password"
-                    {...register("Password")}
-                    type="Password"
-                    placeholder=" "
+                    autocomplete="section-blue shipping address-level2"
+                    id="password"
+                    {...register("password")}
+                    type="password"
+                    placeholder=""
                     className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
-                    aria-label="Password"
+                    ariaLabel="password"
                   />
-                  <label htmlFor="Password" className="labelClass">
-                    Password
+                  <label htmlFor="password" className="labelClass">
+                    password
                   </label>
-                  <p className="text-red-500">{errors.Password?.message}</p>
+                  <p className="text-red-500">{errors.password?.message}</p>
                 </div>
 
                 {/* Submit Button */}
@@ -199,7 +199,7 @@ const SignForm = ({ hideForm, formStatus }) => {
             <button
               onClick={handleGoBack}
               className="bg-gray-500 py-2 rounded-md text-white px-3"
-              aria-label="Go Back"
+              ariaLabel="Go Back"
             >
               Go Back
             </button>

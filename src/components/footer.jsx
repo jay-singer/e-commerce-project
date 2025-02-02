@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10 mx-1 mt-4">
+    <footer className="bg-white text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10 mx-1 mt-4 z-0">
       <div className="container mx-auto  ">
         {/* Top Section */}
         <div className="flex justify-center lg:flex-row flex-col lg:gap-3">
@@ -28,7 +28,7 @@ const Footer = () => {
                 <Link
                   to="#"
                   className="text-gray-500 hover:text-gray-900 transition"
-                  aria-label="Facebook"
+                  ariaLabel="Facebook"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -37,16 +37,16 @@ const Footer = () => {
                   >
                     <path
                       fill="currentColor"
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 </Link>
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-gray-900 transition"
-                  aria-label="Twitter"
+                  ariaLabel="Twitter"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const Footer = () => {
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-gray-900 transition"
-                  aria-label="Instagram"
+                  ariaLabel="Instagram"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ const Footer = () => {
                       cy="7"
                       r="1.5"
                       fill="currentColor"
-                      fill-opacity="0"
+                      fillOpacity="0"
                     >
                       <animate
                         fill="freeze"
@@ -111,13 +111,13 @@ const Footer = () => {
                     <g
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                     >
                       <path
-                        stroke-dasharray="72"
-                        stroke-dashoffset="72"
+                        strokeDasharray="72"
+                        strokeDashoffset="72"
                         d="M16 3c2.76 0 5 2.24 5 5v8c0 2.76 -2.24 5 -5 5h-8c-2.76 0 -5 -2.24 -5 -5v-8c0 -2.76 2.24 -5 5 -5h4Z"
                       >
                         <animate
@@ -128,8 +128,8 @@ const Footer = () => {
                         />
                       </path>
                       <path
-                        stroke-dasharray="28"
-                        stroke-dashoffset="28"
+                        strokeDasharray="28"
+                        strokeDashoffset="28"
                         d="M12 8c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4"
                       >
                         <animate
@@ -146,7 +146,7 @@ const Footer = () => {
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-gray-900 transition"
-                  aria-label="Pinterest"
+                  ariaLabel="Pinterest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

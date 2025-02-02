@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,7 +24,8 @@ const DashboardTable = () => {
       );
       setProducts(response.data);
     } catch (error) {
-      toast.error("Error fetching products.");
+      console.log("response", response.data);
+      toast.error("Error fetchingjj products.");
     }
   };
 
@@ -38,15 +40,12 @@ const DashboardTable = () => {
       formData.append("productName", data.productName);
       formData.append("price", data.price);
       formData.append("productDescription", data.productDescription);
-      formData.append("image", data.image[0]);
+      formData.append("productImage", data.productImage[0]);
 
       const response = await axios.post(
         "https://e-commerce-backend-b8fd.onrender.com/api/createProduct",
         formData
       );
-
-      // Log the API response for debugging
-      console.log("API Response:", response.data);
 
       // Update state with the new product details
       setProducts((prev) => [...prev, response.data]);
@@ -54,20 +53,28 @@ const DashboardTable = () => {
       reset();
       setAddingPost(false);
     } catch (error) {
+      console.log("Add Product Error:", error.response?.data);
       toast.error("Error adding product.");
     }
   };
 
   // Delete a product by ID
-  const handleDeleteProduct = async (_id) => {
+  const handleDeleteProduct = async (id) => {
     try {
       await axios.delete(
-        `https://e-commerce-backend-b8fd.onrender.com/api/deleteProduct/${_id}`
+        `https://e-commerce-backend-b8fd.onrender.com/api/deleteProduct/${id}`
       );
-      setProducts((prev) => prev.filter((product) => product._id !== _id));
+
+      // Update state by removing the deleted product
+      setProducts((prev) => prev.filter((product) => product._id !== id));
+
       toast.success("Product deleted successfully!");
     } catch (error) {
-      toast.error("Error deleting product.");
+      console.error(
+        "Delete Product Error:",
+        error.response?.data || error.message
+      );
+      toast.error("Error deleting product. Please try again.");
     }
   };
 
@@ -108,7 +115,10 @@ const DashboardTable = () => {
                 </td>
                 <td className="py-2 px-4 border-e border-gray-400">
                   <img
-                    src={product.productImage || "https://via.placeholder.com/150"}
+                    src={
+                      product.productImage || ""
+                      // "https://res.cloudinary.com/dlbzbw6ta/image/upload/v1737825360/uploads/pa0s80v2hqfrrhmfc6ij.jpg"
+                    }
                     alt={product.productName}
                     className="w-16 h-16 object-cover"
                   />
@@ -121,6 +131,12 @@ const DashboardTable = () => {
                 </td>
                 <td className="py-2 px-4 border-e border-gray-400">
                   {product.productDescription}
+                  <Link
+                    className="bg-indigo-300  rounded-sm block w-fit px-2"
+                    to={"/ProductDisplay"}
+                  >
+                    Read More
+                  </Link>
                 </td>
                 <td className="py-2 px-4 flex space-x-2 justify-end">
                   <button
@@ -177,13 +193,14 @@ const DashboardTable = () => {
               )}
               <input
                 type="file"
-                {...register("image", {
+                {...register("productImage", {
                   required: "Product image is required",
                 })}
                 className="block w-full mb-4"
               />
-              {errors.image && (
-                <p className="text-red-500">{errors.image.message}</p>
+
+              {errors.productImage && (
+                <p className="text-red-500">{errors.productImage.message}</p>
               )}
               <div className="flex space-x-4">
                 <button
