@@ -48,8 +48,21 @@ const Navbar = ({ showCategory, setShowCategory }) => {
         <div className="flex items-center h-[30px] md:h-[60px] my-1 md:m-0">
           <div className="flex space-x-3 md:space-x-1">
             <button
-              onMouseEnter={() => setShowCategory(false)}
-              onMouseLeave={() => setShowCategory(true)}
+              onClick={() => {
+                if (window.innerWidth < 500) {
+                  setShowCategory(!showCategory); // Toggle category only when width < 500px
+                }
+              }}
+              onMouseEnter={() => {
+                if (window.innerWidth > 500) {
+                  setShowCategory(false);
+                }
+              }}
+              onMouseLeave={() => {
+                if (window.innerWidth > 500) {
+                  setShowCategory(true);
+                }
+              }}
               className="bg-green-500 text-white p-[3px] md:p-2 md:gap-1 rounded-lg flex items-center hover:bg-green-600 z-50"
             >
               <FaBarsStaggered size={15} />
@@ -118,8 +131,16 @@ const Navbar = ({ showCategory, setShowCategory }) => {
         <div
           id="categoryId"
           className="bg-slate-100 absolute left-[1px] right-[1px] transform -translate-y-full opacity-0 transition-transform duration-300 ease-in-out md:top-[49px] top-[33px] w-full shadow-lg"
-          onMouseEnter={() => setShowCategory(false)}
-          onMouseLeave={() => setShowCategory(true)}
+          onMouseEnter={() => {
+            if (window.innerWidth > 500) {
+              setShowCategory(false);
+            }
+          }}
+          onMouseLeave={() => {
+            if (window.innerWidth > 500) {
+              setShowCategory(true);
+            }
+          }}
           style={{
             opacity: !showCategory ? 1 : 0,
             transform: !showCategory ? "translateY(0)" : "-translate-y-full",

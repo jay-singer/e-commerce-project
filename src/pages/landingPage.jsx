@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../components/footer";
+import FooterComp from "../components/footer";
 import NavBar from "../components/navibar";
 import Product from "../components/ProductDisplay";
 import Products from "../components/products";
@@ -82,7 +82,7 @@ const LandingPage = () => {
 
         <Outlet />
         <Testimony />
-        <Footer />
+        <FooterComp />
       </div>
     </div>
   );
