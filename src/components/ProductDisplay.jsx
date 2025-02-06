@@ -11,7 +11,7 @@ function Product({ showCategory }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setTransitionTime(200); // Faster transitions on smaller screens
+        setTransitionTime(400); // Faster transitions on smaller screens
       } else if (window.innerWidth < 1024) {
         setTransitionTime(400);
       } else {
