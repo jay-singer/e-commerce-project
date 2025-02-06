@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+const FooterComp = () => {
   return (
-    <footer className="bg-white text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10 mx-1 mt-4 z-0">
+    <div className="bg-white text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10 mx-1 mt-4 z-0">
       <div className="container mx-auto  ">
         {/* Top Section */}
         <div className="flex justify-center lg:flex-row flex-col lg:gap-3">
@@ -254,8 +254,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
-export default Footer;
+export default FooterComp;

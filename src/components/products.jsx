@@ -119,7 +119,11 @@ const Products = () => {
   // };
 
   return (
-    <div className=" mb-10">
+    <div className=" mb-10 flex flex-col justify-center items-center">
+      <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
+        {" "}
+        OUR PRODUCTS
+      </h1>
       <div className=" w-full md:grid md:grid-cols-3 md:gap-4 md:p-4    lg:flex flex-wrap  lg:gap-5 lg:p-5 lg:justify-center  xl:grid xl:grid-cols-4  xl:p-5  lg:w-[1020px] max-w-[1440px]   xl:gap-5 mb-4">
         {proStore.map((item) => (
           <div className="" key={item.id}>

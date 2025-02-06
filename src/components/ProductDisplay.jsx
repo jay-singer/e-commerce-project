@@ -1,85 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
+import SlideShow1 from "./specialComponents/slideShow1";
 
 function Product({ showCategory }) {
-  const [screen, setScreen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [transitionTime, setTransitionTime] = useState(400); // Default transition time
+
+  // Adjust transition speed based on screen width
   useEffect(() => {
-    const screenResizing = () => {
-      if (window.innerWidth < 500) {
-        setScreen((screen) => {
-          screen = true;
-        });
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setTransitionTime(200); // Faster transitions on smaller screens
+      } else if (window.innerWidth < 1024) {
+        setTransitionTime(400);
       } else {
-        setScreen((screen) => {
-          screen = false;
-        });
+        setTransitionTime(600); // Slower transitions on larger screens
       }
     };
 
-    window.addEventListener("resize", screenResizing);
-
-    return () => {
-      window.removeEventListener("resize", screenResizing);
-    };
+    handleResize(); // Set on mount
+    window.addEventListener("resize", handleResize); // Listen for window resize
+    return () => window.removeEventListener("resize", handleResize); // Cleanup
   }, []);
 
   return (
-    <div
-      className={` container mt-[12rem]  md:flex-row flex-col flex justify-center mb-10  pt-0 gap-4  h-full lg:h-[30rem] w-full`}
-    >
-      <div className="  w-[200px] flex flex-col gap-4 self-center z-0 ">
-        <h1 className="text-navColor text-sm">TOP COLLECTIONS 2025</h1>
-        <p className=" text-xl font-semibold relative  ">
-          <span className="z-50 bg-white  block  h-fit">
-            We Serve Your Dream Furniture
-          </span>
-          <span className=" ">
-            <img
-              className="  absolute -bottom-1 right-10 -z-10 w-24 h-9 "
-              src="/assets/frame/5f27e907fbdca6cab0ba1f7d4c0b7ce9.png"
-              alt=""
-            />
-          </span>
-        </p>
-        <p className="text-primary">Get of 50% off All Products</p>
-        <div className="text-white flex gap-3 ">
-          <Link
-            to="/signIn1"
-            className="bg-navColor flex items-center px-2 rounded text-[14px] text-nowrap"
-          >
-            SHOP NOW
-          </Link>
-          <span className="bg-navColor py-[8px] px-[5px] text-[14px] flex items-center justify-center rounded-full">
-            50%
-          </span>
+    <div className="w-full flex flex-col items-center h-fit md:mt-[8.2rem]  mt-[5rem] mb-9 ">
+      <Carousel
+        showArrows={false}
+        autoPlay={true}
+        infiniteLoop={true}
+        showIndicators={false}
+        selectedItem={activeIndex}
+        showStatus={false}
+        showThumbs={false}
+        stopOnHover={false} // Keeps autoplay running when hovered
+        onChange={setActiveIndex}
+        transitionTime={transitionTime}
+        className="w-full "
+      >
+        <div className="flex w-full bg-slate-50 justify-center h-full">
+          <SlideShow1 />
         </div>
-      </div>
-      <div className="w-fit ">
-        <img src="/assets/products/Furniture 1.png" className=" " alt="" />
-      </div>
-      <div className=" space-y-3 md:text-[14px] text-[10px] flex md:flex-col md:justify-center md:w-[20%] w-full justify-evenly items-center md:gap-0 ">
-        <div className="">
-          <img src="/assets/products/Rectangle.png" alt="" />
-          <div className="flex flex-col">
-            {" "}
-            <span className="text-navColor"></span>
-            <span>Office Desk Chair</span>
-          </div>
+        <div className="flex w-full bg-slate-50 justify-center h-full">
+          <SlideShow1 />
         </div>
-        <div>
-          <img src="/assets/products/Rectangle (1).png" alt="" />
-          <div className="flex flex-col justify-center items-center">
-            <span className="text-navColor">$180</span>
-            <span>Home Alisa Sofa</span>
-          </div>
+        <div className="flex w-full bg-slate-50 justify-center h-full">
+          <SlideShow1 />
         </div>
-        <div>
-          <img src="/assets/products/Rectangle (2).png" alt="" />
-          <div className="flex flex-col items-center">
-            <span className="text-navColor">$250</span>
-            <span>Modern Chair</span>
-          </div>
-        </div>
+      </Carousel>
+
+      {/* Custom Indicators */}
+      <div className="indicators flex items-center justify-center gap-2 p-2">
+        {Array.from({ length: 3 }, (_, i) => (
+          <span
+            key={i}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              activeIndex === i ? "bg-green-500 w-8" : "bg-green-300"
+            }`}
+          ></span>
+        ))}
       </div>
     </div>
   );
