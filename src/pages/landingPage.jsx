@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import FooterComp from "../components/footer";
 import NavBar from "../components/navibar";
 import Product from "../components/ProductDisplay";
+import Products from "../components/products";
 import SignForm from "../components/signIn";
 import Testimony from "../components/Testimony";
 import UpperHeader from "../components/upHeader";
@@ -42,7 +43,7 @@ const LandingPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
+  const computerView = (
     <div className="relative max-w-[1440px] w-full">
       {/* Blur effect when form is open */}
       <div
@@ -96,6 +97,14 @@ const LandingPage = () => {
       </div>
     </div>
   );
+
+  const phoneView = (
+    <div>
+      <UpperHeader1 />
+      <Products />
+    </div>
+  );
+  return <>{innerWidth >= 768 ? computerView : phoneView}</>;
 };
 
 export default LandingPage;
