@@ -7,12 +7,16 @@ import SingleProduct from "./singleProduct";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [screenResizing, setScreenResizing] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
-    const handleResize = () => setScreenResizing(window.innerWidth > 500);
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 768);
+    };
+
     window.addEventListener("resize", handleResize);
-    handleResize();
+    handleResize(); // Ensure the initial value is set
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -34,7 +38,11 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="mb-10 flex flex-col justify-center items-center">
+    <div
+      className={`mb-10 flex flex-col justify-center items-center ${
+        !isLargeScreen ? "mt-[4rem]" : "mt-0"
+      }`}
+    >
       <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
         OUR PRODUCTS
       </h1>
@@ -51,7 +59,7 @@ const Products = () => {
           ))
         )}
       </div>
-      {screenResizing ? (
+      {isLargeScreen ? (
         <div className="w-full flex justify-around items-center">
           <Button
             data="Next Page"

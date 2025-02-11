@@ -7,26 +7,43 @@ import SearchComp from "./search";
 const UpperHeader1 = ({ displayingForm }) => {
   const [screen, setScreen] = useState(window.innerWidth < 500);
   const [isUpperHeaderVisible, setIsUpperHeaderVisible] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const handleResize = () => setScreen(window.innerWidth < 500);
-    const handleScroll = () => {
-      setIsUpperHeaderVisible(window.scrollY < 50);
+    const handleResize = () => {
+      setScreen(window.innerWidth < 500);
+      setIsSmallScreen(window.innerWidth < 768);
     };
 
+    const handleScroll = () => {
+      if (!isSmallScreen) {
+        setIsUpperHeaderVisible(window.scrollY < 50);
+      }
+    };
+
+    // Add event listeners
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
+    // Initial check
+    handleResize();
+    handleScroll();
+
+    // Cleanup event listeners
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isSmallScreen]);
 
   return (
     <div
-      className={`fixed flex items-center justify-between lg:px-7 md:px-3 md:pe-3 pe-1 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white 0 z-50 transition-all duration-100 ${
-        isUpperHeaderVisible ? "top-navHeight shadow-md" : "top-0 "
+      className={`fixed flex items-center justify-between lg:px-7 md:px-3 md:pe-3 pe-1 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white z-50 transition-all duration-100 ${
+        isSmallScreen
+          ? "top-0"
+          : isUpperHeaderVisible
+          ? "top-navHeight shadow-md"
+          : "top-0"
       }`}
     >
       {/* Logo Section */}
