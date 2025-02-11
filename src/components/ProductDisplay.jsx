@@ -3,6 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
 import SlideShow1 from "./specialComponents/slideShow1";
 import SlideShow2 from "./specialComponents/slideShow2";
+import SlideShow3 from "./specialComponents/slideShow3";
 
 function Product() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -36,9 +37,11 @@ function Product() {
         showStatus={false}
         showThumbs={false}
         stopOnHover={false} // Keeps autoplay running when hovered
+        stopSwipingHandler={false}
+        swipeable={false}
         onChange={setActiveIndex}
         transitionTime={transitionTime}
-        className="w-full "
+        className="w-full overflow-hidden"
       >
         <div className="flex w-full bg-slate-50 justify-center h-full">
           <SlideShow2 />
@@ -48,7 +51,7 @@ function Product() {
         </div>
 
         <div className="flex w-full bg-slate-50 justify-center h-full">
-          <SlideShow1 />
+          <SlideShow3 />
         </div>
       </Carousel>
 
