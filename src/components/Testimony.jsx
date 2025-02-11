@@ -11,7 +11,7 @@ const Testimony = () => {
     },
   ];
   return (
-    <div className=" text-center text-textColor  pb-2 bg-gray-200 mx-1 mt-4">
+    <div className=" text-center text-textColor  pb-2 bg-gray-100 mx-1 mt-4">
       <h3 className=" text-center font-bold text-primary lg:text-[36px] my-4">
         What our customers say
       </h3>

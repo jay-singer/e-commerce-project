@@ -9,7 +9,7 @@ const ProductDetails = () => {
     image: "/assets/products/Container (7).png",
     name: "Sample Product",
     price: "$300",
-    description:
+    productDesc:
       "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
     star: 4, // Default rating out of 5
   };
@@ -52,12 +52,12 @@ const ProductDetails = () => {
 
         {/* Right: Product Information */}
         <div className="flex-1 flex flex-col justify-between">
-          <div>
+          <div className="">
             <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
             <p className="text-2xl text-blue-600 font-semibold mt-2">
-              {product.price}
+              ${product.price}
             </p>
-            <p className="text-gray-600 mt-4">{product.description}</p>
+            <p className="text-gray-600 mt-4">{product.productDesc}</p>
             <div className="flex items-center mt-4">
               {renderStars(product.star)}
               <span className="text-sm text-gray-500 ml-2">

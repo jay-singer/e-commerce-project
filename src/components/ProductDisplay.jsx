@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
 import SlideShow1 from "./specialComponents/slideShow1";
 import SlideShow2 from "./specialComponents/slideShow2";
 
-function Product({ showCategory }) {
+function Product() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [transitionTime, setTransitionTime] = useState(400); // Default transition time
 

@@ -3,38 +3,47 @@ import { Link } from "react-router-dom";
 
 const SingleProduct = ({ items }) => {
   return (
-    <>
-      <Link
-        to={`/products/${items.id}`} // Update this to the correct route
-        state={{
-          ProductStore: {
-            id: items.id,
-            name: items.ProName,
-            price: items.price,
-            image: items.pic,
-          },
-        }}
-        style={{
-          borderTopRightRadius: "8px",
-          borderTopLeftRadius: "8px",
-        }}
-        className="mx-2 mt-3 shadow-sm md:w-full lg:w-[300px] md:m-0 xl:w-[230px] sm:w-full md:shadow-none shadow-gray-400 flex flex-col space-y-4 overflow-hidden text-center "
-      >
-        <img src={items.pic} alt={items.ProName} />
-        <h3 className="whitespace-nowrap w-full object-cover">
-          {items.ProName}
-        </h3>
-        <div className="text-navColor flex justify-around items-center">
-          {items.price}
-          <div className="flex justify-center items-center">
-            <span>{items.star}</span>
-            <span>{items.star}</span>
-            <span>{items.star}</span>
-            <span>{items.star}</span>
-          </div>
+    <Link
+      to={`/products/${items.id}`}
+      state={{
+        ProductStore: {
+          id: items.id,
+          name: items.ProName,
+          price: items.price,
+          image: items.productImage,
+          productDesc: items.productDescription,
+        },
+      }}
+      className="mx-2 mb-3 md:m-0  shadow-md md:w-full lg:w-[300px] xl:w-[230px] sm:w-full 
+                 flex flex-col space-y-3overflow-hidden text-center rounded-lg 
+                 bg-white transition-transform transform hover:scale-105 hover:shadow-xl"
+    >
+      <img
+        src={items.productImage}
+        alt={items.ProName}
+        className="w-full  object-cover transition-transform duration-300"
+      />
+      <h3 className="whitespace-nowrap w-full text-lg font-semibold text-gray-800">
+        {items.ProName}
+      </h3>
+      <div className="text-gray-700 flex justify-around items-center pb-4">
+        <span className="text-md font-medium text-navColor">
+          ${items.price}
+        </span>
+        <div className="flex space-x-1 text-yellow-500">
+          {[...Array(5)].map((_, index) => (
+            <span
+              key={index}
+              className={
+                index < items.star ? "text-yellow-500" : "text-gray-300"
+              }
+            >
+              ★
+            </span>
+          ))}
         </div>
-      </Link>
-    </>
+      </div>
+    </Link>
   );
 };
 
