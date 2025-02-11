@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 const FooterComp = () => {
   return (
     <div className="bg-white text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10 mx-1 mt-4 z-0">
-      <div className="container mx-auto  border border-red-800 p-4">
+      <div className="container mx-auto p-4">
         {/* Top Section */}
-        <div className="flex justify-center lg:flex-row flex-col lg:gap-3 border border-yellow-800">
-          <div className="flex md:justify-evenly flex-col md:flex-row  items-center justify-center border border-blue-900">
+        <div className="flex justify-center lg:flex-row flex-col lg:gap-3  bg-white">
+          <div className="flex md:justify-evenly flex-col md:flex-row  items-center justify-center">
             {/* Brand Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3 border border-black">
+            <div className="w-full sm:w-1/2 md:w-1/3  mb-2 md:m-0 ">
               <div className="flex items-center mb-4">
                 <img
                   src="/assets/Logo.svg"
@@ -163,27 +163,32 @@ const FooterComp = () => {
             </div>
 
             {/* Help Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start px-1 border-purple-900 bg-slate-500">
-              <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-y-2">
-                <span className="bg-white px-4 z-50">Help</span>
+            <div className="w-full sm:w-1/2 md:w-1/3 bg-white mb-2 md:mb-0">
+              <h3 className="font-semibold text-lg md:w-full  flex md:justify-start justify-center  items-center ">
+                <span className="bg-white  z-50 text-center w-full underline">
+                  Help
+                </span>
               </h3>
               <ul className="md:space-y-2 flex flex-row text-center md:flex-col md:space-x-0 justify-center items-start space-x-2 md:text-nowrap text-wrap">
-                <li>
-                  <Link to="/privacy-policy" className="hover:underline">
+                <li className="w-full">
+                  <Link
+                    to="/privacy-policy"
+                    className="hover:underline w-full text-center "
+                  >
                     Privacy Policy
                   </Link>
                 </li>
-                <li>
+                <li className="w-full">
                   <Link to="/shipping-delivery" className="hover:underline">
                     Shipping & Delivery
                   </Link>
                 </li>
-                <li>
+                <li className="w-full">
                   <Link to="/refund-policy" className="hover:underline">
                     Refund Policy
                   </Link>
                 </li>
-                <li>
+                <li className="w-full">
                   <Link to="/track-order" className="hover:underline">
                     Track Your Order
                   </Link>
@@ -191,27 +196,27 @@ const FooterComp = () => {
               </ul>
             </div>
             {/* Support Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start border border-red-600">
-              <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-2">
+            <div className="w-full sm:w-1/2 md:w-1/3  items-center justify-start ">
+              <h3 className="font-semibold text-lg md:w-full  flex underline justify-center  items-center ">
                 <span className="bg-white z-50">Supports</span>
               </h3>
               <ul className="md:space-y-2 flex flex-row text-center md:flex-col md:space-x-0 justify-center items-start space-x-2 ">
-                <li>
+                <li className="w-full">
                   <Link to="/feedback" className="hover:underline ">
                     Feedback
                   </Link>
                 </li>
-                <li>
+                <li className="w-full">
                   <Link to="/contact-us" className="hover:underline">
                     Contact Us
                   </Link>
                 </li>
-                <li>
+                <li className="w-full">
                   <Link to="/download-app" className="hover:underline">
                     Download App
                   </Link>
                 </li>
-                <li>
+                <li className="w-full">
                   <Link to="/terms-conditions" className="hover:underline">
                     Terms & Conditions
                   </Link>
