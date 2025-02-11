@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
 import SlideShow1 from "./specialComponents/slideShow1";
+import SlideShow2 from "./specialComponents/slideShow2";
 
 function Product({ showCategory }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -11,7 +12,7 @@ function Product({ showCategory }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setTransitionTime(400); // Faster transitions on smaller screens
+        setTransitionTime(600); // Faster transitions on smaller screens
       } else if (window.innerWidth < 1024) {
         setTransitionTime(400);
       } else {
@@ -40,11 +41,12 @@ function Product({ showCategory }) {
         className="w-full "
       >
         <div className="flex w-full bg-slate-50 justify-center h-full">
-          <SlideShow1 />
+          <SlideShow2 />
         </div>
         <div className="flex w-full bg-slate-50 justify-center h-full">
           <SlideShow1 />
         </div>
+
         <div className="flex w-full bg-slate-50 justify-center h-full">
           <SlideShow1 />
         </div>
