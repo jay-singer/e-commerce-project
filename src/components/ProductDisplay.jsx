@@ -15,7 +15,7 @@ function Product() {
       if (window.innerWidth < 640) {
         setTransitionTime(600); // Faster transitions on smaller screens
       } else if (window.innerWidth < 1024) {
-        setTransitionTime(400);
+        setTransitionTime(600);
       } else {
         setTransitionTime(600); // Slower transitions on larger screens
       }
