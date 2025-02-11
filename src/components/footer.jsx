@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 const FooterComp = () => {
   return (
     <div className="bg-white text-gray-700 lg:py-8 text-[12px] md:text-[14px] lg:text-[16px] pb-10 mx-1 mt-4 z-0">
-      <div className="container mx-auto  ">
+      <div className="container mx-auto  border border-red-800 p-4">
         {/* Top Section */}
-        <div className="flex justify-center lg:flex-row flex-col lg:gap-3">
-          <div className="flex md:justify-evenly flex-col md:flex-row  items-center justify-center">
+        <div className="flex justify-center lg:flex-row flex-col lg:gap-3 border border-yellow-800">
+          <div className="flex md:justify-evenly flex-col md:flex-row  items-center justify-center border border-blue-900">
             {/* Brand Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3 ">
+            <div className="w-full sm:w-1/2 md:w-1/3 border border-black">
               <div className="flex items-center mb-4">
                 <img
                   src="/assets/Logo.svg"
@@ -163,7 +163,7 @@ const FooterComp = () => {
             </div>
 
             {/* Help Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start px-1">
+            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start px-1 border-purple-900 bg-slate-500">
               <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-y-2">
                 <span className="bg-white px-4 z-50">Help</span>
               </h3>
@@ -191,7 +191,7 @@ const FooterComp = () => {
               </ul>
             </div>
             {/* Support Section */}
-            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start ">
+            <div className="w-full sm:w-1/2 md:w-1/3  flex flex-col items-center justify-start border border-red-600">
               <h3 className="font-semibold text-lg my-4 w-[90%] md:w-full md:px-10 flex md:justify-start justify-center  items-center gap-2">
                 <span className="bg-white z-50">Supports</span>
               </h3>
