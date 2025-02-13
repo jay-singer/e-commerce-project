@@ -46,7 +46,7 @@ const SignIn1 = () => {
         });
 
         reset();
-        navigate("/sell");
+        navigate("/sellerDashboard");
       }
     } catch (error) {
       toast.error("Error submitting form. Please try again.", {

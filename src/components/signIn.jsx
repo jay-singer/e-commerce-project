@@ -48,7 +48,7 @@ const SignForm = ({ hideForm, formStatus }) => {
 
         reset();
         hideForm();
-        navigate("/sell");
+        navigate("/sellerDashboard");
       }
     } catch (error) {
       console.error(error);
