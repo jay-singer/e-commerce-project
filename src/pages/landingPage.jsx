@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import FooterComp from "../components/footer";
 import NavBar from "../components/navibar";
@@ -10,7 +10,6 @@ import UpperHeader from "../components/upHeader";
 import UpperHeader1 from "../components/upHeader1";
 
 // Lazy-loaded component
-const LazyLoadComponent = lazy(() => import("../components/products"));
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -79,15 +78,7 @@ const LandingPage = () => {
         {!isProductPage && (
           <>
             <Product showCategory={showCategory} />
-            <Suspense
-              fallback={
-                <div className="w-full bg-black text-white text-center py-4">
-                  Loading...
-                </div>
-              }
-            >
-              <LazyLoadComponent />
-            </Suspense>
+            <Products />
           </>
         )}
 
