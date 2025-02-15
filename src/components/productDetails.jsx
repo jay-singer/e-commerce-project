@@ -28,7 +28,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className=" md:mt-[166px] mt-4 bg-white min-h-screen  overflow-hidden rounded-lg md:flex flex-col  justify-center items-center">
+    <div className=" md:mt-[166px] mt-[60px] md:mb-0 mb-[60px] bg-white min-h-screen  overflow-hidden rounded-lg md:flex flex-col  justify-center items-center  ">
       {/* Back Button */}
       <div className="px-10">
         <Link
