@@ -36,7 +36,7 @@ function Product() {
         selectedItem={activeIndex}
         showStatus={false}
         showThumbs={false}
-        stopOnHover={false} // Keeps autoplay running when hovered
+        // Keeps autoplay running when hovered
         stopSwipingHandler={false}
         swipeable={false}
         onChange={setActiveIndex}

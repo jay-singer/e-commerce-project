@@ -23,7 +23,6 @@ const DashboardTable = () => {
         "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
       );
       setProducts(response.data);
-      console.log("this is dashboard product", response.data);
     } catch (error) {
       console.log("response", response.data);
       toast.error("Error fetchingjj products.");

@@ -38,7 +38,7 @@ const UpperHeader1 = ({ displayingForm }) => {
 
   return (
     <div
-      className={`fixed flex items-center justify-between lg:px-7 md:px-3 md:pe-3 pe-1 gap-2 sm:gap-0 max-w-[1990px] mx-auto right-0 left-0 bg-white z-50 transition-all duration-100 ${
+      className={`fixed flex items-center justify-between lg:px-7 md:px-3 md:pe-3 pe-1 gap-1 max-w-[1990px] mx-auto right-0 left-0 bg-white z-50 transition-all duration-100 ${
         isSmallScreen
           ? "top-0"
           : isUpperHeaderVisible
@@ -47,10 +47,10 @@ const UpperHeader1 = ({ displayingForm }) => {
       }`}
     >
       {/* Logo Section */}
-      <div>
+      <div className="">
         <Link to="/">
           <img
-            className="md:w-[8rem] w-[100px]"
+            className="md:w-[8rem] w-[80px]"
             src="/assets/Logo.svg"
             alt="Logo"
           />
@@ -58,32 +58,48 @@ const UpperHeader1 = ({ displayingForm }) => {
       </div>
 
       {/* Search Bar Section */}
-      <div className={`${screen ? "hidden" : "block"}`}>
+      <div className={` w-fi`}>
         <SearchComp setInput={screen} />
       </div>
 
       {/* Header Icons */}
-      <div
-        className={`flex items-center gap-3 ${
-          screen ? "rounded-full bg-navColor p-2 text-white" : "bg-white"
-        }`}
-      >
-        <Link to="/sellerDashboard">
-          <BsBagDash size={20} color={screen ? "white" : "black"} />
+      <div className={`flex items-center gap-3 `}>
+        <BsBagDash
+          className={`md:block hidden ${screen ? " size-4" : "black"}`}
+        />
+        <BsBell className={`md:block hidden ${screen ? " size-4" : "black"}`} />
+        <BsPerson
+          className={`md:block hidden ${screen ? " size-4" : "black"}`}
+        />
+        <Link
+          className={`${
+            screen
+              ? "rounded-full bg-navColor p-2 text-white"
+              : "text-black flex justify-center items-center"
+          }`}
+          to="/sellerDashboard"
+        >
+          <MdOutlineInsertComment
+            className={` ${screen ? " size-4" : "black"}`}
+          />
         </Link>
-        <BsBell size={20} className="md:block hidden" />
-        <BsPerson size={20} className="md:block hidden" />
-        <MdOutlineInsertComment size={20} className="md:block hidden" />
       </div>
 
       {/* Language & Sign Up */}
-      <div className="flex items-center gap-2 md:flex-row">
+      <div
+        className={`flex items-center gap-2 md:flex-row ${
+          screen ? "hidden" : "block"
+        }`}
+      >
         <select className="outline-none w-12">
           <option defaultValue="selected">English</option>
           <option>Kinyarwanda</option>
           <option>France</option>
         </select>
-        <Link className="text-secondary" onClick={displayingForm}>
+        <Link
+          className={`text-secondary ${screen ? "hidden" : "block"}`}
+          onClick={displayingForm}
+        >
           Sign Up
         </Link>
       </div>
