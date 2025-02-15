@@ -15,10 +15,8 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<LandingPage />}>
-          {/* <Route path="/sell" element={<SellComp />}></Route> */}
           <Route path="/products/:id" element={<ProductDetails />}></Route>
         </Route>
-        {/* <Route path="/sell" element={<SellComp />}></Route> */}
         <Route path="/sellerDashboard" element={<SellerDashboard />}></Route>
         <Route path="/products" element={<Products />} />
         <Route path="/components/dashboard" element={<DashboardTable />} />

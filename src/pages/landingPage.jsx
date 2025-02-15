@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import FooterComp from "../components/footer";
+import MobileFooter from "../components/mobileComponent/mobileFooter";
 import NavBar from "../components/navibar";
 import Product from "../components/ProductDisplay";
 import Products from "../components/products";
@@ -15,6 +16,7 @@ const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const location = useLocation();
   const lastScrollY = useRef(window.scrollY);
@@ -22,7 +24,7 @@ const LandingPage = () => {
   const displayingForm = () => setShowForm(true);
   const hideForm = () => setShowForm(false);
 
-  const isProductPage = location.pathname.startsWith("/product");
+  const isProductPage = location.pathname.startsWith(`/products`);
 
   // Handle scroll event to hide the UpperHeader on scroll down and show on scroll up
   useEffect(() => {
@@ -40,6 +42,12 @@ const LandingPage = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const computerView = (
@@ -92,10 +100,16 @@ const LandingPage = () => {
   const phoneView = (
     <div>
       <UpperHeader1 />
-      <Products />
+      {!isProductPage && (
+        <>
+          <Products />
+        </>
+      )}
+      <Outlet />
+      <MobileFooter />
     </div>
   );
-  return <>{innerWidth >= 768 ? computerView : phoneView}</>;
+  return <>{screenWidth >= 768 ? computerView : phoneView}</>;
 };
 
 export default LandingPage;
