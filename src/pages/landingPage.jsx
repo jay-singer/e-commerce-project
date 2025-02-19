@@ -98,7 +98,7 @@ const LandingPage = () => {
   );
 
   const phoneView = (
-    <div>
+    <div className="mb-[69px] ">
       <UpperHeader1 />
       {!isProductPage && (
         <>
