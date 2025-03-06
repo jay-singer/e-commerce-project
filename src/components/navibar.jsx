@@ -82,7 +82,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
                 Home
               </Link>
               <Link
-                to="/about"
+                to="/aboutUs"
                 className="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
               >
                 About

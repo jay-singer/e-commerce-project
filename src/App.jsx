@@ -7,6 +7,7 @@ import DashboardTable from "./components/dashboard";
 import ProductDetails from "./components/productDetails";
 import Products from "./components/products";
 import SignIn1 from "./components/signIn1";
+import AboutUs from "./pages/aboutUs";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellerDashboard from "./pages/sellerDashboard";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/components/dashboard" element={<DashboardTable />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signIn1" element={<SignIn1 />}></Route>
+        <Route path="/aboutUs" element={<AboutUs />}></Route>
       </Routes>
     </BrowserRouter>
   );
