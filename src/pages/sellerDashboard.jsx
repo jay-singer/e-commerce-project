@@ -201,6 +201,7 @@ const SellerDashboard = () => {
 
         {/* Main Content */}
         <div className="flex-1 bg-gray-100 md:p-6">
+          >>>>>>>>> Temporary merge branch 2
           {changeSection === "createProduct" ? (
             <div>
               <CreateNewProducts

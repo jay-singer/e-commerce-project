@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 function CreateNewProducts({ createProductDataObject }) {
-  const { changeSection, setChangeSection } = createProductDataObject;
+  const { changeSection, setChangeSection } = createProductDataObject || {}; // Ensure object exists
   console.log(setChangeSection);
+
   // State to manage form data
   const [formData, setFormData] = useState({
     name: "",
@@ -33,21 +34,19 @@ function CreateNewProducts({ createProductDataObject }) {
     }
   };
 
-  // Handle form submission (for demonstration purposes)
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Product Data Submitted:", formData);
-    // Optionally, you can call an API to submit the form data
+    // Add API call here to submit formData
   };
 
   return (
-    <div className="flex flex-col gap-2 md:gap-0 md:flex-row md:space-x-10">
+    <div className="flex flex-col md:flex-row space-x-0 md:space-x-10">
       {/* Navigation Button to return to All Products */}
       <button
-        onClick={() => {
-          setChangeSection("allProducts");
-        }}
-        className="bg-navColor p-1 rounded self-start text-white flex gap-1 text-nowrap items-center ms-4 md:ms-0 justify-center"
+        onClick={() => setChangeSection && setChangeSection("allProducts")}
+        className="bg-navColor p-1 rounded self-start text-white flex gap-1 text-nowrap items-center justify-center ms-4 md:ms-0"
       >
         <span>
           <svg
@@ -65,14 +64,14 @@ function CreateNewProducts({ createProductDataObject }) {
             />
           </svg>
         </span>
-        All Product
+        All Products
       </button>
 
       {/* Product Creation Form */}
-      <div className="flex md:justify-center justify-start ">
+      <div className="flex justify-center w-full">
         <form
           onSubmit={handleSubmit}
-          className=" space-y-4 p-5 lg:w-[500px] border border-gray-300 shadow-lg rounded w-full"
+          className="space-y-4 p-5 lg:w-[500px] border border-gray-300 shadow-lg rounded w-full"
         >
           <div>
             <input
@@ -83,7 +82,7 @@ function CreateNewProducts({ createProductDataObject }) {
               placeholder="Product Name"
               onChange={handleInputChange}
               required
-              className="w-full p-[4px] border border-gray-300 rounded "
+              className="w-full p-[4px] border border-gray-300 rounded"
             />
           </div>
 
@@ -117,7 +116,7 @@ function CreateNewProducts({ createProductDataObject }) {
             <input
               type="text"
               id="bonus"
-              placeholder="  Product Bonus"
+              placeholder="Product Bonus"
               name="bonus"
               value={formData.bonus}
               onChange={handleInputChange}
@@ -125,12 +124,9 @@ function CreateNewProducts({ createProductDataObject }) {
             />
           </div>
 
-          <div className=" flex items-center gap-2">
-            <label
-              htmlFor="expireDate"
-              className="block text-nowrap text-gray-400"
-            >
-              Product Expiry Date
+          <div className="flex items-center gap-2">
+            <label htmlFor="expireDate" className="block text-gray-400">
+              Expiry Date:
             </label>
             <input
               type="date"
@@ -157,26 +153,25 @@ function CreateNewProducts({ createProductDataObject }) {
           <div>
             <button
               type="submit"
-              className="bg-blue-500 text-white p-2 rounded"
+              className="bg-blue-500 text-white p-2 rounded w-full"
             >
               Create Product
             </button>
           </div>
         </form>
       </div>
-      <div>
-        {" "}
-        {formData.image && (
-          <div className="mt-2">
-            <p className="text-sm text-gray-500">Selected Image:</p>
-            <img
-              src={URL.createObjectURL(formData.image)} // Display the selected image
-              alt="Product Preview"
-              className="mt-2 w-32  object-cover"
-            />
-          </div>
-        )}
-      </div>
+
+      {/* Image Preview */}
+      {formData.image && (
+        <div className="mt-4">
+          <p className="text-sm text-gray-500">Selected Image:</p>
+          <img
+            src={URL.createObjectURL(formData.image)}
+            alt="Product Preview"
+            className="mt-2 w-32 object-cover"
+          />
+        </div>
+      )}
     </div>
   );
 }
