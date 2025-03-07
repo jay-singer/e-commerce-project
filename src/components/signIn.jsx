@@ -2,14 +2,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
+import LoginForm from "./logIn";
 
 const SignForm = ({ hideForm, formStatus }) => {
   const formRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showOtherForm, setshowOtherForm] = useState(false);
   // Zod schema for validation
   const schema = z.object({
     firstName: z.string().min(1, "First name is required"),
@@ -83,7 +85,12 @@ const SignForm = ({ hideForm, formStatus }) => {
 
   return (
     <>
-      {formStatus && (
+      {formStatus && showOtherForm ? (
+        <LoginForm
+          logInFormStat={showOtherForm}
+          setshowOtherForm={setshowOtherForm}
+        />
+      ) : (
         <div
           ref={formRef}
           className="bg-white rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4"
@@ -93,9 +100,14 @@ const SignForm = ({ hideForm, formStatus }) => {
               <div className="h-full flex flex-col gap-2 lg:gap-0 justify-center flex-1 pt-3 md:pt-0 items-center lg:items-start">
                 <h2 className="text-2xl font-bold md:block hidden">Sign Up</h2>
                 <p>Already a user?</p>
-                <Link to="/logIn" className="text-secondary">
+                <button
+                  onClick={() => {
+                    setshowOtherForm(true);
+                  }}
+                  className="text-secondary"
+                >
                   Sign In!
-                </Link>
+                </button>
               </div>
               <img
                 className="w-[10rem] md:w-[17rem] max-w-[300px] z-50 lg:block hidden"

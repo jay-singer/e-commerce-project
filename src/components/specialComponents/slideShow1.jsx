@@ -56,7 +56,11 @@ function SlideShow1() {
         </div>
         <div className="lg:w-fit flex items-baseline relative justify-center">
           <span className=" h-fit ">
-            <img src="/assets/products/Furniture 1.png" className=" " alt="" />
+            <img
+              src="\assets\products\furnitureProduct\Furniture 1.png"
+              className=" "
+              alt=""
+            />
           </span>
           <span className="text-navColor justify-self-end  absolute sm:right-8 right-7 lg:bottom-[150px] bottom-[50px]">
             $129

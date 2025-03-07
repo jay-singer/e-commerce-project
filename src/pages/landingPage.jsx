@@ -17,7 +17,10 @@ const LandingPage = () => {
   const [showCategory, setShowCategory] = useState(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
+  {
+    /** ProductComponet state */
+  }
+  const [componentState, setComponentState] = useState(false);
   const location = useLocation();
   const lastScrollY = useRef(window.scrollY);
 
@@ -75,7 +78,7 @@ const LandingPage = () => {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-25">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-4 h-full lg:h-fit">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-4 h-full lg:h-[528px]">
             <SignForm formStatus={showForm} hideForm={hideForm} />
           </div>
         </div>
@@ -86,7 +89,12 @@ const LandingPage = () => {
         {!isProductPage && (
           <>
             <Product showCategory={showCategory} />
-            <Products />
+            <Products
+              productDataObject={{
+                componentName: "OUR PRODUCTS",
+                componentMarginLarge: "0",
+              }}
+            />
           </>
         )}
 
@@ -102,7 +110,13 @@ const LandingPage = () => {
       <UpperHeader1 />
       {!isProductPage && (
         <>
-          <Products />
+          <Products
+            productDataObject={{
+              componentName: "OUR PRODUCTS",
+              componentMarginLarge: "0",
+              componentMarginSmall: "mt-[4rem]",
+            }}
+          />
         </>
       )}
       <Outlet />
