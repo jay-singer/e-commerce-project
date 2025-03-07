@@ -200,7 +200,11 @@ const SellerDashboard = () => {
         </div>
 
         {/* Main Content */}
+<<<<<<< HEAD
         <div className="flex-1 bg-gray-100 md:p-6">
+=======
+        <div className="flex-1 bg-gray-100 p-6">
+>>>>>>> 3cfe856068a3aeaeb1e5193d4bef1066a0bb2e6b
           {changeSection === "createProduct" ? (
             <div>
               <CreateNewProducts

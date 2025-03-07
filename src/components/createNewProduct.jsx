@@ -41,13 +41,21 @@ function CreateNewProducts({ createProductDataObject }) {
   };
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col gap-2 md:gap-0 md:flex-row md:space-x-10">
+=======
+    <div className="flex space-x-10">
+>>>>>>> 3cfe856068a3aeaeb1e5193d4bef1066a0bb2e6b
       {/* Navigation Button to return to All Products */}
       <button
         onClick={() => {
           setChangeSection("allProducts");
         }}
+<<<<<<< HEAD
         className="bg-navColor p-1 rounded self-start text-white flex gap-1 text-nowrap items-center ms-4 md:ms-0 justify-center"
+=======
+        className="bg-navColor p-1 rounded self-start text-white flex gap-1 text-nowrap items-center justify-center"
+>>>>>>> 3cfe856068a3aeaeb1e5193d4bef1066a0bb2e6b
       >
         <span>
           <svg
@@ -69,10 +77,17 @@ function CreateNewProducts({ createProductDataObject }) {
       </button>
 
       {/* Product Creation Form */}
+<<<<<<< HEAD
       <div className="flex md:justify-center justify-start ">
         <form
           onSubmit={handleSubmit}
           className=" space-y-4 p-5 lg:w-[500px] border border-gray-300 shadow-lg rounded w-full"
+=======
+      <div className="flex justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className=" space-y-4 p-5 lg:w-[500px] border border-gray-300 shadow-lg rounded "
+>>>>>>> 3cfe856068a3aeaeb1e5193d4bef1066a0bb2e6b
         >
           <div>
             <input
