@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "./button";
 import SingleProduct from "./singleProduct";
 
-const Products = () => {
+const Products = ({ productDataObject }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
@@ -40,11 +40,13 @@ const Products = () => {
   return (
     <div
       className={`mb-10 flex flex-col justify-center items-center ${
-        !isLargeScreen ? "mt-[4rem]" : "mt-0"
+        !isLargeScreen
+          ? productDataObject.componentMarginSmall
+          : productDataObject.componentMarginLarge
       }`}
     >
       <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
-        OUR PRODUCTS
+        {productDataObject.componentName}
       </h1>
       <div className="w-full grid grid-cols-2  md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4">
         {loading ? (

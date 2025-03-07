@@ -19,7 +19,7 @@ const ProductDetails = () => {
       <span
         key={index}
         className={`text-2xl ${
-          index < rating ? "text-yellow-400" : "text-gray-300"
+          index < rating ? "text-navColor" : "text-gray-300"
         }`}
       >
         ★
@@ -60,11 +60,61 @@ const ProductDetails = () => {
             <p className="text-gray-500 mt-4 text-[14px] md:text-base">
               {product.productDesc}
             </p>
-            <div className="flex items-center mt-4">
+            <div className="flex items-center mt-4 ">
               {renderStars(product.star)}
               <span className="text-sm text-gray-500 ml-2">
                 ({product.star}/5)
               </span>
+            </div>
+            <div className="flex gap-3 mt-2">
+              <button className=" flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="gray"
+                    stroke-dasharray="32"
+                    stroke-dashoffset="32"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c0 0 0 0 -0.76 -1c-0.88 -1.16 -2.18 -2 -3.74 -2c-2.49 0 -4.5 2.01 -4.5 4.5c0 0.93 0.28 1.79 0.76 2.5c0.81 1.21 8.24 9 8.24 9M12 8c0 0 0 0 0.76 -1c0.88 -1.16 2.18 -2 3.74 -2c2.49 0 4.5 2.01 4.5 4.5c0 0.93 -0.28 1.79 -0.76 2.5c-0.81 1.21 -8.24 9 -8.24 9"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      dur="0.7s"
+                      values="32;0"
+                    />
+                  </path>
+                </svg>
+              </button>
+              <Link
+                to={"*"}
+                className=" bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] w-fit rounded-full"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    fill="none"
+                    stroke="white"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  >
+                    <path d="M12.5 21H8.574a3 3 0 0 1-2.965-2.544l-1.255-8.152A2 2 0 0 1 6.331 8H17.67a2 2 0 0 1 1.977 2.304l-.263 1.708M16 19h6m-3-3v6" />
+                    <path d="M9 11V6a3 3 0 0 1 6 0v5" />
+                  </g>
+                </svg>
+              </Link>
             </div>
           </div>
 

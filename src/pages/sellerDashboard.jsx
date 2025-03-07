@@ -8,12 +8,16 @@ import {
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 import UpdatedNumbers from "../components/availableNumber";
+import Button from "../components/button";
+import CreateNewProducts from "../components/createNewProduct";
 import DashboardTable from "../components/dashboard";
 import Products from "../components/products";
 const SellerDashboard = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [shadow, setShadow] = useState(false);
   const [componentChange, setComponentChange] = useState("dashboard"); // Default to Dashboard
+  const [changeSection, setChangeSection] = useState("");
+
   const [isMobile, setIsMobile] = useState(window.innerWidth < 450);
 
   useEffect(() => {
@@ -68,7 +72,7 @@ const SellerDashboard = () => {
           <nav
             className={`${
               isMobile
-                ? "flex justify-evenly w-full bg-slate-100"
+                ? "flex justify-evenly w-full bg-white"
                 : "flex flex-col space-y-2 py-10 px-2 "
             }`}
           >
@@ -196,17 +200,47 @@ const SellerDashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 bg-gray-100 p-6">
-          <div>
-            <UpdatedNumbers />
-          </div>
-          <section>
-            {/* Conditionally render components based on state */}
-            {componentChange === "dashboard" && <DashboardTable />}
-            {componentChange === "products" && <Products />}
+        <div className="flex-1 bg-gray-100 md:p-6">
+          {changeSection === "createProduct" ? (
+            <div>
+              <CreateNewProducts
+                createProductDataObject={{
+                  changeSection: changeSection,
+                  setChangeSection: setChangeSection, // Pass the setter function here
+                }}
+              />
+            </div>
+          ) : (
+            <>
+              <div>
+                <UpdatedNumbers />
+              </div>
+              <section>
+                {/* Conditionally render components based on state */}
+                {componentChange === "dashboard" && <DashboardTable />}
+                {componentChange === "products" && (
+                  <div className=" mt-4">
+                    <button
+                      onClick={() => {
+                        console.log("hello");
+                        setChangeSection("createProduct");
+                      }}
+                      className="  justify-self-end flex justify-end overflow-hidden"
+                    >
+                      <Button data={"+ Add product"} width={"w-fit"} />
+                    </button>
+                    <Products
+                      productDataObject={{
+                        componentName: "",
+                      }}
+                    />
+                  </div>
+                )}
 
-            {componentChange === "sales" && <></>}
-          </section>
+                {componentChange === "sales" && <></>}
+              </section>
+            </>
+          )}
         </div>
       </div>
     </div>

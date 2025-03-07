@@ -1,35 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const SingleProduct = ({ items }) => {
+  // Function to render star rating
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, index) => (
+      <span
+        key={index}
+        className={`text-lg ${
+          index < rating ? "text-navColor" : "text-gray-300"
+        }`}
+      >
+        ★
+      </span>
+    ));
+  };
+
   return (
     <div
-      state={{
-        ProductStore: {
-          id: items._id,
-          name: items.productName,
-          price: items.price,
-          image: items.productImage,
-          productDesc: items.productDescription,
-        },
-      }}
-      className=" mx-2 mb-3 md:m-0  shadow-md md:w-full lg:w-[300px] xl:w-[230px] 
+      className="mx-2 mb-3 md:m-0 shadow-md md:w-full lg:w-[300px] xl:w-[230px] 
                  flex flex-col gap-2 overflow-hidden text-center rounded-lg 
-                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl "
+                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl"
     >
-      <div className="relateve">
-        <Link to={`/products/${items._id}`}>
+      <div className="relative">
+        <Link
+          to={`/products/${items._id}`}
+          state={{
+            ProductStore: {
+              id: items._id,
+              name: items.productName,
+              price: items.price,
+              image: items.productImage,
+              productDesc: items.productDescription,
+              star: items.rating || 4, // Pass the star rating
+            },
+          }}
+        >
           <img
             src={items.productImage}
             alt={items.productName}
-            className="object-center  object-cover transition-transform duration-300"
+            className="object-center object-cover transition-transform duration-300"
           />
         </Link>
 
-        <span
-          className="absolute bg-white top-0
-         left-0 h-fit rounded-ee-lg px-1 py-1  gap-1 flex flex-col justify-evenly"
-        >
-          <button className=" flex justify-center items-center">
+        <span className="absolute bg-white top-0 left-0 h-fit rounded-ee-lg px-1 py-1 gap-1 flex flex-col justify-evenly">
+          <button className="flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -56,8 +71,8 @@ const SingleProduct = ({ items }) => {
             </svg>
           </button>
           <Link
-            to={""}
-            className=" bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] rounded-full"
+            to=""
+            className="bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] rounded-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +95,18 @@ const SingleProduct = ({ items }) => {
         </span>
       </div>
 
-      <h3 className="text-start w-full md:text-lg text-[12px] font-semibold  text-gray-700 ">
+      <h3 className="text-start w-full md:text-lg text-[12px] font-semibold text-gray-700">
         {items.productName}
       </h3>
-      <div className="flex justify-start  mb-4 ">
-        <span className="text-md text-start font-medium text-navColor ">
+
+      {/* Star rating display */}
+
+      <div className="flex justify-between mb-4">
+        <span className="text-md text-start font-medium text-navColor">
           ${items.price}
+        </span>
+        <span className="flex justify-center items-center">
+          {renderStars(items.rating || 4)}
         </span>
       </div>
     </div>
