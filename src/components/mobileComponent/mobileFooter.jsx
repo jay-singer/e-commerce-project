@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 function MobileFooter() {
   return (
-    <div className="bg-slate-100 flex flex-col  fixed bottom-0 left-0 right-0 py-2 pb-4">
+    <div className="bg-white flex flex-col  fixed bottom-0 left-0 right-0 py-2 pb-4">
       {/* First section*/}
-      <div className="flex justify-center items-center border">
+      <div className="flex justify-center items-center ">
         {/* left Side */}
         <div className="w-1/2 flex justify-evenly items-center">
           <Link to={"/"} className="">
