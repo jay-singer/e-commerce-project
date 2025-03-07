@@ -42,7 +42,7 @@ function CreateNewProducts({ createProductDataObject }) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row space-x-0 md:space-x-10">
+    <div className="flex flex-col md:flex-row space-x-0 md:space-x-10 mb-5">
       {/* Navigation Button to return to All Products */}
       <button
         onClick={() => setChangeSection && setChangeSection("allProducts")}
