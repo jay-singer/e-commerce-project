@@ -38,7 +38,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
 
   return (
     <nav
-      className={`fixed left-0 right-0 shadow-md w-full z-10 max-w-[1440px] mx-auto bg-white transition-transform duration-300 ${
+      className={`fixed left-0 right-0 shadow-md w-full z-20 max-w-[1440px] mx-auto bg-white transition-transform duration-300 ${
         isNavbarVisible
           ? "md:translate-y-[78px] translate-y-[62px]"
           : "translate-y-[0]"

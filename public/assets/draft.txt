@@ -1,0 +1,6 @@
+1. All API request used.
+a. API request about product
+{
+    I. https://e-commerce-backend-b8fd.onrender.com/api/getProducts: getting products
+    II.https://e-commerce-backend-b8fd.onrender.com/api/getSidebarCategories: getting category of products
+}

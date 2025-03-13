@@ -78,7 +78,7 @@ const LandingPage = () => {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-25">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-4 h-full lg:h-[528px]">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-4 h-full lg:h-fit">
             <SignForm formStatus={showForm} hideForm={hideForm} />
           </div>
         </div>

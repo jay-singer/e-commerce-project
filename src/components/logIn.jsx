@@ -69,7 +69,7 @@ const LoginForm = (props) => {
   return (
     <>
       {props.logInFormStat && (
-        <div className="flex w-full justify-between md:flex-row flex-col-reverse  h-full">
+        <div className="flex w-full justify-between md:flex-row flex-col-reverse  lg:h-[468px]">
           {/* Left Section */}
           <div className="flex items-center justify-around lg:max-w-[600px] relative md:w-[30%] w-full flex-1">
             <div className="h-full z-50 flex flex-col gap-2 lg:gap-0 justify-center ps-2 flex-1 pt-3 md:pt-0 items-center lg:items-start">
