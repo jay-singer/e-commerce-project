@@ -21,11 +21,13 @@ export default {
         info: "#00A3C6",
         textColor: "#ACADAC",
         selected: "#D7F9C5",
+        specialColor: "#14162E",
       },
       textShadow: {
         sm: "1px 1px 2px rgba(0, 0, 0, 0.2)", // Small, light shadow
-        DEFAULT: "2px 2px 4px rgba(0, 0, 0, 0.3)", // Default shadow
-        md: "2px 3px 2px rgba(0, 0, 0, 0.3)", // Medium shadow
+
+        DEFAULT: "0px 4px 4px #00000040", // Default shadow
+        md: "5px 5px 5px #00000040", // Medium shadow
         lg: "4px 4px 8px rgba(0, 0, 0, 0.5)", // Large shadow
         xl: "5px 5px 10px rgba(0, 0, 0, 0.7)", // Extra-large shadow
         glow: "0 0 8px rgba(255, 255, 255, 0.8)", // Glowing white shadow

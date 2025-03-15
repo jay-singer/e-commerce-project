@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +22,7 @@ const loginSchema = z.object({
 });
 
 const LoginForm = (props) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   // Use `useForm` from react-hook-form and Zod for validation
@@ -128,12 +131,33 @@ const LoginForm = (props) => {
                 <input
                   id="loginPassword"
                   name="password"
-                  type="password"
+                  type={passwordVisible ? "text" : "password"}
                   autoComplete="current-password"
                   placeholder=" "
                   {...register("password")}
                   className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
                 />
+                <span className="p-1 bg-slate-200 absolute right-0 h-full w-1/12">
+                  <span className="flex justify-center items-center h-full w-full">
+                    {passwordVisible ? (
+                      <IoEyeOutline
+                        size={20}
+                        cursor={"pointer"}
+                        onClick={() => {
+                          setPasswordVisible(false);
+                        }}
+                      />
+                    ) : (
+                      <FaRegEyeSlash
+                        size={20}
+                        cursor={"pointer"}
+                        onClick={() => {
+                          setPasswordVisible(true);
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
                 <label htmlFor="password" className="labelClass">
                   Password
                 </label>

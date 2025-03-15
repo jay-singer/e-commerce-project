@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaRegEyeSlash } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -14,6 +14,7 @@ const SignForm = ({ hideForm, formStatus }) => {
   const formRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showOtherForm, setshowOtherForm] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   // Zod schema for validation
   const schema = z.object({
     firstName: z.string().min(1, "First name is required"),
@@ -164,6 +165,7 @@ const SignForm = ({ hideForm, formStatus }) => {
                     id="email"
                     {...register("email")}
                     type="email"
+                    autoComplete="email"
                     placeholder=" "
                     className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
                     ariaLabel="email"
@@ -175,22 +177,37 @@ const SignForm = ({ hideForm, formStatus }) => {
                 </div>
 
                 {/* Password */}
-                <div className="relative rounded-md border border-red-600 overflow-hidden">
-                  <div className="relative overflow-hidden">
-                    <input
-                      autocomplete="section-blue shipping address-level2"
-                      id="password"
-                      {...register("password")}
-                      type="password"
-                      placeholder=""
-                      className="peer appearance-none border-none w-full py-3 px-4 bg-slate-800 text-gray-700 leading-tight focus:outline-none rounded-md"
-                      ariaLabel="password"
-                    />
-                    <span className="p-1 bg-white absolute right-0 h-full w-1/12">
-                      <IoEyeOutline />
-                      <FaRegEyeSlash />
+                <div className="relative rounded-md ">
+                  <input
+                    autocomplete="current-password"
+                    id="password"
+                    {...register("password")}
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder=""
+                    className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
+                    ariaLabel="password"
+                  />
+                  <span className="p-1 bg-slate-200 absolute right-0 h-full w-1/12">
+                    <span className="flex justify-center items-center h-full w-full">
+                      {passwordVisible ? (
+                        <IoEyeOutline
+                          size={25}
+                          cursor={"pointer"}
+                          onClick={() => {
+                            setPasswordVisible(false);
+                          }}
+                        />
+                      ) : (
+                        <FaRegEyeSlash
+                          size={25}
+                          cursor={"pointer"}
+                          onClick={() => {
+                            setPasswordVisible(true);
+                          }}
+                        />
+                      )}
                     </span>
-                  </div>
+                  </span>
 
                   <label htmlFor="password" className="labelClass">
                     password

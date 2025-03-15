@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,6 +12,8 @@ import { z } from "zod";
 const SignIn1 = () => {
   const formRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const navigate = useNavigate();
 
   // Zod schema for validation
@@ -61,7 +65,7 @@ const SignIn1 = () => {
   return (
     <div
       ref={formRef}
-      className="bg-white rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4"
+      className="bg-slate-400 rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4"
     >
       <div className="flex w-full justify-between md:flex-row flex-col-reverse">
         {/* Left Section */}
@@ -69,7 +73,7 @@ const SignIn1 = () => {
           <div className="h-full flex flex-col gap-2 lg:gap-0 justify-center flex-1 pt-3 md:pt-0 items-center lg:items-start">
             <h2 className="text-2xl font-bold md:block hidden">Sign Up</h2>
             <p>Already a user?</p>
-            <Link to="/logIn" className="text-secondary">
+            <Link to="/logIn1" className="text-secondary">
               Sign In!
             </Link>
           </div>
@@ -142,10 +146,31 @@ const SignIn1 = () => {
                 autoComplete="section-blue shipping address-level2"
                 id="password"
                 {...register("password")}
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 placeholder=""
                 className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
               />
+              <span className="p-1 bg-slate-200 absolute right-0 h-full w-1/12">
+                <span className="flex justify-center items-center h-full w-full">
+                  {passwordVisible ? (
+                    <IoEyeOutline
+                      size={20}
+                      cursor={"pointer"}
+                      onClick={() => {
+                        setPasswordVisible(false);
+                      }}
+                    />
+                  ) : (
+                    <FaRegEyeSlash
+                      size={20}
+                      cursor={"pointer"}
+                      onClick={() => {
+                        setPasswordVisible(true);
+                      }}
+                    />
+                  )}
+                </span>
+              </span>
               <label htmlFor="password" className="labelClass">
                 Password
               </label>

@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import AllSales from "./components/allSales";
 import DashboardTable from "./components/dashboard";
+import MobileLogIn from "./components/logIn1";
 import ProductDetails from "./components/productDetails";
 import Products from "./components/products";
 import SignIn1 from "./components/signIn1";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/components/dashboard" element={<DashboardTable />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signIn1" element={<SignIn1 />}></Route>
+        <Route path="/logIn1" element={<MobileLogIn />}></Route>
         <Route path="/aboutUs" element={<AboutUs />}></Route>
       </Routes>
     </BrowserRouter>
