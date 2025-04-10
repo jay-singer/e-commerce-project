@@ -44,7 +44,7 @@ const SignForm = ({ hideForm, formStatus }) => {
         "https://e-commerce-backend-b8fd.onrender.com/api/signUp",
         data
       );
-
+      console.log(response, "This is data from backend");
       if (response.status === 201) {
         toast.success("Sign-up successful!", {
           position: "top-right",

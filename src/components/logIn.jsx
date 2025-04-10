@@ -38,9 +38,10 @@ const LoginForm = (props) => {
   const onSubmit = async (loginData) => {
     try {
       const response = await axios.post(
-        "https://e-commerce-backend-b8fd.onrender.com/signup/",
+        "https://e-commerce-backend-b8fd.onrender.com/api/signUp",
         loginData
       );
+      console.log(response.data, "this is response data");
       if (response.status === 200) {
         navigate("/sell");
         toast.success("Logged in successfully!bbbbbb", {
