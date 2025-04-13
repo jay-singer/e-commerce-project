@@ -31,7 +31,7 @@ function SlideShow3() {
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-65"></div>
+      <div className="absolute  inset-0 bg-black bg-opacity-65"></div>
 
       {/* Content */}
       <div className=" z-10 relative  text-white rounded-lg shadow-lg  h-full">
