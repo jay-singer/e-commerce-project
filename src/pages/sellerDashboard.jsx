@@ -21,6 +21,7 @@ const SellerDashboard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 450);
 
   useEffect(() => {
+    console.log("hello");
     const handleResize = () => {
       setIsMobile(window.innerWidth < 720);
     };

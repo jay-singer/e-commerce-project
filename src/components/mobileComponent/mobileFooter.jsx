@@ -24,9 +24,9 @@ function MobileFooter() {
           <Link className="relative ">
             <BiShoppingBag size={20} />
 
-            <Link className=" bg-navColor absolute top-0.5 -right-1 text-white h-1 w-1 flex justify-center items-center rounded-full text-center text-[6px] p-[5px]">
+            <span className=" bg-navColor absolute top-0.5 -right-1 text-white h-1 w-1 flex justify-center items-center rounded-full text-center text-[6px] p-[5px]">
               0
-            </Link>
+            </span>
           </Link>
           <Link to={"/signIn1"}>
             <CiUser size={20} className=" font-bold" />

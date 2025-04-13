@@ -6,7 +6,7 @@ import SlideShow2 from "./specialComponents/slideShow2";
 import SlideShow3 from "./specialComponents/slideShow3";
 
 function Product() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [transitionTime, setTransitionTime] = useState(400); // Default transition time
 
   // Adjust transition speed based on screen width
@@ -27,20 +27,21 @@ function Product() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center h-fit md:mt-[8.2rem]  mt-[5rem] mb-9 ">
+    <div className="w-full flex flex-col items-center h-fit md:mt-[129px]  mt-[5rem] mb-9 ">
       <Carousel
         showArrows={false}
-        autoPlay={true}
-        infiniteLoop={true}
         showIndicators={false}
-        selectedItem={activeIndex}
+        renderArrowPrev={() => null}
+        renderArrowNext={() => null}
+        renderIndicator={() => null}
         showStatus={false}
         showThumbs={false}
-        // Keeps autoplay running when hovered
-        stopSwipingHandler={false}
+        autoPlay={true}
+        infiniteLoop={true}
+        selectedItem={activeIndex}
         swipeable={false}
-        onChange={setActiveIndex}
         transitionTime={transitionTime}
+        onChange={setActiveIndex}
         className="w-full overflow-hidden"
       >
         <div className="flex w-full bg-slate-50 justify-center h-full">

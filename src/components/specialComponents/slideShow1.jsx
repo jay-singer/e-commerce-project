@@ -25,7 +25,7 @@ function SlideShow1() {
   return (
     <>
       <div
-        className={` container  md:flex-row flex-col flex justify-center pt-0 gap-4 lg:h-[27rem] w-full h-fit bg-white`}
+        className={`container ms-6 flex-row flex justify-center pt-0 gap-4 lg:h-[27rem] w-full h-fit bg-white`}
       >
         <div className="  w-[200px] flex flex-col gap-4 self-center z-0 ">
           <h1 className="text-navColor text-sm">TOP COLLECTIONS 2025</h1>

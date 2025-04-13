@@ -2,26 +2,26 @@ import React from "react";
 
 function TestimonyComp({ data }) {
   return (
-    <div className="">
+    <div className=" w-full">
       {" "}
       <h3 className=" text-center font-bold text-primary lg:text-[36px] my-4">
         What our customers say
       </h3>
-      <div className="w-full flex justify-center">
+      <div className="  flex justify-center p-3">
         <div
-          className="flex flex-col items-center lg:w-[40%] md:w-[30px)
+          className=" flex  flex-col items-center 
               gap-4 lg:m-0  "
         >
           <div className=" bg-slate-400 w-[80px] h-[80px] flex rounded-full">
             <img
-              className="rounded-full w-full object-cover object-center"
+              className="rounded-full object-cover object-center w-full h-full"
               src={data.imageUrl}
               alt={data.customerName}
             />
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-3 relative">
-            <p className="md:text-[16px] text-[13px] w-[310px] md:w-[70%] md:p-0 text-center ">
+          <div className=" justify-center items-center gap-3">
+            <p className="md:text-[16px] text-[13px] w-[310px] lg:w-full md:p-0 text-center ">
               {data.testimony}
             </p>
 

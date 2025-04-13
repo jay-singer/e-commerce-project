@@ -2,7 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/*comment**/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the body takes up the full viewport height */
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+/* Root styling */
+.root {
+  width: 100%;
+  background: white;
+}
 
 .categoryId {
   transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;

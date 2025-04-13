@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Carousel } from "react-responsive-carousel";
-import TestimonyComp from "./specialComponents/testimonySlide";
-import TestimonComp2 from "./specialComponents/TestimonySlide2";
-import TestimonyComp4 from "./specialComponents/testimonySlide3";
-
+import TestimonyComp from "../components/specialComponents/testimonySlide";
 const Testimony = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [transitionTime, setTransitionTime] = useState(600);
@@ -42,11 +39,10 @@ const Testimony = () => {
   ];
 
   // Components to render dynamically
-  const testimonyComponents = [TestimonyComp, TestimonComp2, TestimonyComp4];
 
   // Handle forward and back navigation
   const goToNext = () => {
-    if (activeIndex < testimonyComponents.length - 1) {
+    if (activeIndex < arrObject.length - 1) {
       setActiveIndex((prevIndex) => prevIndex + 1);
     }
   };
@@ -54,26 +50,22 @@ const Testimony = () => {
   const goToPrevious = () => {
     if (activeIndex > 0) {
       setActiveIndex(
-        (prevIndex) =>
-          (prevIndex - 1 + testimonyComponents.length) %
-          testimonyComponents.length
+        (prevIndex) => (prevIndex - 1 + arrObject.length) % arrObject.length
       );
     }
   };
 
   return (
-    <div className="text-center text-textColor pb-2 bg-gray-100 mx-1 mt-4 relative">
-      {/* Right Arrow */}
+    <div className="text-center w-full  text-textColor pb-2 bg-gray-100 mt-4 flex justify-center items-center">
+      {/* Left Arrow */}
       <div
-        className={`absolute flex justify-center items-center md:right-0 md:left-[60rem] left-0 md:top-[0%] bottom-7 bg-gray-100 h-full z-10 cursor-pointer ${
-          activeIndex === testimonyComponents.length - 1
-            ? " cursor-not-allowed"
-            : ""
+        className={`   cursor-pointer flex-1 ${
+          activeIndex === 0 ? " cursor-not-allowed" : ""
         }`}
-        onClick={goToNext}
+        onClick={goToPrevious}
       >
-        <span>
-          <IoIosArrowForward size={30} />
+        <span className=" lg:justify-center justify-end flex w-full">
+          <IoIosArrowBack size={40} />
         </span>
       </div>
 
@@ -89,24 +81,23 @@ const Testimony = () => {
         swipeable={false}
         onChange={setActiveIndex}
         transitionTime={transitionTime}
-        className="w-full overflow-hidden"
+        className="w-[50%] max-w-[1440px]  bg-slate-50"
       >
-        {testimonyComponents.map((Component, index) => (
+        {arrObject.map((_, index) => (
           <div key={index}>
-            <Component data={arrObject[index]} />
+            <TestimonyComp data={arrObject[index]} />
           </div>
         ))}
       </Carousel>
-
-      {/* Left Arrow */}
+      {/* Right Arrow */}
       <div
-        className={`absolute flex justify-center items-center md:left-0 md:right-[60rem] left-0 md:top-[0%] bottom-7 bg-gray-100 h-full cursor-pointer ${
-          activeIndex === 0 ? " cursor-not-allowed" : ""
+        className={`  z-10 cursor-pointer flex-1 ${
+          activeIndex === arrObject.length - 1 ? " cursor-not-allowed" : ""
         }`}
-        onClick={goToPrevious}
+        onClick={goToNext}
       >
-        <span>
-          <IoIosArrowBack size={30} />
+        <span className=" h-full w-full flex lg:justify-center">
+          <IoIosArrowForward className="" size={40} />
         </span>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner"; // Importing the spinner
 import { Link } from "react-router-dom";
 import Button from "./button";
 import SingleProduct from "./singleProduct";
@@ -9,22 +10,33 @@ const Products = ({ productDataObject }) => {
   const [loading, setLoading] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
+  // ✅ Track window size for responsive design
   useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
-    };
-
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 768);
     window.addEventListener("resize", handleResize);
-    handleResize(); // Ensure the initial value is set
-
+    handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // ✅ Get and decode the token
+  const token = sessionStorage.getItem("authToken");
+
+  if (!token) {
+    console.warn("No token found in sessionStorage");
+    return;
+  }
+
+  // ✅ Fetch products with Bearer token
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
+          "https://e-commerce-backend-b8fd.onrender.com/api/Products/seller",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setProducts(response.data);
       } catch (error) {
@@ -34,12 +46,12 @@ const Products = ({ productDataObject }) => {
       }
     };
 
-    fetchProducts();
-  }, []);
+    if (token) fetchProducts();
+  }, [token]);
 
   return (
     <div
-      className={`mb-10 flex flex-col justify-center items-center ${
+      className={`flex flex-col justify-center items-center lg:w-full ${
         !isLargeScreen
           ? productDataObject.componentMarginSmall
           : productDataObject.componentMarginLarge
@@ -48,10 +60,20 @@ const Products = ({ productDataObject }) => {
       <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
         {productDataObject.componentName}
       </h1>
-      <div className="w-full grid grid-cols-2  md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4">
+
+      <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4">
         {loading ? (
           <div className="flex justify-center items-center h-32">
-            <span className="loader"></span>
+            <TailSpin
+              height="50"
+              width="50"
+              color="#4fa94d"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
           </div>
         ) : (
           products.map((product, index) => (
@@ -61,6 +83,7 @@ const Products = ({ productDataObject }) => {
           ))
         )}
       </div>
+
       {isLargeScreen ? (
         <div className="w-full flex justify-around items-center">
           <Button

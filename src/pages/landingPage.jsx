@@ -62,11 +62,7 @@ const LandingPage = () => {
         }`}
       >
         {/* Upper Header (hides on scroll down, shows on scroll up) */}
-        <div
-          className={`fixed top-0 left-0 right-0 z-20 bg-white shadow-md transition-transform duration-300 ${
-            isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-          }`}
-        >
+        <div className={` bg-white`}>
           <UpperHeader />
           <UpperHeader1 displayingForm={displayingForm} />
         </div>
@@ -85,7 +81,7 @@ const LandingPage = () => {
       )}
 
       {/* Content Area */}
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center max-w-[1400px] ">
         {!isProductPage && (
           <>
             <Product showCategory={showCategory} />
@@ -99,7 +95,9 @@ const LandingPage = () => {
         )}
 
         <Outlet />
-        <Testimony />
+        <div className="  w-[90%]">
+          <Testimony />
+        </div>
         <FooterComp />
       </div>
     </div>
@@ -107,14 +105,13 @@ const LandingPage = () => {
 
   const phoneView = (
     <div className="mb-[69px] ">
-      <UpperHeader1 />
       {!isProductPage && (
         <>
           <Products
             productDataObject={{
               componentName: "OUR PRODUCTS",
               componentMarginLarge: "0",
-              componentMarginSmall: "mt-[4rem]",
+              componentMarginSmall: "mt-0",
             }}
           />
         </>

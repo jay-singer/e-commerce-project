@@ -18,12 +18,13 @@ const SingleProduct = ({ items }) => {
 
   return (
     <div
-      className="mx-2 mb-3 md:m-0 shadow-md md:w-full lg:w-[300px] xl:w-[230px] 
+      className="mx-2 mb-3 md:m-0 shadow-md  lg:w-[300px] xl:w-[230px] 
                  flex flex-col gap-2 overflow-hidden text-center rounded-lg 
-                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl"
+                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl shadow-gray-400"
     >
       <div className="relative">
         <Link
+          className=" "
           to={`/products/${items._id}`}
           state={{
             ProductStore: {
@@ -39,7 +40,7 @@ const SingleProduct = ({ items }) => {
           <img
             src={items.productImage}
             alt={items.productName}
-            className="object-center object-cover transition-transform duration-300"
+            className="object-center object-covertransition-transform duration-300 object-cover md:h-[200px] w-full h-[150px]"
           />
         </Link>
 
@@ -54,11 +55,11 @@ const SingleProduct = ({ items }) => {
               <path
                 fill="none"
                 stroke="gray"
-                stroke-dasharray="32"
-                stroke-dashoffset="32"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeDasharray="32"
+                strokeDashoffset="32"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M12 8c0 0 0 0 -0.76 -1c-0.88 -1.16 -2.18 -2 -3.74 -2c-2.49 0 -4.5 2.01 -4.5 4.5c0 0.93 0.28 1.79 0.76 2.5c0.81 1.21 8.24 9 8.24 9M12 8c0 0 0 0 0.76 -1c0.88 -1.16 2.18 -2 3.74 -2c2.49 0 4.5 2.01 4.5 4.5c0 0.93 -0.28 1.79 -0.76 2.5c-0.81 1.21 -8.24 9 -8.24 9"
               >
                 <animate
@@ -80,34 +81,35 @@ const SingleProduct = ({ items }) => {
               height="18"
               viewBox="0 0 24 24"
             >
-              <g
+              <svg
                 fill="none"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
               >
                 <path d="M12.5 21H8.574a3 3 0 0 1-2.965-2.544l-1.255-8.152A2 2 0 0 1 6.331 8H17.67a2 2 0 0 1 1.977 2.304l-.263 1.708M16 19h6m-3-3v6" />
                 <path d="M9 11V6a3 3 0 0 1 6 0v5" />
-              </g>
+              </svg>
             </svg>
           </Link>
         </span>
       </div>
+      <div className="px-1">
+        <h3 className="text-start w-full md:text-lg text-[12px] font-semibold text-gray-700">
+          {items.productName}
+        </h3>
 
-      <h3 className="text-start w-full md:text-lg text-[12px] font-semibold text-gray-700">
-        {items.productName}
-      </h3>
+        {/* Star rating display */}
 
-      {/* Star rating display */}
-
-      <div className="flex justify-between mb-4">
-        <span className="text-md text-start font-medium text-navColor">
-          ${items.price}
-        </span>
-        <span className="flex justify-center items-center">
-          {renderStars(items.rating || 4)}
-        </span>
+        <div className="flex justify-between mb-4">
+          <span className="text-md text-start font-medium text-navColor">
+            ${items.price}
+          </span>
+          <span className="flex justify-center items-center">
+            {renderStars(items.rating || 4)}
+          </span>
+        </div>
       </div>
     </div>
   );

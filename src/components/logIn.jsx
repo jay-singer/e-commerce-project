@@ -38,17 +38,27 @@ const LoginForm = (props) => {
   const onSubmit = async (loginData) => {
     try {
       const response = await axios.post(
-        "https://e-commerce-backend-b8fd.onrender.com/api/signUp",
+        "https://e-commerce-backend-b8fd.onrender.com/api/signIn",
         loginData
       );
-      console.log(response.data, "this is response data");
+
       if (response.status === 200) {
-        navigate("/sell");
-        toast.success("Logged in successfully!bbbbbb", {
+        const token = response.data.token;
+
+        // ✅ Store the token in localStorage
+        sessionStorage.setItem("authToken", token);
+
+        // ✅ Decode the token
+        // const decoded = jwtDecode(token);
+
+        toast.success("Logged in successfully!", {
           position: "top-right",
           autoClose: 3000,
         });
-        reset(); // Reset form after successful submission
+
+        reset(); // Reset form
+        navigate("../"); // Navigate after success
+        props.hideForm();
       } else {
         toast.error("Login failed. Please try again.", {
           position: "top-right",
@@ -56,13 +66,30 @@ const LoginForm = (props) => {
         });
       }
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        toast.error("Invalid credentials. Please try again.", {
-          position: "top-right",
-          autoClose: 3000,
-        });
+      if (error.response) {
+        const { status, data } = error.response;
+
+        if (status === 400) {
+          toast.error(
+            data?.message || "Bad request. Please check your input.",
+            {
+              position: "top-right",
+              autoClose: 3000,
+            }
+          );
+        } else if (status === 401) {
+          toast.error("Invalid credentials. Please try again.", {
+            position: "top-right",
+            autoClose: 3000,
+          });
+        } else {
+          toast.error("An error occurred. Please try again later.", {
+            position: "top-right",
+            autoClose: 3000,
+          });
+        }
       } else {
-        toast.error("An error occurred. Please try again later.", {
+        toast.error("Something went wrong. Please try again later.", {
           position: "top-right",
           autoClose: 3000,
         });

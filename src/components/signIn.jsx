@@ -21,6 +21,9 @@ const SignForm = ({ hideForm, formStatus }) => {
     secondName: z.string().min(1, "Last name is required"),
     email: z.string().email("Invalid email address"),
     password: z.string().min(8, "Password must be at least 8 characters"),
+    role: z.enum(["Admin", "Seller", "Buyer"], {
+      required_error: "Role is required",
+    }),
   });
 
   // React Hook Form setup
@@ -37,13 +40,19 @@ const SignForm = ({ hideForm, formStatus }) => {
 
   // Submit handler
   const onSubmit = async (data) => {
-    console.log(data, "data");
+    console.log(data, "data go to backend");
     setIsSubmitting(true);
     try {
       const response = await axios.post(
         "https://e-commerce-backend-b8fd.onrender.com/api/signUp",
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
+
       console.log(response, "This is data from backend");
       if (response.status === 201) {
         toast.success("Sign-up successful!", {
@@ -53,7 +62,7 @@ const SignForm = ({ hideForm, formStatus }) => {
 
         reset();
         hideForm();
-        navigate("/sellerDashboard");
+        // navigate("/sellerDashboard");
       }
     } catch (error) {
       console.error(error);
@@ -90,6 +99,7 @@ const SignForm = ({ hideForm, formStatus }) => {
     <div className="bg-white rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4">
       {formStatus && showOtherForm ? (
         <LoginForm
+          hideForm={hideForm}
           logInFormStat={showOtherForm}
           setshowOtherForm={setshowOtherForm}
         />
@@ -214,7 +224,25 @@ const SignForm = ({ hideForm, formStatus }) => {
                   </label>
                   <p className="text-red-500">{errors.password?.message}</p>
                 </div>
+                {/* Role drop down */}
+                <div className="relative rounded-md ">
+                  <select
+                    id="role"
+                    {...register("role")}
+                    className="appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
+                    defaultValue="Buyer"
+                  >
+                    <option value="Admin">Admin</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Buyer">Buyer</option>
+                  </select>
 
+                  {errors.role && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.role.message}
+                    </p>
+                  )}
+                </div>
                 {/* Submit Button */}
                 <div className="flex flex-col items-center justify-center ">
                   <button

@@ -30,7 +30,7 @@ const ProductDetails = () => {
   return (
     <div className=" md:mt-[166px] mt-[60px] md:mb-0 mb-[60px] bg-white min-h-screen  overflow-hidden rounded-lg md:flex flex-col  justify-center items-center  ">
       {/* Back Button */}
-      <div className="px-10">
+      <div className="px-10 place-self-start">
         <Link
           to="/"
           className="flex items-center text-gray-500 hover:text-gray-700 text-sm bg-slate-300 w-fit rounded py-1 px-2 "
@@ -46,7 +46,7 @@ const ProductDetails = () => {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full max-w-[300px] h-auto object-cover rounded-lg"
+            className="w-full  h-auto object-cover rounded-lg"
           />
         </div>
 
@@ -77,11 +77,11 @@ const ProductDetails = () => {
                   <path
                     fill="none"
                     stroke="gray"
-                    stroke-dasharray="32"
-                    stroke-dashoffset="32"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeDasharray="32"
+                    strokeDashoffset="32"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M12 8c0 0 0 0 -0.76 -1c-0.88 -1.16 -2.18 -2 -3.74 -2c-2.49 0 -4.5 2.01 -4.5 4.5c0 0.93 0.28 1.79 0.76 2.5c0.81 1.21 8.24 9 8.24 9M12 8c0 0 0 0 0.76 -1c0.88 -1.16 2.18 -2 3.74 -2c2.49 0 4.5 2.01 4.5 4.5c0 0.93 -0.28 1.79 -0.76 2.5c-0.81 1.21 -8.24 9 -8.24 9"
                   >
                     <animate
@@ -106,9 +106,9 @@ const ProductDetails = () => {
                   <g
                     fill="none"
                     stroke="white"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                   >
                     <path d="M12.5 21H8.574a3 3 0 0 1-2.965-2.544l-1.255-8.152A2 2 0 0 1 6.331 8H17.67a2 2 0 0 1 1.977 2.304l-.263 1.708M16 19h6m-3-3v6" />
                     <path d="M9 11V6a3 3 0 0 1 6 0v5" />

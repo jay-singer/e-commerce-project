@@ -21,7 +21,7 @@ function SlideShow3() {
 
   return (
     <div
-      className="relative w-full flex items-center text-white px-6 md:px-12"
+      className="relative   text-white w-full bg-red-700 border border-red-950 rounded-md"
       style={{
         backgroundImage:
           "url('/assets/frame/tem-rysh-F6-U5fGAOik-unsplash.jpg')",
@@ -34,22 +34,24 @@ function SlideShow3() {
       <div className="absolute inset-0 bg-black bg-opacity-65"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl w-full  text-white rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold text-center text-white">
-          Why Choose <span>B.Quality</span>?
-        </h1>
-        <p className="text-md text-center text-white mt-2">
-          <span className="text-navColor">B.Quality</span> is dedicated to
-          building an honest and trustworthy e-commerce platform, where
-          customers shop with confidence, sellers grow their businesses, and
-          admins ensure fairness.
-        </p>
+      <div className=" z-10 relative  text-white rounded-lg shadow-lg  h-full">
+        <div className="flex flex-col items-center">
+          <h1 className="text-2xl  font-bold text-center text-white">
+            Why Choose <span>B.Quality</span>?
+          </h1>
+          <p className="text-md text-center max-w-xl   text-white mt-2">
+            <span className="text-navColor">B.Quality</span> is dedicated to
+            building an honest and trustworthy e-commerce platform, where
+            customers shop with confidence, sellers grow their businesses, and
+            admins ensure fairness.
+          </p>
+        </div>
 
-        <div className="flex justify-between gap-6 mt-6">
+        <div className="flex justify-evenly gap-6 mt-6 mx-6 mb-6">
           {/* Customer, Seller, Admin sections */}
           {Object.keys(sections).map((role, index) => (
-            <div key={index} className="flex-1">
-              <h2 className="text-lg font-semibold text-navColor text-center">
+            <div key={index} className="flex-1 ">
+              <h2 className="text-lg font-semibold text-navColor ">
                 {role} Side
               </h2>
               <div className="mt-4 space-y-3">
@@ -58,7 +60,7 @@ function SlideShow3() {
                     <span className="text-sm font-medium bg-blue-600 text-white px-3 py-1 rounded-full">
                       {num}
                     </span>
-                    <span className="text-sm text-gray-300 text-nowrap">
+                    <span className="text-sm text-gray-300 text-nowrap ">
                       {content}
                     </span>
 

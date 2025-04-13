@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { IoMdClose } from "react-icons/io";
 import { Link, Outlet } from "react-router-dom";
 import SearchComp from "./search";
 
@@ -10,23 +9,18 @@ const Navbar = ({ showCategory, setShowCategory }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Handle screen resize
+  const handleResize = useCallback(() => {
+    setIsSmallScreen(window.innerWidth < 760);
+  }, []);
+
+  // Handle scroll behavior for navbar visibility
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    setIsNavbarVisible(scrollY > lastScrollY && scrollY > 50 ? true : false);
+  }, [lastScrollY]);
+
   useEffect(() => {
-    const handleResize = () => setIsSmallScreen(window.innerWidth < 500);
-
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      if (scrollY > lastScrollY && scrollY > 50) {
-        // Scrolling down & passed UpperHeader1, show Navbar
-        setIsNavbarVisible(true);
-      } else {
-        // Scrolling up, hide Navbar
-        setIsNavbarVisible(false);
-      }
-
-      setLastScrollY(scrollY);
-    };
-
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
@@ -34,35 +28,46 @@ const Navbar = ({ showCategory, setShowCategory }) => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [handleResize, handleScroll]);
+
+  // Handle category toggle on small screens
+  const toggleCategory = () => {
+    if (isSmallScreen) setShowCategory(!showCategory);
+  };
+
+  const categoryLinks = [
+    "All",
+    "New Arrivals",
+    "Hot Sale",
+    "Furniture",
+    "Sports Staff",
+    "Table",
+    "Chair",
+    "Food Products",
+    "Kitchen Staff",
+    "Electronics Materials",
+    "Benches",
+  ];
 
   return (
     <nav
-      className={`fixed left-0 right-0 shadow-md w-full z-20 max-w-[1440px] mx-auto bg-white transition-transform duration-300 ${
+      className={`fixed translate-y-[75px] left-0 right-0 shadow-md w-full max-w-[1440px] mx-auto ${
         isNavbarVisible
-          ? "md:translate-y-[78px] translate-y-[62px]"
-          : "translate-y-[0]"
+          ? "lg:translate-y-[78px]  z-20 bg-white transition-all"
+          : "translate-y-[0] hidden transition-all "
       }`}
     >
       <div className="px-2 mx-auto">
         <div className="flex items-center h-[30px] md:h-[60px] my-1 md:m-0">
           <div className="flex space-x-3 md:space-x-1">
             <button
-              onClick={() => {
-                if (window.innerWidth < 500) {
-                  setShowCategory(!showCategory); // Toggle category only when width < 500px
-                }
-              }}
-              onMouseEnter={() => {
-                if (window.innerWidth > 500) {
-                  setShowCategory(false);
-                }
-              }}
-              onMouseLeave={() => {
-                if (window.innerWidth > 500) {
-                  setShowCategory(true);
-                }
-              }}
+              onClick={toggleCategory}
+              onMouseEnter={() =>
+                window.innerWidth > 500 && setShowCategory(false)
+              }
+              onMouseLeave={() =>
+                window.innerWidth > 500 && setShowCategory(true)
+              }
               className="bg-green-500 text-white p-[3px] md:p-2 md:gap-1 rounded-lg flex items-center hover:bg-green-600 z-50"
             >
               <FaBarsStaggered size={15} />
@@ -74,7 +79,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
           </div>
 
           <div className="ml-4">
-            <div className="hidden md:flex space-x-4">
+            <div className=" md:flex space-x-4">
               <Link
                 to="/"
                 className="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
@@ -95,7 +100,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
               </Link>
             </div>
 
-            <div className="md:hidden flex items-center justify-center ml-[12px]">
+            {/* <div className="md:hidden bg-black flex items-center justify-center ml-[12px]">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-800 focus:outline-none"
@@ -106,7 +111,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
                   <FaBarsStaggered size={20} />
                 )}
               </button>
-            </div>
+            </div> */}
 
             {isMenuOpen && (
               <div className="md:hidden absolute left-0 right-0 bg-white z-50 top-[38px]">
@@ -127,39 +132,20 @@ const Navbar = ({ showCategory, setShowCategory }) => {
         </div>
       </div>
 
+      {/* Category Dropdown */}
       {!showCategory && (
         <div
           id="categoryId"
           className="bg-slate-100 absolute left-[1px] right-[1px] transform -translate-y-full opacity-0 transition-transform duration-300 ease-in-out md:top-[49px] top-[33px] w-full shadow-lg"
-          onMouseEnter={() => {
-            if (window.innerWidth > 500) {
-              setShowCategory(false);
-            }
-          }}
-          onMouseLeave={() => {
-            if (window.innerWidth > 500) {
-              setShowCategory(true);
-            }
-          }}
+          onMouseEnter={() => window.innerWidth > 500 && setShowCategory(false)}
+          onMouseLeave={() => window.innerWidth > 500 && setShowCategory(true)}
           style={{
             opacity: !showCategory ? 1 : 0,
             transform: !showCategory ? "translateY(0)" : "-translate-y-full",
           }}
         >
           <ul className="text-gray-800 w-fit items-center p-[2px]">
-            {[
-              "All",
-              "New Arrivals",
-              "Hot Sale",
-              "Furniture",
-              "Sports Staff",
-              "Table",
-              "Chair",
-              "Food Products",
-              "Kitchen Staff",
-              "Electronics Materials",
-              "Benches",
-            ].map((name) => (
+            {categoryLinks.map((name) => (
               <li
                 key={name}
                 className="hover:bg-selected rounded-sm mt-[2px] flex"
