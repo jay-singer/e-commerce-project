@@ -7,20 +7,21 @@ import {
   MdSpaceDashboard,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
-import UpdatedNumbers from "../components/availableNumber";
-import Button from "../components/button";
-import CreateNewProducts from "../components/createNewProduct";
-import DashboardTable from "../components/dashboard";
+import UpdatedNumbers from "../components/ReUsableComponent/availableNumber";
+import Button from "../components/ReUsableComponent/button";
+import DashboardTable from "../components/ReUsableComponent/dashboard";
+import CreateNewProducts from "../components/UserComponents/SellerStaff/createNewProduct";
 import Products from "../components/products";
 const SellerDashboard = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [shadow, setShadow] = useState(false);
   const [componentChange, setComponentChange] = useState("dashboard"); // Default to Dashboard
   const [changeSection, setChangeSection] = useState("");
-
+  const [productsNumber, setProductNumber] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 450);
 
   useEffect(() => {
+    countNumberOfProduct();
     console.log("hello");
     const handleResize = () => {
       setIsMobile(window.innerWidth < 720);
@@ -37,6 +38,9 @@ const SellerDashboard = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const countNumberOfProduct = (pruductNumber) => {
+    return setProductNumber((prevNum) => prevNum + 1);
+  };
 
   return (
     <div>
@@ -156,7 +160,7 @@ const SellerDashboard = () => {
                       : "hidden opacity-0"
                   }`}
                 >
-                  Pruducts
+                  Products
                 </span>
               )}
             </button>
@@ -205,20 +209,20 @@ const SellerDashboard = () => {
           {changeSection === "createProduct" ? (
             <div>
               <CreateNewProducts
-                createProductDataObject={{
-                  changeSection: changeSection,
-                  setChangeSection: setChangeSection, // Pass the setter function here
-                }}
+                changeSection={changeSection}
+                setChangeSection={setChangeSection} // Pass the setter function here
               />
             </div>
           ) : (
             <>
               <div>
-                <UpdatedNumbers />
+                <UpdatedNumbers availableNumber={productsNumber} />
               </div>
               <section>
                 {/* Conditionally render components based on state */}
-                {componentChange === "dashboard" && <DashboardTable />}
+                {componentChange === "dashboard" && (
+                  <DashboardTable productNumber={countNumberOfProduct} />
+                )}
                 {componentChange === "products" && (
                   <div className=" mt-4">
                     <button
@@ -232,7 +236,8 @@ const SellerDashboard = () => {
                     </button>
                     <Products
                       productDataObject={{
-                        componentName: "",
+                        componentName: " ",
+                        componentMarginLarg: " ",
                       }}
                     />
                   </div>

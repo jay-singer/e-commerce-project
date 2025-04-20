@@ -29,6 +29,7 @@ function Product() {
   return (
     <div className="w-full flex flex-col items-center h-fit md:mt-[129px]  mt-[5rem] mb-9 ">
       <Carousel
+        label="My Carousel Label"
         showArrows={false}
         showIndicators={false}
         renderArrowPrev={() => null}

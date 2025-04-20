@@ -4,7 +4,7 @@ import { TailSpin } from "react-loader-spinner"; // Importing the spinner
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const DashboardTable = () => {
+const DashboardTable = ({ productNumber }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,15 @@ const DashboardTable = () => {
             },
           }
         );
+
         setProducts(response.data);
+
+        const countingNumberProduct = () => {
+          products.map((_, index) => {
+            productNumber(index);
+          });
+        };
+        countingNumberProduct();
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
@@ -63,7 +71,7 @@ const DashboardTable = () => {
                       height="50"
                       width="50"
                       color="#4fa94d"
-                      ariaLabel="tail-spin-loading"
+                      aria-label="tail-spin-loading"
                       radius="1"
                       wrapperStyle={{}}
                       wrapperClass=""
@@ -127,7 +135,7 @@ const DashboardTable = () => {
                       height="50"
                       width="50"
                       color="#4fa94d"
-                      ariaLabel="tail-spin-loading"
+                      aria-label="tail-spin-loading"
                       radius="1"
                       wrapperStyle={{}}
                       wrapperClass=""

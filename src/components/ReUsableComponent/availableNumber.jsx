@@ -2,7 +2,7 @@ import React from "react";
 import { FaTruck } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
 import { MdShoppingBag } from "react-icons/md";
-function UpdatedNumbers() {
+function UpdatedNumbers({ availableNumber }) {
   return (
     <>
       <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
@@ -21,7 +21,7 @@ function UpdatedNumbers() {
             Available
           </p>
           <p className="text-white absolute right-[30px] bottom-0 lg:text-[3rem] text-[2rem]">
-            67
+            {availableNumber}
           </p>
         </div>
         <div
@@ -40,7 +40,7 @@ function UpdatedNumbers() {
             Wished
           </p>
           <p className="text-white absolute right-[30px] bottom-0 lg:text-[3rem] text-[2rem]">
-            67
+            {availableNumber}
           </p>
         </div>
         <div
@@ -60,7 +60,7 @@ function UpdatedNumbers() {
             Expired
           </p>
           <p className="text-white absolute right-[30px] bottom-0 lg:text-[3rem] text-[2rem]">
-            67
+            {availableNumber}
           </p>
         </div>
       </div>

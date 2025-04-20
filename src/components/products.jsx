@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner"; // Importing the spinner
 import { Link } from "react-router-dom";
-import Button from "./button";
+import Button from "./ReUsableComponent/button";
 import SingleProduct from "./singleProduct";
 
 const Products = ({ productDataObject }) => {
@@ -68,7 +68,7 @@ const Products = ({ productDataObject }) => {
               height="50"
               width="50"
               color="#4fa94d"
-              ariaLabel="tail-spin-loading"
+              aria-label="tail-spin-loading"
               radius="1"
               wrapperStyle={{}}
               wrapperClass=""

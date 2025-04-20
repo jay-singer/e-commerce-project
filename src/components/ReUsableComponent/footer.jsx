@@ -28,7 +28,7 @@ const FooterComp = () => {
                 <Link
                   to="#"
                   className="text-gray-500 hover:text-gray-900 transition"
-                  ariaLabel="Facebook"
+                  aria-label="Facebook"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const FooterComp = () => {
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-gray-900 transition"
-                  ariaLabel="Twitter"
+                  aria-label="Twitter"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const FooterComp = () => {
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-gray-900 transition"
-                  ariaLabel="Instagram"
+                  aria-label="Instagram"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ const FooterComp = () => {
                 <Link
                   to="#"
                   className="text-gray-600 hover:text-gray-900 transition"
-                  ariaLabel="Pinterest"
+                  aria-label="Pinterest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

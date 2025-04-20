@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import FooterComp from "../components/footer";
+import SignForm from "../components/IdentificationsStaff/signIn";
 import MobileFooter from "../components/mobileComponent/mobileFooter";
-import NavBar from "../components/navibar";
 import Product from "../components/ProductDisplay";
 import Products from "../components/products";
-import SignForm from "../components/signIn";
+import FooterComp from "../components/ReUsableComponent/footer";
+import NavBar from "../components/ReUsableComponent/navibar";
+import UpperHeader from "../components/ReUsableComponent/upHeader";
+import UpperHeader1 from "../components/ReUsableComponent/upHeader1";
 import Testimony from "../components/Testimony";
-import UpperHeader from "../components/upHeader";
-import UpperHeader1 from "../components/upHeader1";
+import { formHiding } from "../components/utilities/utlilities";
 
 // Lazy-loaded component
 
@@ -73,8 +74,14 @@ const LandingPage = () => {
 
       {/* Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-25">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-4 h-full lg:h-fit">
+        <div
+          onClick={() => formHiding(hideForm)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-10 h-full lg:h-fit"
+          >
             <SignForm formStatus={showForm} hideForm={hideForm} />
           </div>
         </div>

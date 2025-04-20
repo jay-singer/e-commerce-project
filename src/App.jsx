@@ -1,36 +1,51 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import AllSales from "./components/allSales";
-import DashboardTable from "./components/dashboard";
-import MobileLogIn from "./components/logIn1";
+import MobileLogIn from "./components/IdentificationsStaff/logIn1";
+import SignIn1 from "./components/IdentificationsStaff/signIn1";
 import ProductDetails from "./components/productDetails";
 import Products from "./components/products";
-import SignIn1 from "./components/signIn1";
+import DashboardTable from "./components/ReUsableComponent/dashboard";
 import AboutUs from "./pages/aboutUs";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellerDashboard from "./pages/sellerDashboard";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<LandingPage />}>
+        <Route path="/products/:id" element={<ProductDetails />} />
+      </Route>
+      {/* Seller Dashboard with Nested Routes */}
+      <Route path="/sellerDashboard" element={<SellerDashboard />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="dashboard" element={<DashboardTable />} />
+      <Route path="*" element={<NotFound />} />
+      <Route path="/signIn1" element={<SignIn1 />} />
+      <Route path="/logIn1" element={<MobileLogIn />} />
+      <Route path="/aboutUs" element={<AboutUs />} />
+    </>
+  ),
+  {
+    future: {
+      v7_relativeSplatPath: true,
+      v7_startTransition: false, // Added this line
+    },
+  }
+);
+
 function App() {
   return (
-    <BrowserRouter>
+    <RouterProvider router={router}>
       <ToastContainer />
-      <Routes>
-        <Route path="/" element={<LandingPage />}>
-          <Route path="/products/:id" element={<ProductDetails />}></Route>
-        </Route>
-        {/* Seller Dashboard with Nested Routes */}
-        <Route path="/sellerDashboard" element={<SellerDashboard />}></Route>
-        <Route path="allSales" element={<AllSales />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/components/dashboard" element={<DashboardTable />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/signIn1" element={<SignIn1 />}></Route>
-        <Route path="/logIn1" element={<MobileLogIn />}></Route>
-        <Route path="/aboutUs" element={<AboutUs />}></Route>
-      </Routes>
-    </BrowserRouter>
+    </RouterProvider>
   );
 }
 
