@@ -21,11 +21,6 @@ const Products = ({ productDataObject }) => {
   // ✅ Get and decode the token
   const token = sessionStorage.getItem("authToken");
 
-  if (!token) {
-    console.warn("No token found in sessionStorage");
-    return;
-  }
-
   // ✅ Fetch products with Bearer token
   useEffect(() => {
     const fetchProducts = async () => {
