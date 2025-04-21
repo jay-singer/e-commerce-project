@@ -57,7 +57,12 @@ const UpperHeader1 = ({ displayingForm }) => {
 
       {/* Header Icons */}
       <div className="flex items-center gap-3">
-        <BsBagDash className=" " />
+        <Link
+          className="text-black flex justify-center items-center"
+          to="CartProducts"
+        >
+          <BsBagDash className=" " />
+        </Link>
         <BsBell className=" " />
         <BsPerson className=" " />
         <Link

@@ -12,6 +12,7 @@ import SignIn1 from "./components/IdentificationsStaff/signIn1";
 import ProductDetails from "./components/productDetails";
 import Products from "./components/products";
 import DashboardTable from "./components/ReUsableComponent/dashboard";
+import CartProducts from "./components/UserComponents/BuyerStaff/CartProducts";
 import AboutUs from "./pages/aboutUs";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="/signIn1" element={<SignIn1 />} />
       <Route path="/logIn1" element={<MobileLogIn />} />
       <Route path="/aboutUs" element={<AboutUs />} />
+      <Route path="/CartProducts" element={<CartProducts />}></Route>
     </>
   ),
   {

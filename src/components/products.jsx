@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner"; // Importing the spinner
 import { Link } from "react-router-dom";
+import AddToCartForm from "./ReUsableComponent/addCartProduct";
 import Button from "./ReUsableComponent/button";
 import SingleProduct from "./singleProduct";
 
@@ -9,7 +10,8 @@ const Products = ({ productDataObject }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
-
+  const [openCartForm, setOpeningCartForm] = useState(false);
+  const [productDeta, setProductDeta] = useState({});
   // ✅ Track window size for responsive design
   useEffect(() => {
     const handleResize = () => setIsLargeScreen(window.innerWidth >= 768);
@@ -44,36 +46,53 @@ const Products = ({ productDataObject }) => {
     if (token) fetchProducts();
   }, [token]);
 
+  {
+    /* OpeningCartForm */
+  }
+
+  const OpeningCartForm = (data) => {
+    setProductDeta(data);
+    setOpeningCartForm((prevState) => !prevState);
+  };
   return (
     <div
-      className={`flex flex-col justify-center items-center lg:w-full ${
+      className={`flex flex-col justify-center items-center lg:w-full  bg-white ${
         !isLargeScreen
           ? productDataObject.componentMarginSmall
           : productDataObject.componentMarginLarge
       }`}
     >
+      <>
+        {openCartForm && (
+          <AddToCartForm
+            product={productDeta}
+            openingCartForm={OpeningCartForm}
+          />
+        )}
+      </>
       <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
         {productDataObject.componentName}
       </h1>
 
-      <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4">
+      <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4 relative ">
         {loading ? (
-          <div className="flex justify-center items-center h-32">
+          <div className="absolute inset-0   flex justify-center items-center">
             <TailSpin
               height="50"
               width="50"
               color="#4fa94d"
-              aria-label="tail-spin-loading"
+              ariaLabel="tail-spin-loading"
               radius="1"
-              wrapperStyle={{}}
-              wrapperClass=""
               visible={true}
             />
           </div>
         ) : (
           products.map((product, index) => (
             <div key={product.id || index}>
-              <SingleProduct items={product} />
+              <SingleProduct
+                items={product}
+                openingCartForm={OpeningCartForm}
+              />
             </div>
           ))
         )}

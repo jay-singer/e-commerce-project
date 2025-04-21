@@ -19,7 +19,7 @@ body {
 }
 
 /* Root styling */
-.bigRoot {
+.RootClass {
   width: 100%;
   background: white;
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SingleProduct = ({ items }) => {
+const SingleProduct = ({ items, openingCartForm }) => {
   // Function to render star rating
+
   const renderStars = (rating) => {
     return [...Array(5)].map((_, index) => (
       <span
@@ -71,8 +72,14 @@ const SingleProduct = ({ items }) => {
               </path>
             </svg>
           </button>
-          <Link
-            to=""
+          <button
+            onClick={() => {
+              const data = {
+                product_id: items._id,
+                productName: items.productName,
+              };
+              openingCartForm(data);
+            }}
             className="bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] rounded-full"
           >
             <svg
@@ -92,7 +99,7 @@ const SingleProduct = ({ items }) => {
                 <path d="M9 11V6a3 3 0 0 1 6 0v5" />
               </svg>
             </svg>
-          </Link>
+          </button>
         </span>
       </div>
       <div className="px-1">

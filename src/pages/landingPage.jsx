@@ -92,6 +92,7 @@ const LandingPage = () => {
         {!isProductPage && (
           <>
             <Product showCategory={showCategory} />
+
             <Products
               productDataObject={{
                 componentName: "OUR PRODUCTS",
@@ -100,7 +101,6 @@ const LandingPage = () => {
             />
           </>
         )}
-
         <Outlet />
         <div className="  w-[90%]">
           <Testimony />
