@@ -38,8 +38,8 @@ const SellerDashboard = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const countNumberOfProduct = (pruductNumber) => {
-    return setProductNumber((prevNum) => prevNum + 1);
+  const countNumberOfProduct = (productNumber) => {
+    setProductNumber(productNumber);
   };
 
   return (

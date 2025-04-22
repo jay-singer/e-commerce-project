@@ -6,6 +6,7 @@ function UpdatedNumbers({ availableNumber }) {
   return (
     <>
       <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
+        {/* Available Products */}
         <div
           className=" w-full h-[100px] md:w-[260px] lg:w-[304px] lg:h-[120px] bg-gradient-to-r rounded-lg relative "
           style={{
@@ -24,6 +25,7 @@ function UpdatedNumbers({ availableNumber }) {
             {availableNumber}
           </p>
         </div>
+        {/* Wished Products */}
         <div
           className=" w-full h-[100px] md:w-[260px] lg:w-[304px] lg:h-[120px] bg-gradient-to-r rounded-lg relative "
           style={{
@@ -43,6 +45,7 @@ function UpdatedNumbers({ availableNumber }) {
             {availableNumber}
           </p>
         </div>
+        {/* Expired Products */}
         <div
           className=" w-full h-[100px] md:w-[260px] lg:w-[304px] lg:h-[120px] bg-gradient-to-r rounded-lg relative "
           style={{

@@ -4,7 +4,7 @@ import { MdOutlineInsertComment } from "react-icons/md";
 import { Link } from "react-router-dom";
 import SearchComp from "./search";
 
-const UpperHeader1 = ({ displayingForm }) => {
+const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
   const [isTabletOrSmaller, setIsTabletOrSmaller] = useState(
     window.innerWidth < 768
   );
@@ -17,7 +17,7 @@ const UpperHeader1 = ({ displayingForm }) => {
 
     const handleScroll = () => {
       if (!isTabletOrSmaller) {
-        setShowHeaderOnScroll(window.scrollY < 50);
+        setShowHeaderOnScroll(window.scrollY < 10);
       }
     };
 
@@ -61,7 +61,7 @@ const UpperHeader1 = ({ displayingForm }) => {
           className="text-black flex justify-center items-center"
           to="CartProducts"
         >
-          <BsBagDash className=" " />
+          <BsBagDash onClick={handlingShowCartComponent} className=" " />
         </Link>
         <BsBell className=" " />
         <BsPerson className=" " />

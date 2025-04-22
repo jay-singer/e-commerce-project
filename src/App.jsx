@@ -23,6 +23,7 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<LandingPage />}>
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/CartProducts" element={<CartProducts />}></Route>
       </Route>
       {/* Seller Dashboard with Nested Routes */}
       <Route path="/sellerDashboard" element={<SellerDashboard />} />
@@ -32,7 +33,6 @@ const router = createBrowserRouter(
       <Route path="/signIn1" element={<SignIn1 />} />
       <Route path="/logIn1" element={<MobileLogIn />} />
       <Route path="/aboutUs" element={<AboutUs />} />
-      <Route path="/CartProducts" element={<CartProducts />}></Route>
     </>
   ),
   {

@@ -28,23 +28,27 @@ const DashboardTable = ({ productNumber }) => {
           }
         );
 
-        setProducts(response.data);
-
-        const countingNumberProduct = () => {
-          products.map((_, index) => {
-            productNumber(index);
-          });
-        };
-        countingNumberProduct();
+        const fetchedProducts = response.data;
+        setProducts(fetchedProducts);
+        countingNumberProduct(fetchedProducts); // Call after setting products
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false); // Stop loading once data is fetched
+        setLoading(false);
       }
     };
 
     if (token) fetchProducts();
   }, [token]);
+
+  {
+    /** function that counting the product numbers */
+  }
+  const countingNumberProduct = (products) => {
+    const count = products.length;
+
+    productNumber(count);
+  };
 
   return (
     <div className="container mx-auto">

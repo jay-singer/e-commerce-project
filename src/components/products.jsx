@@ -21,19 +21,14 @@ const Products = ({ productDataObject }) => {
   }, []);
 
   // ✅ Get and decode the token
-  const token = sessionStorage.getItem("authToken");
+  // const token = sessionStorage.getItem("authToken");
 
   // ✅ Fetch products with Bearer token
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://e-commerce-backend-b8fd.onrender.com/api/Products/seller",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
         );
         setProducts(response.data);
       } catch (error) {
@@ -43,8 +38,8 @@ const Products = ({ productDataObject }) => {
       }
     };
 
-    if (token) fetchProducts();
-  }, [token]);
+    fetchProducts();
+  }, []);
 
   {
     /* OpeningCartForm */

@@ -9,12 +9,14 @@ import NavBar from "../components/ReUsableComponent/navibar";
 import UpperHeader from "../components/ReUsableComponent/upHeader";
 import UpperHeader1 from "../components/ReUsableComponent/upHeader1";
 import Testimony from "../components/Testimony";
+import CartProducts from "../components/UserComponents/BuyerStaff/CartProducts";
 import { formHiding } from "../components/utilities/utlilities";
 
 // Lazy-loaded component
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -22,13 +24,13 @@ const LandingPage = () => {
     /** ProductComponet state */
   }
   const [componentState, setComponentState] = useState(false);
-  const location = useLocation();
   const lastScrollY = useRef(window.scrollY);
-
   const displayingForm = () => setShowForm(true);
   const hideForm = () => setShowForm(false);
-
-  const isProductPage = location.pathname.startsWith(`/products`);
+  const location = useLocation();
+  const isProductOrCartPage =
+    location.pathname.startsWith(`/products`) ||
+    location.pathname.startsWith(`/CartProducts`);
 
   // Handle scroll event to hide the UpperHeader on scroll down and show on scroll up
   useEffect(() => {
@@ -53,7 +55,19 @@ const LandingPage = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+  {
+    /* handling cart Component */
+  }
+  const handlingShowCartComponent = () => {
+    if (
+      location.pathname.startsWith("/") ||
+      location.pathname.startsWith(`/products`)
+    ) {
+      setShowCart(false);
+    } else {
+      setShowCart(true);
+    }
+  };
   const computerView = (
     <div className="relative max-w-[1440px] w-full">
       {/* Blur effect when form is open */}
@@ -65,7 +79,10 @@ const LandingPage = () => {
         {/* Upper Header (hides on scroll down, shows on scroll up) */}
         <div className={` bg-white`}>
           <UpperHeader />
-          <UpperHeader1 displayingForm={displayingForm} />
+          <UpperHeader1
+            displayingForm={displayingForm}
+            handlingShowCartComponent={handlingShowCartComponent}
+          />
         </div>
 
         {/* Navbar (always visible) */}
@@ -88,8 +105,8 @@ const LandingPage = () => {
       )}
 
       {/* Content Area */}
-      <div className="flex flex-col justify-center items-center max-w-[1400px] ">
-        {!isProductPage && (
+      <div className="flex flex-col justify-center items-center max-w-[1400px] z-10">
+        {!isProductOrCartPage && (
           <>
             <Product showCategory={showCategory} />
 
@@ -99,12 +116,16 @@ const LandingPage = () => {
                 componentMarginLarge: "0",
               }}
             />
+            {showCart && <CartProducts />}
+
+            <div className="  w-[90%]">
+              <Testimony />
+            </div>
           </>
         )}
+
         <Outlet />
-        <div className="  w-[90%]">
-          <Testimony />
-        </div>
+
         <FooterComp />
       </div>
     </div>
@@ -112,7 +133,7 @@ const LandingPage = () => {
 
   const phoneView = (
     <div className="mb-[69px] ">
-      {!isProductPage && (
+      {!isProductOrCartPage && (
         <>
           <Products
             productDataObject={{
@@ -121,6 +142,7 @@ const LandingPage = () => {
               componentMarginSmall: "mt-0",
             }}
           />
+          <CartProducts />
         </>
       )}
       <Outlet />

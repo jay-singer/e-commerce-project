@@ -21,7 +21,7 @@ const SingleProduct = ({ items, openingCartForm }) => {
     <div
       className="mx-2 mb-3 md:m-0 shadow-md  lg:w-[300px] xl:w-[230px] 
                  flex flex-col gap-2 overflow-hidden text-center rounded-lg 
-                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl shadow-gray-400"
+                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl shadow-gray-400 -z-1"
     >
       <div className="relative">
         <Link

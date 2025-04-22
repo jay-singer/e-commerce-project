@@ -17,7 +17,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
   // Handle scroll behavior for navbar visibility
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
-    setIsNavbarVisible(scrollY > lastScrollY && scrollY > 50 ? true : false);
+    setIsNavbarVisible(scrollY > lastScrollY && scrollY > 10 ? true : false);
   }, [lastScrollY]);
 
   useEffect(() => {

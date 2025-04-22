@@ -1,17 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { getSellerIdFromToken } from "../../utilities/utlilities";
 
 function CreateNewProducts({ changeSection, setChangeSection }) {
   const [categories, setCategories] = useState([]);
-  const [formData, setFormData] = useState({
-    productName: "",
-    price: "",
-    productDescription: "",
-    category_id: "",
-    stock: "",
-    productImage: null,
-  });
+  const [imageFile, setImageFile] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const selectedImage = watch("productImage");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,38 +33,18 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
     fetchCategories();
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        productImage: file,
-      }));
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (data) => {
     try {
       const token = getSellerIdFromToken();
-      const formDataToSend = new FormData();
-      formDataToSend.append("productName", formData.productName);
-      formDataToSend.append("price", formData.price);
-      formDataToSend.append("productDescription", formData.productDescription);
-      formDataToSend.append("category_id", formData.category_id);
-      formDataToSend.append("stock", formData.stock);
-      formDataToSend.append("productImage", formData.productImage);
 
-      console.log(formData, "hello");
+      const formDataToSend = new FormData();
+      formDataToSend.append("productName", data.productName);
+      formDataToSend.append("price", data.price);
+      formDataToSend.append("productDescription", data.productDescription);
+      formDataToSend.append("categoryId", data.category_id);
+      formDataToSend.append("stock", data.stock);
+      formDataToSend.append("productImage", data.productImage[0]);
+
       const response = await axios.post(
         "https://e-commerce-backend-b8fd.onrender.com/api/createProduct",
         formDataToSend,
@@ -72,9 +57,21 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
       );
 
       console.log("Product created:", response.data);
+
+      // Reset form and image
+      reset();
+      setImageFile(null);
       setChangeSection && setChangeSection("allProducts");
     } catch (error) {
       console.error("Error creating product:", error);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setValue("productImage", e.target.files); // important to keep react-hook-form in sync
     }
   };
 
@@ -105,34 +102,24 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
 
       <div className="flex justify-center w-full">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="space-y-4 p-5 lg:w-[60%] border border-gray-300 shadow-lg rounded w-full"
         >
           <input
-            type="text"
-            name="productName"
-            value={formData.productName}
+            {...register("productName", { required: true })}
             placeholder="Product Name"
-            onChange={handleInputChange}
-            required
             className="w-full p-[4px] border border-gray-300 rounded"
           />
 
           <input
             type="number"
-            name="price"
-            value={formData.price}
+            {...register("price", { required: true })}
             placeholder="Price"
-            onChange={handleInputChange}
-            required
             className="w-full p-[4px] border border-gray-300 rounded"
           />
 
           <select
-            name="category_id"
-            value={formData.category_id}
-            onChange={handleInputChange}
-            required
+            {...register("category_id", { required: true })}
             className="w-full p-[4px] border border-gray-300 rounded"
           >
             <option value="">Select Category</option>
@@ -145,25 +132,19 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
 
           <input
             type="number"
-            name="stock"
-            value={formData.stock}
+            {...register("stock", { required: true })}
             placeholder="Stock"
-            onChange={handleInputChange}
-            required
             className="w-full p-[4px] border border-gray-300 rounded"
           />
 
           <textarea
-            name="productDescription"
-            value={formData.productDescription}
+            {...register("productDescription")}
             placeholder="Product Description"
-            onChange={handleInputChange}
             className="w-full p-[4px] border border-gray-300 rounded"
           ></textarea>
 
           <input
             type="file"
-            name="productImage"
             accept="image/*"
             onChange={handleImageChange}
             className="w-full p-2 border border-gray-300 rounded text-gray-300"
@@ -178,11 +159,11 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
         </form>
       </div>
 
-      {formData.productImage && (
+      {imageFile && (
         <div className="mt-4">
           <p className="text-sm text-gray-500">Selected Image:</p>
           <img
-            src={URL.createObjectURL(formData.productImage)}
+            src={URL.createObjectURL(imageFile)}
             alt="Preview"
             className="mt-2 w-32 object-cover"
           />
