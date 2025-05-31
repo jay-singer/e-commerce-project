@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
@@ -102,7 +102,7 @@ const LoginForm = (props) => {
       {props.logInFormStat && (
         <div
           // onClick={() => formHiding(props.hideForm)}
-          className="flex bg-white w-full justify-between md:flex-row flex-col-reverse  lg:h-[468px]"
+          className="flex  w-full justify-between md:flex-row flex-col-reverse  lg:h-[468px]"
         >
           {/* Left Section */}
           <div className="flex items-center justify-around lg:max-w-[600px] relative md:w-[30%] w-full flex-1">
@@ -158,45 +158,64 @@ const LoginForm = (props) => {
               </div>
 
               {/* Password input */}
-              <div className="relative rounded-md">
-                <input
-                  id="loginPassword"
-                  name="password"
-                  type={passwordVisible ? "text" : "password"}
-                  autoComplete="current-password"
-                  placeholder=" "
-                  {...register("password")}
-                  className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
-                />
-                <span className="p-1 bg-slate-200 absolute right-0 h-full w-1/12">
-                  <span className="flex justify-center items-center h-full w-full">
-                    {passwordVisible ? (
-                      <IoEyeOutline
-                        size={20}
-                        cursor={"pointer"}
-                        onClick={() => {
-                          setPasswordVisible(false);
-                        }}
-                      />
-                    ) : (
-                      <FaRegEyeSlash
-                        size={20}
-                        cursor={"pointer"}
-                        onClick={() => {
-                          setPasswordVisible(true);
-                        }}
-                      />
-                    )}
+              <div className="relative rounded-md  ">
+                <div className="flex items-center bg-slate-200 rounded-md">
+                  <input
+                    id="loginPassword"
+                    name="password"
+                    type={passwordVisible ? "text" : "password"}
+                    autoComplete="current-password"
+                    placeholder=" "
+                    {...register("password")}
+                    className="peer appearance-none border-none w-full py-3 px-4 bg-transparent text-gray-700 leading-tight focus:outline-none "
+                  />
+                  <span className="p-1   h-full w-1/12">
+                    <span className="flex justify-center items-center h-full w-full">
+                      {passwordVisible ? (
+                        <IoEyeOutline
+                          size={20}
+                          cursor={"pointer"}
+                          onClick={() => {
+                            setPasswordVisible(false);
+                          }}
+                        />
+                      ) : (
+                        <FaRegEyeSlash
+                          size={20}
+                          cursor={"pointer"}
+                          onClick={() => {
+                            setPasswordVisible(true);
+                          }}
+                        />
+                      )}
+                    </span>
                   </span>
-                </span>
-                <label htmlFor="password" className="labelClass">
-                  Password
-                </label>
+                  <label htmlFor="password" className="labelClass">
+                    Password
+                  </label>
+                </div>
+
                 {errors.password && (
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
-
+              {/** forgot Password */}
+              <div className="flex justify-between items-center text-textColor">
+                <div className="flex gap-1">
+                  <input
+                    type="checkbox"
+                    name="remind"
+                    id="remind"
+                    className="w-4"
+                  />
+                  <span>Remind me</span>
+                </div>
+                <div>
+                  <button className="underline only:font-semibold text-black cursor-pointer">
+                    Forgot Password?
+                  </button>
+                </div>
+              </div>
               {/* Submit Button */}
               <div className="flex items-center justify-center">
                 <button

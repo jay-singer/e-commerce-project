@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsBagDash, BsBell, BsPerson } from "react-icons/bs";
 import { MdOutlineInsertComment } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchComp from "./search";
 
 const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
@@ -9,7 +9,7 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
     window.innerWidth < 768
   );
   const [showHeaderOnScroll, setShowHeaderOnScroll] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleResize = () => {
       setIsTabletOrSmaller(window.innerWidth < 768);
@@ -35,7 +35,7 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
 
   return (
     <div
-      className={`fixed hidden md:flex items-center top-0 justify-between lg:px-7 md:px-3 md:pe-3 z-50 pe-1 gap-1 max-w-[1440px] mx-auto right-0 bg-white left-0 transition-all ease-in-out  ${
+      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1440px] mx-auto right-0 bg-white left-0 transition-all ease-in-out  ${
         showHeaderOnScroll ? " top-navHeight shadow-md" : "top-0"
       }`}
     >
@@ -56,13 +56,16 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
       </div>
 
       {/* Header Icons */}
-      <div className="flex items-center gap-3">
-        <Link
+      <div className="flex items-center gap-3 ">
+        <button
+          onClick={() => {
+            handlingShowCartComponent();
+            navigate("CartProducts");
+          }}
           className="text-black flex justify-center items-center"
-          to="CartProducts"
         >
-          <BsBagDash onClick={handlingShowCartComponent} className=" " />
-        </Link>
+          <BsBagDash className=" " />
+        </button>
         <BsBell className=" " />
         <BsPerson className=" " />
         <Link
@@ -80,9 +83,9 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
           <option>Kinyarwanda</option>
           <option>France</option>
         </select>
-        <Link className="text-secondary" onClick={displayingForm}>
+        <button className="text-secondary" onClick={displayingForm}>
           Sign Up
-        </Link>
+        </button>
       </div>
     </div>
   );

@@ -111,7 +111,7 @@ const SingleProduct = ({ items, openingCartForm }) => {
 
         <div className="flex justify-between mb-4">
           <span className="text-md text-start font-medium text-navColor">
-            ${items.price}
+            {items.price} Rwf
           </span>
           <span className="flex justify-center items-center">
             {renderStars(items.rating || 4)}

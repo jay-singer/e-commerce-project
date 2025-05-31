@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
 import SlideShow1 from "./specialComponents/slideShow1";
@@ -27,7 +27,7 @@ function Product() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center h-fit md:mt-[129px]  mt-[5rem] mb-9 ">
+    <div className="max-w-[1357px] h-fit  my-9 ">
       <Carousel
         label="My Carousel Label"
         showArrows={false}

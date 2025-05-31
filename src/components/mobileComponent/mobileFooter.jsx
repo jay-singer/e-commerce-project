@@ -1,4 +1,3 @@
-import React from "react";
 import { BiCategory, BiHome, BiShoppingBag } from "react-icons/bi";
 import { CiUser } from "react-icons/ci";
 import { Link } from "react-router-dom";
@@ -28,7 +27,7 @@ function MobileFooter() {
               0
             </span>
           </Link>
-          <Link to={"/signIn1"}>
+          <Link to={"/signIn"}>
             <CiUser size={20} className=" font-bold" />
           </Link>
         </div>

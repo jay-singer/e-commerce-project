@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchComp from "./search";
 
 const Navbar = ({ showCategory, setShowCategory }) => {
@@ -53,12 +53,12 @@ const Navbar = ({ showCategory, setShowCategory }) => {
     <nav
       className={`fixed translate-y-[75px] left-0 right-0 shadow-md w-full max-w-[1440px] mx-auto ${
         isNavbarVisible
-          ? "lg:translate-y-[78px]  z-20 bg-white transition-all"
+          ? "md:-translate-y-[52px] -translate-y-[81px]  z-50 bg-white transition-all"
           : "translate-y-[0] hidden transition-all "
       }`}
     >
-      <div className="px-2 mx-auto">
-        <div className="flex items-center h-[30px] md:h-[60px] my-1 md:m-0">
+      <div className="px-2 mx-auto ">
+        <div className="flex md:py-3 h-[30px] md:h-[60px] my-1 md:m-0 bg-white ">
           <div className="flex space-x-3 md:space-x-1">
             <button
               onClick={toggleCategory}
@@ -68,7 +68,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
               onMouseLeave={() =>
                 window.innerWidth > 500 && setShowCategory(true)
               }
-              className="bg-green-500 text-white p-[3px] md:p-2 md:gap-1 rounded-lg flex items-center hover:bg-green-600 z-50"
+              className="bg-green-500 text-white p-1 md:p-2 gap-1 rounded-lg flex items-center hover:bg-green-600 z-50"
             >
               <FaBarsStaggered size={15} />
               <span className="text-[10px] md:text-base whitespace-nowrap">
@@ -78,23 +78,23 @@ const Navbar = ({ showCategory, setShowCategory }) => {
             {isSmallScreen && <SearchComp size={15} />}
           </div>
 
-          <div className="ml-4">
-            <div className=" md:flex space-x-4">
+          <div className="ml-4 h-full">
+            <div className=" flex items-center space-x-4  h-full text-">
               <Link
                 to="/"
-                className="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-800  hover:bg-gray-200 px-3 h-full rounded-md text-sm font-medium flex items-center"
               >
                 Home
               </Link>
               <Link
                 to="/aboutUs"
-                className="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-800 hover:bg-gray-200 px-3 h-full rounded-md text-sm font-medium flex items-center"
               >
                 About
               </Link>
               <Link
                 to="/contactUs"
-                className="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-800 hover:bg-gray-200 px-3 h-full rounded-md text-sm font-medium flex items-center"
               >
                 Contact Us
               </Link>
@@ -159,7 +159,6 @@ const Navbar = ({ showCategory, setShowCategory }) => {
               </li>
             ))}
           </ul>
-          <Outlet />
         </div>
       )}
     </nav>

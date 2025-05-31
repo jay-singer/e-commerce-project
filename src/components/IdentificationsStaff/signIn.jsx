@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
@@ -70,12 +70,14 @@ const SignForm = ({ hideForm, formStatus }) => {
   };
 
   const handleGoBack = () => {
-    hideForm();
+    if (innerWidth === 400) {
+      hideForm();
+    }
     navigate("/");
   };
 
   return (
-    <div className="bg-white rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4">
+    <div className=" rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4">
       {formStatus && showOtherForm ? (
         <LoginForm
           hideForm={hideForm}
@@ -84,9 +86,9 @@ const SignForm = ({ hideForm, formStatus }) => {
         />
       ) : (
         <div>
-          <div className="flex w-full justify-between md:flex-row flex-col-reverse">
-            <div className="flex items-center justify-around lg:max-w-[600px] relative md:w-[30%] w-full flex-1">
-              <div className="h-full flex flex-col gap-2 lg:gap-0 justify-center flex-1 pt-3 md:pt-0 items-center lg:items-start">
+          <div className="flex w-full justify-between md:flex-row flex-col-reverse ">
+            <div className="flex items-center justify-around lg:max-w-[600px] relative md:w-[30%] w-full flex-1 ">
+              <div className="h-full flex flex-col gap-2 lg:gap-0 justify-center flex-1 pt-3 md:pt-0 items-start lg:items-start ">
                 <h2 className="text-2xl font-bold md:block hidden">Sign Up</h2>
                 <p>Already a user?</p>
                 <button
@@ -162,37 +164,46 @@ const SignForm = ({ hideForm, formStatus }) => {
                 </div>
 
                 {/* Password */}
-                <div className="relative rounded-md ">
-                  <input
-                    autoComplete="current-password"
-                    id="password"
-                    {...register("password")}
-                    type={passwordVisible ? "text" : "password"}
-                    placeholder=""
-                    className="peer appearance-none border-none w-full py-3 px-4 bg-slate-200 text-gray-700 leading-tight focus:outline-none rounded-md"
-                  />
-                  <span className="p-1 bg-slate-200 absolute right-0 h-full w-1/12">
-                    <span className="flex justify-center items-center h-full w-full">
-                      {passwordVisible ? (
-                        <IoEyeOutline
-                          size={25}
-                          cursor={"pointer"}
-                          onClick={() => setPasswordVisible(false)}
-                        />
-                      ) : (
-                        <FaRegEyeSlash
-                          size={25}
-                          cursor={"pointer"}
-                          onClick={() => setPasswordVisible(true)}
-                        />
-                      )}
+                <div className="relative rounded-md  ">
+                  <div className="flex items-center bg-slate-200 rounded-md">
+                    <input
+                      id="loginPassword"
+                      name="password"
+                      type={passwordVisible ? "text" : "password"}
+                      autoComplete="current-password"
+                      placeholder=" "
+                      {...register("password")}
+                      className="peer appearance-none border-none w-full py-3 px-4 bg-transparent text-gray-700 leading-tight focus:outline-none "
+                    />
+                    <span className="p-1   h-full w-1/12">
+                      <span className="flex justify-center items-center h-full w-full">
+                        {passwordVisible ? (
+                          <IoEyeOutline
+                            size={20}
+                            cursor={"pointer"}
+                            onClick={() => {
+                              setPasswordVisible(false);
+                            }}
+                          />
+                        ) : (
+                          <FaRegEyeSlash
+                            size={20}
+                            cursor={"pointer"}
+                            onClick={() => {
+                              setPasswordVisible(true);
+                            }}
+                          />
+                        )}
+                      </span>
                     </span>
-                  </span>
+                    <label htmlFor="password" className="labelClass">
+                      Password
+                    </label>
+                  </div>
 
-                  <label htmlFor="password" className="labelClass">
-                    Password
-                  </label>
-                  <p className="text-red-500">{errors.password?.message}</p>
+                  {errors.password && (
+                    <p className="text-red-500">{errors.password.message}</p>
+                  )}
                 </div>
 
                 {/* Role Dropdown */}
@@ -231,7 +242,10 @@ const SignForm = ({ hideForm, formStatus }) => {
           {/* Go Back */}
           <div className="flex md:justify-start justify-center mt-4">
             <button
-              onClick={handleGoBack}
+              onClick={() => {
+                handleGoBack();
+                hideForm();
+              }}
               className="bg-gray-500 py-2 rounded-md text-white px-3"
               aria-label="Go Back"
             >

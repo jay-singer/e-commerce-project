@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useCart } from "./../utilities/utlilities";
 
-const AddToCartForm = ({ product, openingCartForm, maxQty = 20 }) => {
+const AddToCartForm = ({
+  product,
+  openingCartForm,
+  maxQty = 20,
+  productNum = 0,
+}) => {
   const [quantity, setQuantity] = useState("");
   const { addProductIdToCart } = useCart();
 
@@ -13,6 +18,7 @@ const AddToCartForm = ({ product, openingCartForm, maxQty = 20 }) => {
       addProductIdToCart(product.product_id, qty);
       console.log(product.product_id);
       openingCartForm(); // close modal
+      productNum = qty;
     } else {
       alert(`Please enter a quantity between 1 and ${maxQty}`);
     }

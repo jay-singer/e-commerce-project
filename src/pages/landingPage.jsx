@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SignForm from "../components/IdentificationsStaff/signIn";
 import MobileFooter from "../components/mobileComponent/mobileFooter";
@@ -12,72 +12,67 @@ import Testimony from "../components/Testimony";
 import CartProducts from "../components/UserComponents/BuyerStaff/CartProducts";
 import { formHiding } from "../components/utilities/utlilities";
 
-// Lazy-loaded component
-
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  {
-    /** ProductComponet state */
-  }
-  const [componentState, setComponentState] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const lastScrollY = useRef(window.scrollY);
+  const location = useLocation();
+
+  const isProductOrCartPage =
+    location.pathname.startsWith("/products") ||
+    location.pathname.startsWith("/CartProducts");
+
   const displayingForm = () => setShowForm(true);
   const hideForm = () => setShowForm(false);
-  const location = useLocation();
-  const isProductOrCartPage =
-    location.pathname.startsWith(`/products`) ||
-    location.pathname.startsWith(`/CartProducts`);
 
-  // Handle scroll event to hide the UpperHeader on scroll down and show on scroll up
+  // Scroll to hide/show header
   useEffect(() => {
+    console.log(innerWidth);
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY.current + 10) {
-        setIsHeaderVisible(false); // Hide when scrolling down
+        setIsHeaderVisible(false);
       } else if (currentScrollY < lastScrollY.current - 10) {
-        setIsHeaderVisible(true); // Show when scrolling up
+        setIsHeaderVisible(true);
       }
-
       lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle screen resize
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  {
-    /* handling cart Component */
-  }
+
   const handlingShowCartComponent = () => {
     if (
-      location.pathname.startsWith("/") ||
-      location.pathname.startsWith(`/products`)
+      location.pathname === "/" ||
+      location.pathname.startsWith("/products")
     ) {
       setShowCart(false);
     } else {
       setShowCart(true);
     }
   };
+
   const computerView = (
-    <div className="relative max-w-[1440px] w-full">
-      {/* Blur effect when form is open */}
+    <div className="relative max-w-[1440px] flex justify-center w-full bg-white">
+      {/* Blur content if form is open */}
       <div
         className={`transition duration-300 ease-in-out ${
           showForm ? "filter blur-sm" : ""
         }`}
       >
-        {/* Upper Header (hides on scroll down, shows on scroll up) */}
-        <div className={` bg-white`}>
+        {/* Headers */}
+        <div className="bg-white">
           <UpperHeader />
           <UpperHeader1
             displayingForm={displayingForm}
@@ -85,31 +80,33 @@ const LandingPage = () => {
           />
         </div>
 
-        {/* Navbar (always visible) */}
+        {/* Navbar */}
         <NavBar showCategory={showCategory} setShowCategory={setShowCategory} />
       </div>
 
-      {/* Form Modal */}
+      {/* Sign-in Form Modal */}
       {showForm && (
         <div
           onClick={() => formHiding(hideForm)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-full"
         >
           <div
-            onClick={(event) => event.stopPropagation()}
-            className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-10 h-full lg:h-fit"
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-lg shadow-lg w-full max-w-[70rem] p-10 py-7"
           >
             <SignForm formStatus={showForm} hideForm={hideForm} />
           </div>
         </div>
       )}
 
-      {/* Content Area */}
-      <div className="flex flex-col justify-center items-center max-w-[1400px] z-10">
-        {!isProductOrCartPage && (
+      {/* Main Content */}
+      <div className="max-w-[1400px] z-10">
+        {/* Home page only */}
+        {!isProductOrCartPage && location.pathname === "/" && (
           <>
-            <Product showCategory={showCategory} />
-
+            <div className="bg-indigo-700f flex justify-center">
+              <Product showCategory={showCategory} />
+            </div>
             <Products
               productDataObject={{
                 componentName: "OUR PRODUCTS",
@@ -117,13 +114,13 @@ const LandingPage = () => {
               }}
             />
             {showCart && <CartProducts />}
-
-            <div className="  w-[90%]">
+            <div className="w-[90%]">
               <Testimony />
             </div>
           </>
         )}
 
+        {/* Nested routes like /furniture */}
         <Outlet />
 
         <FooterComp />
@@ -132,7 +129,7 @@ const LandingPage = () => {
   );
 
   const phoneView = (
-    <div className="mb-[69px] ">
+    <div className="mb-[69px]">
       {!isProductOrCartPage && (
         <>
           <Products
@@ -149,6 +146,7 @@ const LandingPage = () => {
       <MobileFooter />
     </div>
   );
+
   return <>{screenWidth >= 768 ? computerView : phoneView}</>;
 };
 
