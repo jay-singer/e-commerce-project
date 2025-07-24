@@ -13,7 +13,7 @@ import Products from "./components/products";
 import DashboardTable from "./components/ReUsableComponent/dashboard";
 import CartProducts from "./components/UserComponents/BuyerStaff/CartProducts";
 import AboutUs from "./pages/aboutUs";
-import Furniture from "./pages/categories/Furniture";
+import ElecronicMaterial from "./pages/categories/ElecronicMaterial";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellerDashboard from "./pages/sellerDashboard";
@@ -24,8 +24,13 @@ const router = createBrowserRouter(
       <Route path="/" element={<LandingPage />}>
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/CartProducts" element={<CartProducts />}></Route>
-        <Route path="/Furniture" element={<Furniture />}></Route>
+        {/* <Route
+          path="/ElecronicMaterial"
+          element={<ElecronicMaterial />}
+        ></Route> */}
       </Route>
+      {/** Electronic site */}
+      <Route path="/ElecronicMaterial" element={<ElecronicMaterial />}></Route>
       {/* Seller Dashboard with Nested Routes */}
       <Route path="/sellerDashboard" element={<SellerDashboard />} />
       <Route path="/products" element={<Products />} />

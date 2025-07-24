@@ -32,8 +32,18 @@ export default {
         xl: "5px 5px 10px rgba(0, 0, 0, 0.7)", // Extra-large shadow
         glow: "0 0 8px rgba(255, 255, 255, 0.8)", // Glowing white shadow
       },
+      text: {
+        xl: "26px",
+        lg: "22px",
+        md: "18px",
+        sm: "14px",
+        xs: "12px",
+      },
       spacing: {
         navHeight: "50px",
+      },
+      height: {
+        "1/3-svh": "70svh",
       },
     },
   },

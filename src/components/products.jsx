@@ -12,7 +12,7 @@ const Products = ({ productDataObject }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [openCartForm, setOpeningCartForm] = useState(false);
   const [productDeta, setProductDeta] = useState({});
-  // ✅ Track window size for responsive design
+  //  Track window size for responsive design
   useEffect(() => {
     const handleResize = () => setIsLargeScreen(window.innerWidth >= 768);
     window.addEventListener("resize", handleResize);
@@ -20,10 +20,10 @@ const Products = ({ productDataObject }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ Get and decode the token
+  //  Get and decode the token
   // const token = sessionStorage.getItem("authToken");
 
-  // ✅ Fetch products with Bearer token
+  //  Fetch products with Bearer token
   useEffect(() => {
     const fetchProducts = async () => {
       try {

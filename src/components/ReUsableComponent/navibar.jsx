@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchComp from "./search";
 
 const Navbar = ({ showCategory, setShowCategory }) => {
@@ -8,38 +8,51 @@ const Navbar = ({ showCategory, setShowCategory }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [bgColor, setBgColor] = useState("");
 
-  // Handle screen resize
+  const location = useLocation();
+
+  // Resize handler
   const handleResize = useCallback(() => {
     setIsSmallScreen(window.innerWidth < 760);
   }, []);
 
-  // Handle scroll behavior for navbar visibility
+  // Scroll handler
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
-    setIsNavbarVisible(scrollY > lastScrollY && scrollY > 10 ? true : false);
+    setIsNavbarVisible(scrollY > lastScrollY && scrollY > 10);
+    setLastScrollY(scrollY);
   }, [lastScrollY]);
 
+  // Listen for scroll and resize
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
   }, [handleResize, handleScroll]);
 
-  // Handle category toggle on small screens
+  // Handle category toggle
   const toggleCategory = () => {
     if (isSmallScreen) setShowCategory(!showCategory);
   };
+
+  // Dynamically update navbar background color based on route
+  useEffect(() => {
+    if (location.pathname.startsWith("/elecronicmaterial")) {
+      setBgColor("bg-[#FFC95C]");
+    } else {
+      setBgColor("bg-white"); // default or reset if not matched
+    }
+  }, [location.pathname]);
 
   const categoryLinks = [
     "All",
     "New Arrivals",
     "Hot Sale",
-    "Furniture",
+    "ElecronicMaterial",
     "Sports Staff",
     "Table",
     "Chair",
@@ -51,14 +64,14 @@ const Navbar = ({ showCategory, setShowCategory }) => {
 
   return (
     <nav
-      className={`fixed translate-y-[75px] left-0 right-0 shadow-md w-full max-w-[1440px] mx-auto ${
+      className={`fixed  left-0 right-0 shadow-md w-full max-w-[1440px] -translate-y-[70px] mx-auto transition-all duration-300  ${
         isNavbarVisible
-          ? "md:-translate-y-[52px] -translate-y-[81px]  z-50 bg-white transition-all"
-          : "translate-y-[0] hidden transition-all "
+          ? `md:translate-y-[80px] translate-y-[82px] z-50 ${bgColor}`
+          : "translate-y-[-100%] opacity-0 pointer-events-none bg-white z-20"
       }`}
     >
       <div className="px-2 mx-auto ">
-        <div className="flex md:py-3 h-[30px] md:h-[60px] my-1 md:m-0 bg-white ">
+        <div className="flex md:py-3 h-[30px] md:h-[60px] my-1 md:m-0  ">
           <div className="flex space-x-3 md:space-x-1">
             <button
               onClick={toggleCategory}

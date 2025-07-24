@@ -30,7 +30,6 @@ const LandingPage = () => {
 
   // Scroll to hide/show header
   useEffect(() => {
-    console.log(innerWidth);
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY.current + 10) {
@@ -64,7 +63,7 @@ const LandingPage = () => {
   };
 
   const computerView = (
-    <div className="relative max-w-[1440px] flex justify-center w-full bg-white">
+    <div className="relative max-w-[1440px] flex justify-center w-full k">
       {/* Blur content if form is open */}
       <div
         className={`transition duration-300 ease-in-out ${
@@ -100,11 +99,11 @@ const LandingPage = () => {
       )}
 
       {/* Main Content */}
-      <div className="max-w-[1400px] z-10">
+      <div className="max-w-[1400px] w-full z-10">
         {/* Home page only */}
         {!isProductOrCartPage && location.pathname === "/" && (
           <>
-            <div className="bg-indigo-700f flex justify-center">
+            <div className=" ">
               <Product showCategory={showCategory} />
             </div>
             <Products
@@ -114,7 +113,7 @@ const LandingPage = () => {
               }}
             />
             {showCart && <CartProducts />}
-            <div className="w-[90%]">
+            <div className="w-[90%] place-self-center">
               <Testimony />
             </div>
           </>
@@ -129,7 +128,7 @@ const LandingPage = () => {
   );
 
   const phoneView = (
-    <div className="mb-[69px]">
+    <div className="mb-[69px] bg-slate-500">
       {!isProductOrCartPage && (
         <>
           <Products
@@ -139,10 +138,8 @@ const LandingPage = () => {
               componentMarginSmall: "mt-0",
             }}
           />
-          <CartProducts />
         </>
       )}
-      <Outlet />
       <MobileFooter />
     </div>
   );
