@@ -35,7 +35,7 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
 
   return (
     <div
-      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1440px] mx-auto right-0 bg-white left-0 transition-all ease-in-out  ${
+      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1440px] mx-auto right-0 bg-white left-0 transition-all ease-in-out   ${
         showHeaderOnScroll ? " top-navHeight shadow-md" : "top-0"
       }`}
     >
