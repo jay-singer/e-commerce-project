@@ -26,9 +26,7 @@
 /* Card inside slide */
 .slide-card {
   width: 100%;
-  display: flex;
   flex-direction: column;
-  align-items: center;
   box-sizing: border-box;
 }
 
@@ -51,8 +49,6 @@
 
 /* Dot style */
 .dot {
-  width: 8px;
-  height: 8px;
   background-color: gray;
   border-radius: 50%;
   cursor: pointer;
@@ -62,8 +58,7 @@
 /* Active dot */
 .dot.active {
   background-color: black;
-  width: 10px;
-  height: 10px;
+  transform: scale(1.3);
 }
 
 /* Prev/Next buttons */

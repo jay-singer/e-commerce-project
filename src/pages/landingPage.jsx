@@ -65,7 +65,7 @@ const LandingPage = () => {
   };
 
   const computerView = (
-    <div className="relative max-w-[1440px] flex justify-center w-full k">
+    <div className="relative max-w-[1440px] flex justify-center w-full">
       {/* Blur content if form is open */}
       <div
         className={`transition duration-300 ease-in-out ${
@@ -136,7 +136,7 @@ const LandingPage = () => {
   );
 
   const phoneView = (
-    <div className="mb-[69px] ">
+    <div className="mb-[69px] min-w-[320px] border border-red-950">
       {/**Introduction section */}
       <IntroSection />
       {/** paterner sectionf */}

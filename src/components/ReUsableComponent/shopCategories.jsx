@@ -92,13 +92,13 @@ const ShopCategory = () => {
   };
 
   return (
-    <div className=" mt-10">
-      <h2 className="lg:text-2xl md:text-lg text-base font-bold mb-4 text-center text-primary ">
+    <div className=" mt-10 max-w-[1280px] justify-self-center w-[320px] sm:w-[100%] justify-center">
+      <h2 className="lg:text-2xl md:text-lg text-base font-bold mb-4 text-center text-primary text-nowrap">
         Shop By Categories
       </h2>
 
       {/* Loop over each category */}
-      <div className=" flex flex-wrap w-[85%] justify-self-center justify-center">
+      <div className=" flex flex-wrap w-[85%] justify-self-center justify-center border ">
         {Object.entries(productObject).map(([categoryName, products]) => (
           <div
             key={categoryName}

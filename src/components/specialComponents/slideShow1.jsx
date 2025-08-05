@@ -27,7 +27,7 @@ function SlideShow1() {
   return (
     <>
       <div
-        className={`container lg:ms-6 lg:flex-row flex-col flex  justify-center lg:pt-0 pt-5 gap-4 lg:h-[27rem] w-full  lg:bg-white bg-gradient-to-br from-slate-100 to-indigo-200  `}
+        className={`lg:ms-6 lg:flex-row flex-col flex  justify-center lg:pt-0 pt-5 gap-4 lg:h-[27rem] w-full  lg:bg-white bg-gradient-to-br border from-slate-100 to-indigo-200  `}
       >
         <div className="  lg:w-[200px] flex lg:flex-col flex-wrap justify-center gap-4 self-center z-0 ">
           <h1 className="text-navColor lg:text-sm ">TOP COLLECTIONS {year}</h1>
@@ -64,7 +64,7 @@ function SlideShow1() {
               alt=""
             />
           </span>
-          <span className="lg:text-navColor text-primary justify-self-end  absolute right-20 lg:right-7 lg:bottom-[150px] bottom-[50px]">
+          <span className="lg:text-navColor text-primary justify-self-end  absolute right-10 sm:right-20 lg:right-7 lg:bottom-[150px] bottom-[50px]">
             $129
           </span>
         </div>

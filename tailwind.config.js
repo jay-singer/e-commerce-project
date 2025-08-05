@@ -46,6 +46,15 @@ export default {
         "1/3-svh": "70svh",
       },
     },
+    screens: {
+      xs: "320px",
+      sm: "620px", // Small devices (phones)
+      md: "768px", // Medium devices (tablets)
+      lg: "1024px", // Large devices (laptops)
+      xl: "1280px", // Extra-large devices (desktops)
+      "2xl": "1536px", // Very large screens
+    },
   },
+
   plugins: [require("tailwindcss-textshadow")],
 };

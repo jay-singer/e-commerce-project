@@ -40,7 +40,7 @@ const SecSection = () => {
     {
       breakpoint: 5,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
       },
     },
