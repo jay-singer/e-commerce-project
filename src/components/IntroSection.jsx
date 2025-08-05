@@ -1,0 +1,86 @@
+import { useEffect, useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
+import SlideShow1 from "./specialComponents/slideShow1";
+import SlideShow2 from "./specialComponents/slideShow2";
+import SlideShow3 from "./specialComponents/slideShow3";
+
+function IntroSection() {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [transitionTime, setTransitionTime] = useState(400); // Default transition time
+  const [resizing, setResize] = useState(true);
+  // Adjust transition speed based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 680) {
+        setResize((prev) => {
+          prev == false;
+        });
+        setTransitionTime(600); // Faster transitions on smaller screens
+      } else if (window.innerWidth < 1024) {
+        setTransitionTime(600);
+      } else {
+        setTransitionTime(600); // Slower transitions on larger screens
+      }
+    };
+
+    handleResize(); // Set on mount
+    window.addEventListener("resize", handleResize); // Listen for window resize
+    return () => window.removeEventListener("resize", handleResize); // Cleanup
+  }, []);
+
+  return (
+    <>
+      {resizing === true ? (
+        <div className="max-w-[1357px] h-fit mt-[130px]">
+          <Carousel
+            label="My Carousel Label"
+            showArrows={false}
+            showIndicators={false}
+            renderArrowPrev={() => null}
+            renderArrowNext={() => null}
+            renderIndicator={() => null}
+            showStatus={false}
+            showThumbs={false}
+            autoPlay={true}
+            infiniteLoop={true}
+            selectedItem={activeIndex}
+            swipeable={false}
+            transitionTime={transitionTime}
+            onChange={setActiveIndex}
+            className="w-full overflow-hidden"
+          >
+            <div className="flex w-full bg-slate-50 justify-center h-full">
+              <SlideShow2 />
+            </div>
+            <div className="flex w-full bg-slate-50 justify-center h-full">
+              <SlideShow1 />
+            </div>
+
+            <div className="flex w-full bg-slate-50 justify-center h-full">
+              <SlideShow3 />
+            </div>
+          </Carousel>
+
+          {/* Custom Indicators */}
+          <div className="indicators flex items-center justify-center gap-2 p-2">
+            {Array.from({ length: 3 }, (_, i) => (
+              <span
+                key={i}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  activeIndex === i ? "bg-green-500 w-8" : "bg-green-300"
+                }`}
+              ></span>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div>
+          <SlideShow1 />
+        </div>
+      )}
+    </>
+  );
+}
+
+export default IntroSection;

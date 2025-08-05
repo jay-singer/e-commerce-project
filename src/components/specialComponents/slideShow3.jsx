@@ -21,7 +21,7 @@ function SlideShow3() {
 
   return (
     <div
-      className="relative   text-white w-full bg-red-700 border border-red-950 rounded-md"
+      className="relative text-white w-full bg-red-700 border border-red-950 rounded-md"
       style={{
         backgroundImage:
           "url('/assets/frame/tem-rysh-F6-U5fGAOik-unsplash.jpg')",

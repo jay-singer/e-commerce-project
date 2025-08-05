@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SignForm from "../components/IdentificationsStaff/signIn";
+import IntroSection from "../components/IntroSection";
 import MobileFooter from "../components/mobileComponent/mobileFooter";
-import Product from "../components/ProductDisplay";
-import Products from "../components/products";
 import FooterComp from "../components/ReUsableComponent/footer";
 import NavBar from "../components/ReUsableComponent/navibar";
+import NewArrival from "../components/ReUsableComponent/newArrival";
+import ShopCategory from "../components/ReUsableComponent/shopCategories";
 import UpperHeader from "../components/ReUsableComponent/upHeader";
 import UpperHeader1 from "../components/ReUsableComponent/upHeader1";
+import SecSection from "../components/specialComponents/SecSection";
 import Testimony from "../components/Testimony";
 import CartProducts from "../components/UserComponents/BuyerStaff/CartProducts";
 import { formHiding } from "../components/utilities/utlilities";
@@ -104,14 +106,20 @@ const LandingPage = () => {
         {!isProductOrCartPage && location.pathname === "/" && (
           <>
             <div className=" ">
-              <Product showCategory={showCategory} />
+              <IntroSection showCategory={showCategory} />
             </div>
-            <Products
+            {/* <Products
               productDataObject={{
                 componentName: "OUR PRODUCTS",
                 componentMarginLarge: "0",
               }}
-            />
+            /> */}
+            {/** Second section */}
+            <SecSection showCategory={showCategory} />
+            {/**New arrival section */}
+            <NewArrival />
+            {/** shop categoris */}
+            <ShopCategory />
             {showCart && <CartProducts />}
             <div className="w-[90%] place-self-center">
               <Testimony />
@@ -128,18 +136,15 @@ const LandingPage = () => {
   );
 
   const phoneView = (
-    <div className="mb-[69px] bg-slate-500">
-      {!isProductOrCartPage && (
-        <>
-          <Products
-            productDataObject={{
-              componentName: "OUR PRODUCTS",
-              componentMarginLarge: "0",
-              componentMarginSmall: "mt-0",
-            }}
-          />
-        </>
-      )}
+    <div className="mb-[69px] ">
+      {/**Introduction section */}
+      <IntroSection />
+      {/** paterner sectionf */}
+      <SecSection showCategory={showCategory} />
+      {/** New arrival */}
+      <NewArrival />
+      {/** shop categoris */}
+      <ShopCategory />
       <MobileFooter />
     </div>
   );
