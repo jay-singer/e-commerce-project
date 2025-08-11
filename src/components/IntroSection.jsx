@@ -32,7 +32,7 @@ function IntroSection() {
   return (
     <>
       {resizing === true ? (
-        <div className="max-w-[1357px] h-fit mt-[130px]">
+        <div className="h-fit mt-[130px]">
           <Carousel
             label="My Carousel Label"
             showArrows={false}

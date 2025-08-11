@@ -64,10 +64,10 @@ const Navbar = ({ showCategory, setShowCategory }) => {
 
   return (
     <nav
-      className={`fixed  left-0 right-0 shadow-md w-full max-w-[1440px] -translate-y-[70px] mx-auto transition-all duration-300 flex  ${
+      className={`fixed left-0 right-0 shadow-md w-full max-w-[1440px] -translate-y-[70px] mx-auto transition-all duration-300 flex  ${
         isNavbarVisible
-          ? `md:translate-y-[80px] translate-y-[82px] z-50 ${bgColor}`
-          : "translate-y-[-100%] opacity-0 pointer-events-none bg-white z-20"
+          ? `md:-translate-y-[51px] -translate-y-[80px] z-50 ${bgColor}`
+          : "translate-y-[-100%] opacity-0 pointer-events-none z-20"
       }`}
     >
       <div className=" flex-1 ms-10">

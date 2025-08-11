@@ -12,58 +12,52 @@ const logos = [
 ];
 
 const SecSection = () => {
-  const [duration, setDuration] = useState(0); // default 2s
+  const [duration, setDuration] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(5);
 
   useEffect(() => {
-    const updateDuration = () => {
-      if (window.innerWidth <= 800) {
-        setDuration(1); // 5 seconds for small screens
+    const updateSettings = () => {
+      const width = window.innerWidth;
+
+      if (width <= 380) {
+        setSlidesToShow(2.5);
+        setDuration(1);
+      } else if (width <= 500) {
+        setSlidesToShow(3);
+        setDuration(1);
+      } else if (width <= 800) {
+        setSlidesToShow(5);
+        setDuration(1);
       } else {
-        setDuration(10); // 2 seconds for larger screens
+        setSlidesToShow(5);
+        setDuration(10);
       }
     };
 
-    updateDuration(); // Set initially
-    window.addEventListener("resize", updateDuration);
+    updateSettings();
+    window.addEventListener("resize", updateSettings);
 
-    return () => window.removeEventListener("resize", updateDuration);
+    return () => window.removeEventListener("resize", updateSettings);
   }, []);
 
-  const responsiveSettings = [
-    {
-      breakpoint: 800,
-      settings: {
-        slidesToShow: 5,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 5,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-      },
-    },
-  ];
-
   return (
-    <div className=" w-11/12 lg:w-3/4 justify-self-center my-4">
-      <h1 className="text-center font-semibold">Trending bland</h1>
+    <div className="w-11/12 lg:w-3/4 justify-self-center my-4">
+      <h1 className="text-center font-semibold">Trending brand</h1>
       <Slide
         indicators={false}
         arrows={false}
-        responsive={responsiveSettings}
         autoplay={true}
-        duration={duration} // Almost no delay between slides
-        transitionDuration={7000} // Fast transition
+        slidesToShow={slidesToShow}
+        duration={duration * 1000}
+        transitionDuration={700}
         infinite={true}
         pauseOnHover={false}
-        cssClass=" mt-2"
+        cssClass="mt-2"
       >
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="each-slide-effect flex items-center justify-center lg:p-4  lg:mt-0 "
+            className="each-slide-effect flex items-center justify-center lg:p-4 lg:mt-0"
           >
             <img
               src={logo}

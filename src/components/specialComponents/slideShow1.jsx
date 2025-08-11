@@ -32,12 +32,12 @@ function SlideShow1() {
         <div className="  lg:w-[200px] flex lg:flex-col flex-wrap justify-center gap-4 self-center z-0 ">
           <h1 className="text-navColor lg:text-sm ">TOP COLLECTIONS {year}</h1>
           <p className=" lg:text-xl font-semibold relative  ">
-            <span className="z-50 lg:bg-white  block  h-fit">
+            <span className="z-50   block  h-fit">
               We Serve Your Dream Furniture
             </span>
             <span className=" ">
               <img
-                className="  absolute -bottom-1 right-0 -z-10 w-0 ;h-9"
+                className="  absolute -bottom-1 right-0 -z-10 w-0 h-9 lg:block hidden"
                 src="/assets/frame/5f27e907fbdca6cab0ba1f7d4c0b7ce9.png"
                 alt=""
               />

@@ -9,9 +9,6 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-height: 100vh; /* Ensure the body takes up the full viewport height */
   margin: 0 auto;
   max-width: 1440px;
