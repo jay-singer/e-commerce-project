@@ -3,9 +3,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import SignForm from "../components/IdentificationsStaff/signIn";
 import IntroSection from "../components/IntroSection";
 import MobileFooter from "../components/mobileComponent/mobileFooter";
+import Blog from "../components/ReUsableComponent/Blog";
 import FooterComp from "../components/ReUsableComponent/footer";
 import NavBar from "../components/ReUsableComponent/navibar";
 import NewArrival from "../components/ReUsableComponent/newArrival";
+import NewsLetter from "../components/ReUsableComponent/NewsLetter";
 import ShopCategory from "../components/ReUsableComponent/shopCategories";
 import UpperHeader from "../components/ReUsableComponent/upHeader";
 import UpperHeader1 from "../components/ReUsableComponent/upHeader1";
@@ -13,6 +15,7 @@ import SecSection from "../components/specialComponents/SecSection";
 import Testimony from "../components/Testimony";
 import CartProducts from "../components/UserComponents/BuyerStaff/CartProducts";
 import { formHiding } from "../components/utilities/utlilities";
+import BestSeller from "./../components/ReUsableComponent/BestSeller";
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -120,9 +123,16 @@ const LandingPage = () => {
             <NewArrival />
             {/** shop categoris */}
             <ShopCategory />
+            {/* Best Seller product */}
+            <BestSeller />
             {showCart && <CartProducts />}
             <div className="w-[90%] place-self-center">
               <Testimony />
+
+              {/** Latest Articles */}
+              <Blog />
+              {/** News letter section */}
+              <NewsLetter />
             </div>
           </>
         )}
@@ -136,7 +146,7 @@ const LandingPage = () => {
   );
 
   const phoneView = (
-    <div className="mb-[69px] min-w-[320px] border border-red-950">
+    <div className="mb-[69px] min-w-[320px]">
       {/**Introduction section */}
       <IntroSection />
       {/** paterner sectionf */}
@@ -145,6 +155,13 @@ const LandingPage = () => {
       <NewArrival />
       {/** shop categoris */}
       <ShopCategory />
+      {/* Best Seller product */}
+      <BestSeller />
+      {/** Latest Articles */}
+      <Blog />
+      {/** News letter section */}
+      <NewsLetter />
+      <FooterComp />
       <MobileFooter />
     </div>
   );
