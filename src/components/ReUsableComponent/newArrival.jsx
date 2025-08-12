@@ -177,15 +177,15 @@ const NewArrival = () => {
   };
 
   return (
-    <div className="new-arrival mt-16 w-[95%]  justify-self-center relative ">
-      <div className=" mt-2 mb-5 flex justify-between ms-5">
+    <div className="new-arrival mt-16 md:w-[95%] w-full   justify-self-center relative my-auto px-4">
+      <div className=" mt-2 mb-5 flex justify-between ms-5  ">
         <h2 className=" font-semibold text-gray-800 ">New Arrival</h2>
         {/* Dots */}
         <div className="indicators ">
           {productObject.map((_, i) => (
             <span
               key={i}
-              className={`dot w-[7px] h-[7px] md:w-[8px] md:h-[8px] rounded-full ${
+              className={`dot w-[7px] h-[7px] md:w-[8px] md:h-[8px] rounded-full  ${
                 currentIndex === i ? "active" : ""
               }`}
               onClick={() => handleDotClick(i)}
@@ -193,7 +193,7 @@ const NewArrival = () => {
           ))}
         </div>
       </div>
-      <div className=" mx-2 md:mx-0 w-full justify-self-center">
+      <div className=" mx-2 md:mx-0 w-full justify-self-center ">
         {/* Slide container */}
         <div className="slide-viewport">
           <div
@@ -241,7 +241,7 @@ const NewArrival = () => {
         {/* Prev / Next Buttons */}
 
         <button
-          className="slider-buttons p-[8px] flex justify-center items-center border border-black lg:left-5 md:left-4 -left-1 top-1/2"
+          className="slider-buttons p-[8px] flex justify-center items-center border border-black lg:left-5 md:left-4 left-2 top-1/2"
           onClick={prevSlide}
         >
           <svg
@@ -260,7 +260,7 @@ const NewArrival = () => {
           </svg>
         </button>
         <button
-          className="slider-buttons p-[8px] flex justify-center items-center border border-black lg:right-5  md:right-4 -right-1 top-1/2 left"
+          className="slider-buttons p-[8px] flex justify-center items-center border border-black lg:right-5  md:right-4 right-2 top-1/2 left"
           onClick={nextSlide}
         >
           <svg

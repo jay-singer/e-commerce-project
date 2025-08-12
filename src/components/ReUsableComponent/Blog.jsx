@@ -16,7 +16,7 @@ const Blog = () => {
     },
   ];
   return (
-    <div className=" md:w-10/12 w-[90%]   justify-self-center pb-2 mt-3  flex flex-col items-center">
+    <div className=" md:w-10/12 w-[100%]   justify-self-center pb-2 mt-3  flex flex-col items-center ">
       {/**first section */}
       <div className="flex justify-between w-[90%] justify-self-center mb-3 ">
         <span className="text-gray-700">Latest Articles</span>
