@@ -16,9 +16,9 @@ const Blog = () => {
     },
   ];
   return (
-    <div className=" w-10/12  justify-self-center pb-2 mt-3 border flex flex-col items-center">
+    <div className=" md:w-10/12 w-[90%]   justify-self-center pb-2 mt-3  flex flex-col items-center">
       {/**first section */}
-      <div className="flex justify-between w-[90%] justify-self-center mb-3 border ">
+      <div className="flex justify-between w-[90%] justify-self-center mb-3 ">
         <span className="text-gray-700">Latest Articles</span>
         <Link
           className="flex gap-1 text-sm items-center text-navColor"
@@ -42,11 +42,11 @@ const Blog = () => {
         </Link>
       </div>
       {/** Body */}
-      <div className="flex justify-evenly flex-wrap items-center gap-2 lg:gap-0 w-full">
+      <div className="flex justify-evenly flex-wrap items-center gap-2 lg:gap-0 w-full ">
         {products.map((product, index) => (
           <div
             key={index}
-            className=" max-w-[280px] rounded-md overflow-hidden shadow-[8px_10px_20px_rgba(0,0,0,0.13)] lg:hover:scale-105 transition-all duration-300   "
+            className=" max-w-[280px] rounded-md overflow-hidden md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)] lg:hover:scale-105 transition-all duration-300 "
           >
             <img
               className=" w-full object-center object-cover"

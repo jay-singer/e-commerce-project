@@ -97,7 +97,7 @@ const productObject = [
 const getSlidesToShow = () => {
   if (window.innerWidth >= 1024) return 4; // Desktop
   if (window.innerWidth >= 768) return 3; // Tablet
-  if (window.innerWidth >= 400) return 3; // max mobile
+  if (window.innerWidth >= 470) return 2; // max mobile
   return 1; // Mobile
 };
 
