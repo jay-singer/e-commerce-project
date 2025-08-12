@@ -85,8 +85,8 @@ const BestSeller = () => {
     },
   ];
   return (
-    <div className=" mt-10 max-w-[1280px] justify-self-center w-full sm:w-[100%]">
-      <h2 className="lg:text-2xl md:text-lg text-base font-bold mb-4  text-primary text-nowrap w-[85%] justify-self-center">
+    <div className=" mt-10 max-w-[1280px] justify-self-center flex flex-col items-center w-full sm:w-[100%]">
+      <h2 className="lg:text-2xl md:text-lg text-base font-bold mb-4  text-primary text-nowrap w-[85%] justify-self-center ">
         Best seller
       </h2>
 
@@ -96,9 +96,9 @@ const BestSeller = () => {
           <Link
             to={`/product/${Product.title.replace(/\s+/g, "-").toLowerCase()}`}
             key={index}
-            className=" flex-auto  lg:p-2 hover:scale-105 transition  flex flex-col items-center relative"
+            className=" flex-auto  lg:p-2 lg:hover:scale-105 transition  flex flex-col items-center relative"
           >
-            <div className="absolute px-2 bg-slate-700 text-white font-semibold rounded-md top-1 left-2">
+            <div className="absolute px-2 bg-slate-700 text-white font-semibold rounded-md top-1 left-2 ">
               Hot
             </div>
             <img
@@ -106,7 +106,7 @@ const BestSeller = () => {
               src={Product.picture}
               alt={Product.title}
             />
-            <div className=" w-full">
+            <div className=" w-full flex flex-col items-center md:items-start">
               <div className="text-yellow-500">★★★★★</div>
               <h4 className="text-md font-medium">{Product.title}</h4>
               <p className="text-sm text-gray-600">{Product.price}</p>

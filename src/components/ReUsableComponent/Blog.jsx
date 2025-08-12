@@ -16,9 +16,9 @@ const Blog = () => {
     },
   ];
   return (
-    <div className=" w-10/12  justify-self-center pb-2 mt-3">
+    <div className=" w-10/12  justify-self-center pb-2 mt-3 border flex flex-col items-center">
       {/**first section */}
-      <div className="flex justify-between w-[90%] justify-self-center mb-3">
+      <div className="flex justify-between w-[90%] justify-self-center mb-3 border ">
         <span className="text-gray-700">Latest Articles</span>
         <Link
           className="flex gap-1 text-sm items-center text-navColor"
@@ -42,7 +42,7 @@ const Blog = () => {
         </Link>
       </div>
       {/** Body */}
-      <div className="flex justify-evenly flex-wrap items-center gap-2 lg:gap-0">
+      <div className="flex justify-evenly flex-wrap items-center gap-2 lg:gap-0 w-full">
         {products.map((product, index) => (
           <div
             key={index}
