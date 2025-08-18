@@ -46,7 +46,7 @@ function SlideShow1() {
           <p className="text-primary">Get of 50% off All Products</p>
           <div className="text-white flex gap-3 ">
             <Link
-              to="/signIn1"
+              to="/shop"
               className="bg-navColor flex items-center px-2  rounded lg:text-[14px] text-[10px] text-nowrap"
             >
               SHOP NOW

@@ -108,7 +108,7 @@ const LandingPage = () => {
         {/* Home page only */}
         {!isProductOrCartPage && location.pathname === "/" && (
           <>
-            <div className=" ">
+            <div className=" mt-[130px]">
               <IntroSection showCategory={showCategory} />
             </div>
             {/* <Products
@@ -132,13 +132,13 @@ const LandingPage = () => {
               {/** Latest Articles */}
               <Blog />
               {/** News letter section */}
-              <NewsLetter />
             </div>
           </>
         )}
 
         {/* Nested routes like /furniture */}
         <Outlet />
+        <NewsLetter />
 
         <FooterComp />
       </div>
@@ -147,19 +147,24 @@ const LandingPage = () => {
 
   const phoneView = (
     <div className="mb-[69px] min-w-[320px]">
-      {/**Introduction section */}
-      <IntroSection />
-      {/** paterner sectionf */}
-      <SecSection showCategory={showCategory} />
-      {/** New arrival */}
-      <NewArrival />
-      {/** shop categoris */}
-      <ShopCategory />
-      {/* Best Seller product */}
-      <BestSeller />
-      {/** Latest Articles */}
-      <Blog />
+      {location.pathname === "/" && (
+        <>
+          {/**Introduction section */}
+          <IntroSection />
+          {/** paterner sectionf */}
+          <SecSection showCategory={showCategory} />
+          {/** New arrival */}
+          <NewArrival />
+          {/** shop categoris */}
+          <ShopCategory />
+          {/* Best Seller product */}
+          <BestSeller />
+          {/** Latest Articles */}
+          <Blog />
+        </>
+      )}
       {/** News letter section */}
+      <Outlet />
       <NewsLetter />
       <FooterComp />
       <MobileFooter />

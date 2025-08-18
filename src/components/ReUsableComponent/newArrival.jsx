@@ -177,7 +177,7 @@ const NewArrival = () => {
   };
 
   return (
-    <div className="new-arrival mt-16 md:w-[95%] w-full   justify-self-center relative my-auto px-4">
+    <div className="new-arrival mt-16 md:w-[95%] w-full   justify-self-center relative my-auto px-4 ">
       <div className=" mt-2 mb-5 flex justify-between ms-5  ">
         <h2 className=" font-semibold text-gray-800 ">New Arrival</h2>
         {/* Dots */}
@@ -195,7 +195,7 @@ const NewArrival = () => {
       </div>
       <div className=" mx-2 md:mx-0 w-full justify-self-center ">
         {/* Slide container */}
-        <div className="slide-viewport">
+        <div className="slide-viewport ">
           <div
             className="slider-track"
             ref={sliderRef}
@@ -211,10 +211,10 @@ const NewArrival = () => {
             {extendedProducts.map((item, index) => (
               <div
                 key={index}
-                className="slide-item"
+                className="slide-item "
                 style={{ width: `${slideWidth}%` }}
               >
-                <div className="slide-card justify-center items-center flex flex-col">
+                <div className="slide-card justify-center items-center flex flex-col  shadow-gray-300 md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)] ">
                   <div className="flex justify-between w-full mb-2 ">
                     {item.mode && (
                       <span className="bg-black text-white px-2 py-1 text-xs rounded">

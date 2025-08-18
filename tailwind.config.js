@@ -19,7 +19,7 @@ export default {
         success: "#7AC751",
         danger: "#EA4335F7",
         info: "#00A3C6",
-        textColor: "#ACADAC",
+        textColor: "#3B3B3B",
         selected: "#D7F9C5",
         specialColor: "#14162E",
       },

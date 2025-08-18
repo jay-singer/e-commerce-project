@@ -49,17 +49,9 @@ const Navbar = ({ showCategory, setShowCategory }) => {
   }, [location.pathname]);
 
   const categoryLinks = [
-    "All",
-    "New Arrivals",
-    "Hot Sale",
-    "ElecronicMaterial",
-    "Sports Staff",
-    "Table",
-    "Chair",
-    "Food Products",
-    "Kitchen Staff",
-    "Electronics Materials",
-    "Benches",
+    "Furniture products",
+    "Electronic products",
+    "Sport products",
   ];
 
   return (
@@ -150,7 +142,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
         {!showCategory && (
           <div
             id="categoryId"
-            className="bg-slate-100 absolute left-[1px] right-[1px] transform -translate-y-full opacity-0 transition-transform duration-300 ease-in-out md:top-[49px] top-[33px] w-full shadow-lg"
+            className="bg-slate-100 absolute left-[1px] right-[1px] transform -translate-y-full opacity-0 transition-transform duration-300 ease-in-out md:top-[49px] top-[33px] w-full shadow-lg py-3 ps-3"
             onMouseEnter={() =>
               window.innerWidth > 500 && setShowCategory(false)
             }
@@ -166,7 +158,7 @@ const Navbar = ({ showCategory, setShowCategory }) => {
               {categoryLinks.map((name) => (
                 <li
                   key={name}
-                  className="hover:bg-selected rounded-sm mt-[2px] flex"
+                  className="hover:bg-selected rounded-sm mt-[3px] flex"
                 >
                   <Link
                     className="px-4 w-full"
@@ -180,7 +172,10 @@ const Navbar = ({ showCategory, setShowCategory }) => {
           </div>
         )}
       </div>
-      <Link className=" me-7 flex justify-center items-center text-secondary hover:underline text">
+      <Link
+        to={"/shop"}
+        className=" me-7 flex justify-center items-center text-secondary hover:underline text"
+      >
         {" "}
         Shop now!
       </Link>

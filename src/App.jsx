@@ -16,6 +16,7 @@ import AboutUs from "./pages/aboutUs";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellerDashboard from "./pages/sellerDashboard";
+import Shop from "./pages/shop";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<LandingPage />}>
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/CartProducts" element={<CartProducts />}></Route>
+        <Route path="/shop" element={<Shop />}></Route>
       </Route>
       {/** Electronic site */}
 

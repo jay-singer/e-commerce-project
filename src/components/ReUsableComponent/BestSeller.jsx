@@ -91,12 +91,12 @@ const BestSeller = () => {
       </h2>
 
       {/* Loop over each category */}
-      <div className=" flex flex-wrap w-[85%] justify-self-center gap-2 lg:gap-0 lg:col-span-4 md:col-span-3 col-span-2 justify-center">
+      <div className=" flex flex-wrap w-[85%] justify-self-center gap-2 lg:gap-2 lg:col-span-4 md:col-span-3 col-span-2 justify-center">
         {productObject.slice(0, 8).map((Product, index) => (
           <Link
             to={`/product/${Product.title.replace(/\s+/g, "-").toLowerCase()}`}
             key={index}
-            className=" flex-auto  lg:p-2 lg:hover:scale-105 transition  flex flex-col items-center relative"
+            className="lg:p-2 lg:hover:scale-[1.01]  transition  flex flex-auto flex-col items-center rounded relative shadow-gray-300 md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)]"
           >
             <div className="absolute px-2 bg-slate-700 text-white font-semibold rounded-md top-1 left-2 ">
               Hot
@@ -118,7 +118,7 @@ const BestSeller = () => {
         <span> For more interactive products </span>{" "}
         <Link
           className="font-semibold underline text-navColor decoration-navColor"
-          to={`#`}
+          to={`/shop`}
         >
           Visit Shop
         </Link>

@@ -7,7 +7,10 @@ const UpperHeader = () => {
     >
       <h3>
         Welcome to our{" "}
-        <Link to={""} className="bg-white text-navColor py-1 px-2 rounded-md">
+        <Link
+          to={"/shop"}
+          className="bg-white text-navColor py-1 px-2 rounded-md"
+        >
           {" "}
           online shop
         </Link>{" "}

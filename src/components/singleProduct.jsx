@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleProduct = ({ items, openingCartForm }) => {
@@ -18,14 +17,10 @@ const SingleProduct = ({ items, openingCartForm }) => {
   };
 
   return (
-    <div
-      className="mx-2 mb-3 md:m-0 shadow-md  lg:w-[300px] xl:w-[230px] 
-                 flex flex-col gap-2 overflow-hidden text-center rounded-lg 
-                 bg-white transition-transform transform md:hover:scale-105 md:hover:shadow-xl shadow-gray-400 -z-1"
-    >
-      <div className="relative">
+    <div className="mx-2 mb-3 md:m-0 shadow-md lg:w-full h-full flex gap-2 overflow-hidden text-center rounded-lg  bg-white transition-transform transform md:hover:scale-[1.01] md:hover:shadow-xl shadow-gray-300 -z-1">
+      <div className=" w-[300px]">
         <Link
-          className=" "
+          className=" block h-full w-full"
           to={`/products/${items._id}`}
           state={{
             ProductStore: {
@@ -41,7 +36,7 @@ const SingleProduct = ({ items, openingCartForm }) => {
           <img
             src={items.productImage}
             alt={items.productName}
-            className="object-center object-covertransition-transform duration-300 object-cover md:h-[200px] w-full h-[150px]"
+            className="object-covertransition-transform  duration-300 h-full w-full "
           />
         </Link>
 
@@ -106,10 +101,12 @@ const SingleProduct = ({ items, openingCartForm }) => {
         <h3 className="text-start w-full md:text-lg text-[12px] font-semibold text-gray-700">
           {items.productName}
         </h3>
-
+        <p className="text-start w-full md:text-sm text-[12px]  text-gray-700">
+          {items.productDescription.substring(0, 60) + "..."}
+        </p>
         {/* Star rating display */}
 
-        <div className="flex justify-between mb-4">
+        <div className="flex flex-col items-start mb-4">
           <span className="text-md text-start font-medium text-navColor">
             {items.price} Rwf
           </span>
