@@ -91,22 +91,22 @@ const BestSeller = () => {
       </h2>
 
       {/* Loop over each category */}
-      <div className=" flex flex-wrap w-[85%] justify-self-center gap-2 lg:gap-2 lg:col-span-4 md:col-span-3 col-span-2 justify-center">
+      <div className=" flex flex-wrap w-[85%] justify-self-center gap-2 lg:gap- lg:col-span-4 md:col-span-3 col-span-2 lg:justify-between justify-center ">
         {productObject.slice(0, 8).map((Product, index) => (
           <Link
             to={`/product/${Product.title.replace(/\s+/g, "-").toLowerCase()}`}
             key={index}
-            className="lg:p-2 lg:hover:scale-[1.01]  transition  flex flex-auto flex-col items-center rounded relative shadow-gray-300 md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)]"
+            className=" lg:hover:scale-[1.01]  transition max-w-[280px] lg:max-w-[260px] flex flex-col items-center rounded-md overflow-hidden relative shadow-gray-300 md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)]"
           >
-            <div className="absolute px-2 bg-slate-700 text-white font-semibold rounded-md top-1 left-2 ">
+            <div className="absolute px-2 bg-slate-700 text-white font-semibold rounded-md top-0 left-0 ">
               Hot
             </div>
             <img
-              className="object-cover mb-2  justify-self-center w-full max-w-[250px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-[220px]"
+              className="object-cover mb-2 w-full  "
               src={Product.picture}
               alt={Product.title}
             />
-            <div className=" w-full flex flex-col items-center md:items-start">
+            <div className=" w-full flex flex-col items-center md:items-start ps-2 pb-2">
               <div className="text-yellow-500">★★★★★</div>
               <h4 className="text-md font-medium">{Product.title}</h4>
               <p className="text-sm text-gray-600">{Product.price}</p>

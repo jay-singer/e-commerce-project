@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Carousel } from "react-responsive-carousel";
 import TestimonyComp from "../components/specialComponents/testimonySlide";
@@ -60,7 +60,7 @@ const Testimony = () => {
       {/* Left Arrow */}
       <div
         className={`   cursor-pointer flex-1 ${
-          activeIndex === 0 ? " cursor-not-allowed" : ""
+          activeIndex === 0 ? " cursor-no-drop" : ""
         }`}
         onClick={goToPrevious}
       >
@@ -92,7 +92,7 @@ const Testimony = () => {
       {/* Right Arrow */}
       <div
         className={`  z-10 cursor-pointer flex-1 ${
-          activeIndex === arrObject.length - 1 ? " cursor-not-allowed" : ""
+          activeIndex === arrObject.length - 1 ? " cursor-no-drop" : ""
         }`}
         onClick={goToNext}
       >

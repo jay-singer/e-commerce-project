@@ -47,7 +47,7 @@ export const DropDown = ({ dataObject, label, width }) => {
                   setSelected(category.value);
                   setOpen(false);
                 }}
-                className={`px-4 py-1 cursor-pointer rounded ${
+                className={`ps-2 w-full  py-1 cursor-pointer rounded  text-nowrap ${
                   category.value === selected
                     ? "bg-gray-500 text-white"
                     : "hover:bg-gray-200 text-specialColor"

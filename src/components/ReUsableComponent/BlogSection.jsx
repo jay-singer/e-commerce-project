@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Blog = () => {
+const BlogSection = () => {
   const products = [
     {
       title: "Studio Table",
@@ -44,7 +44,8 @@ const Blog = () => {
       {/** Body */}
       <div className="flex justify-evenly flex-wrap items-center gap-2 lg:gap-0 w-full ">
         {products.map((product, index) => (
-          <div
+          <Link
+            to={"/Blog"}
             key={index}
             className=" max-w-[280px] rounded-md overflow-hidden md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)] lg:hover:scale-105 transition-all duration-300 "
           >
@@ -58,7 +59,7 @@ const Blog = () => {
               <p className="text-gray-800">{product.title}</p>
               <Link
                 className="flex gap-1 items-center text-sm text-navColor"
-                to={`#`}
+                to={`Blog`}
               >
                 Read More
                 <svg
@@ -77,11 +78,11 @@ const Blog = () => {
                 </svg>
               </Link>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
   );
 };
 
-export default Blog;
+export default BlogSection;

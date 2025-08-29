@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
+import BlogDetails from "./components/blogDetals";
 import MobileLogIn from "./components/IdentificationsStaff/logIn1";
 import SignForm from "./components/IdentificationsStaff/signIn";
 import ProductDetails from "./components/productDetails";
@@ -13,6 +14,7 @@ import Products from "./components/products";
 import DashboardTable from "./components/ReUsableComponent/dashboard";
 import CartProducts from "./components/UserComponents/BuyerStaff/CartProducts";
 import AboutUs from "./pages/aboutUs";
+import Blog from "./pages/Blog";
 import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellerDashboard from "./pages/sellerDashboard";
@@ -25,6 +27,8 @@ const router = createBrowserRouter(
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/CartProducts" element={<CartProducts />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
+        <Route path="/Blog" element={<Blog />}></Route>
+        <Route path="/Blog/:id" element={<BlogDetails />}></Route>
       </Route>
       {/** Electronic site */}
 

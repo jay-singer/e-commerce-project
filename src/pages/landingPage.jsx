@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import SignForm from "../components/IdentificationsStaff/signIn";
 import IntroSection from "../components/IntroSection";
 import MobileFooter from "../components/mobileComponent/mobileFooter";
-import Blog from "../components/ReUsableComponent/Blog";
+import BlogSection from "../components/ReUsableComponent/BlogSection";
 import FooterComp from "../components/ReUsableComponent/footer";
 import NavBar from "../components/ReUsableComponent/navibar";
 import NewArrival from "../components/ReUsableComponent/newArrival";
@@ -127,10 +127,15 @@ const LandingPage = () => {
             <BestSeller />
             {showCart && <CartProducts />}
             <div className="w-[90%] place-self-center">
-              <Testimony />
+              <div>
+                <h3 className=" text-center font-bold text-primary lg:text-[36px] my-4">
+                  What our customers say
+                  <Testimony />
+                </h3>
+              </div>
 
               {/** Latest Articles */}
-              <Blog />
+              <BlogSection />
               {/** News letter section */}
             </div>
           </>
@@ -160,7 +165,7 @@ const LandingPage = () => {
           {/* Best Seller product */}
           <BestSeller />
           {/** Latest Articles */}
-          <Blog />
+          <BlogSection />
         </>
       )}
       {/** News letter section */}

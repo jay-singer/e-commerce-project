@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
@@ -28,12 +27,12 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className=" md:mt-[166px] mt-[60px] md:mb-0 mb-[60px] bg-white min-h-screen  overflow-hidden rounded-lg md:flex flex-col  justify-center items-center  ">
+    <div className=" md:mt-[131px] mt-[60px] md:mb-0 mb-[60px] bg-white min-h-screen  overflow-hidden rounded-lg md:flex flex-col  justify-center items-center">
       {/* Back Button */}
       <div className="px-10 place-self-start">
         <Link
           to="/"
-          className="flex items-center text-gray-500 hover:text-gray-700 text-sm bg-slate-300 w-fit rounded py-1 px-2 "
+          className="flex items-center text-gray-500 hover:text-gray-700 text-sm bg-slate-300 w-fit rounded py-1 px-2  mt-2"
         >
           ← Go Back
         </Link>
@@ -42,7 +41,7 @@ const ProductDetails = () => {
       {/* Product Details */}
       <div className="flex flex-col lg:flex-row gap-8  shadow-lg rounded-lg p-6 lg:p-10  overflow-hidden  md:w-2/3">
         {/* Left: Product Image */}
-        <div className="">
+        <div className=" ">
           <img
             src={product.image}
             alt={product.name}
@@ -51,7 +50,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Right: Product Information */}
-        <div className="flex-1 flex flex-col justify-between">
+        <div className=" flex flex-col justify-between">
           <div className="">
             <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
             <p className="text-2xl text-blue-600 font-semibold mt-2">
@@ -67,6 +66,7 @@ const ProductDetails = () => {
               </span>
             </div>
             <div className="flex gap-3 mt-2">
+              {/** add to which list */}
               <button className=" flex justify-center items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -93,9 +93,10 @@ const ProductDetails = () => {
                   </path>
                 </svg>
               </button>
+              {/** cart Link */}
               <Link
                 to={"*"}
-                className=" bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] w-fit rounded-full"
+                className=" bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] w-fit rounded-full "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
