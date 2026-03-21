@@ -55,7 +55,7 @@ const LandingPage = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+  //Function used to determine whether to show the cart component based on the current route
   const handlingShowCartComponent = () => {
     if (
       location.pathname === "/" ||
@@ -67,6 +67,7 @@ const LandingPage = () => {
     }
   };
 
+  //Computer view of the landing page
   const computerView = (
     <div className="relative w-full ">
       {/* Blur content if form is open */}
@@ -149,7 +150,7 @@ const LandingPage = () => {
       </div>
     </div>
   );
-
+  //Phone view of the landing page
   const phoneView = (
     <div className="mb-[69px] min-w-[320px]">
       {location.pathname === "/" && (

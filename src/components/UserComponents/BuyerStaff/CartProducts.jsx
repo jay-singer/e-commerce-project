@@ -17,7 +17,7 @@ const CartProducts = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
+          "https://e-commerce-backend-b8fd.onrender.com/api/getProducts",
         );
         const allProducts = response.data;
 
@@ -26,7 +26,7 @@ const CartProducts = () => {
         const matchedProducts = storedCart
           .map((cartItem) => {
             const matchedProduct = allProducts.find(
-              (product) => product._id === cartItem.id
+              (product) => product._id === cartItem.id,
             );
             if (matchedProduct) {
               return {
@@ -54,7 +54,7 @@ const CartProducts = () => {
     const totalQty = products.reduce((acc, item) => acc + item.quantity, 0);
     const totalAmt = products.reduce(
       (acc, item) => acc + item.quantity * item.price,
-      0
+      0,
     );
     setQuanty(totalQty);
     setAmount(totalAmt);
@@ -62,7 +62,7 @@ const CartProducts = () => {
   }, [products, productNum]);
 
   // Update localStorage whenever quantity changes
-  const updateLocalStorage = (updatedProducts) => {
+  const updatelocalStorage = (updatedProducts) => {
     const cartData = updatedProducts.map((p) => ({
       id: p._id,
       quantity: p.quantity,
@@ -85,7 +85,7 @@ const CartProducts = () => {
       return item;
     });
     setProducts(updated);
-    updateLocalStorage(updated);
+    updatelocalStorage(updated);
   };
 
   if (loading)
@@ -96,7 +96,7 @@ const CartProducts = () => {
     );
 
   return (
-    <div className="md:flex flex-col-reverse  w-full md:mt-[166px] max-w-[1100px] md:justify-between h-full">
+    <div className="md:flex flex-col-reverse bg-black border border-black   w-full md:mt-[130px] max-w-[1100px] md:justify-between h-full">
       <div className="w-full grid grid-cols-2 md:grid-cols-3 mt-0 md:gap-4 mb-4 max-w-[720px]">
         {products.length === 0 ? (
           <p className="col-span-full text-center text-gray-500">
@@ -151,7 +151,7 @@ const CartProducts = () => {
       </div>
 
       {/* Summary Section */}
-      <div className="md:w-[20%] self-start">
+      <div className="md:w-[20%] self-start bg-white">
         <div className="p-2">
           <span className="mr-5 text-black font-semibold">Total Qnty:</span>
           <span className="text-navColor font-medium">{Qunty}</span>

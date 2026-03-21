@@ -5,7 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // make sure css is imported
 import "./App.css";
+
 import BlogDetails from "./components/blogDetals";
 import MobileLogIn from "./components/IdentificationsStaff/logIn1";
 import SignForm from "./components/IdentificationsStaff/signIn";
@@ -25,17 +27,16 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<LandingPage />}>
         <Route path="/products/:id" element={<ProductDetails />} />
-        <Route path="/CartProducts" element={<CartProducts />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/Blog" element={<Blog />}></Route>
-        <Route path="/Blog/:id" element={<BlogDetails />}></Route>
+        <Route path="/CartProducts" element={<CartProducts />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/Blog" element={<Blog />} />
+        <Route path="/Blog/SingleBlog/:id" element={<BlogDetails />} />
       </Route>
-      {/** Electronic site */}
 
       {/* Seller Dashboard with Nested Routes */}
       <Route path="/sellerDashboard" element={<SellerDashboard />} />
       <Route path="/products" element={<Products />} />
-      <Route path="dashboard" element={<DashboardTable />} />
+      <Route path="/dashboard" element={<DashboardTable />} />
       <Route path="*" element={<NotFound />} />
       <Route path="/signIn" element={<SignForm />} />
       <Route path="/logIn1" element={<MobileLogIn />} />
@@ -45,16 +46,18 @@ const router = createBrowserRouter(
   {
     future: {
       v7_relativeSplatPath: true,
-      v7_startTransition: false, // Added this line
+      v7_startTransition: false,
     },
   }
 );
 
 function App() {
   return (
-    <RouterProvider router={router}>
-      <ToastContainer />
-    </RouterProvider>
+    <>
+      <RouterProvider router={router} />
+      {/* ✅ ToastContainer outside router, works globally */}
+      <ToastContainer position="top-right" autoClose={3000} />
+    </>
   );
 }
 

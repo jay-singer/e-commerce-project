@@ -1,0 +1,44 @@
+/* Sidebar container */
+.sidebar {
+  background: #fff;
+  position: sticky;
+  height: 100vh;
+  width: 12rem; /* expanded width */
+  max-width: 12rem;
+  transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Collapsed state */
+.collapsedSideBar {
+  max-width: 4rem; /* only icons visible */
+}
+
+/* Sidebar text labels */
+.sideBarLabel {
+  display: inline-block;
+  opacity: 1;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  transition: opacity 0.6s ease, transform 0.4s ease;
+  transform: translateX(0);
+}
+
+/* Hide labels when collapsed */
+.sidebar.collapsedSideBar .sideBarLabel {
+  opacity: 0;
+  transform: translateX(-10px); /* slide labels out smoothly */
+  width: 0;
+  overflow: hidden;
+}
+
+/* Buttons inside sidebar */
+.sideBarButton {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  transition: padding 0.4s ease;
+  cursor: pointer;
+}

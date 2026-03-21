@@ -6,7 +6,7 @@ export const formHiding = (funct) => {
 };
 
 export const getSellerIdFromToken = () => {
-  const token = sessionStorage.getItem("authToken");
+  const token = localStorage.getItem("authToken");
 
   if (!token) return null;
 

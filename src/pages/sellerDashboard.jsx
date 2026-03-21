@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   MdLogout,
@@ -7,11 +8,12 @@ import {
   MdSpaceDashboard,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
-import UpdatedNumbers from "../components/ReUsableComponent/availableNumber";
-import Button from "../components/ReUsableComponent/button";
-import DashboardTable from "../components/ReUsableComponent/dashboard";
-import CreateNewProducts from "../components/UserComponents/SellerStaff/createNewProduct";
-import Products from "../components/products";
+import "../allCSS/dashboard.css";
+import Products from "./../components/products";
+import UpdatedNumbers from "./../components/ReUsableComponent/availableNumber";
+import Button from "./../components/ReUsableComponent/button";
+import DashboardTable from "./../components/ReUsableComponent/dashboard";
+import CreateNewProducts from "./../components/UserComponents/SellerStaff/createNewProduct";
 const SellerDashboard = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [shadow, setShadow] = useState(false);
@@ -19,10 +21,11 @@ const SellerDashboard = () => {
   const [changeSection, setChangeSection] = useState("");
   const [productsNumber, setProductNumber] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 450);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     countNumberOfProduct();
-    console.log("hello");
     const handleResize = () => {
       setIsMobile(window.innerWidth < 720);
     };
@@ -38,215 +41,201 @@ const SellerDashboard = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const countNumberOfProduct = (productNumber) => {
-    setProductNumber(productNumber);
+  const countNumberOfProduct = (productsNumber) => {
+    setProductNumber(productsNumber);
+  };
+
+  // ✅ Get and decode the token
+  const token = sessionStorage.getItem("authToken");
+
+  if (!token) {
+    console.warn("No token found in localStorage");
+  }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          // "https://e-commerce-backend-b8fd.onrender.com/api/Products/seller",
+          "https://e-commerce-backend-b8fd.onrender.com/api/getProducts",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        const fetchedProducts = response.data;
+        setProducts(fetchedProducts);
+        countingNumberProduct(fetchedProducts); // Call after setting products
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (token) fetchProducts();
+  }, [token]);
+
+  {
+    /** function that counting the product numbers */
+  }
+  const countingNumberProduct = (products) => {
+    const count = products.length;
+    console.log("Number of products fetched:", count);
+    setProductNumber(count);
   };
 
   return (
-    <div>
-      {/* Header */}
-      <div
-        className={`bg-slate-100 flex justify-end pe-10 py-2 gap-4 items-center text-primary fixed top-0 left-0 right-0 z-50 transition-shadow ${
-          shadow ? "shadow-md" : "border-b-[1px] border-gray-300"
-        }`}
-      >
-        <Link to="/">Back</Link>
-        <Link to="/">Home</Link>
-        <Link>
-          <img
-            src="./assets/profile/profile1.jpeg"
-            alt="Profile pic"
-            className="size-10 rounded-full object-cover object-center"
-          />
-        </Link>
-      </div>
+    <div className=" flex">
+      {/** Sidebar */}
 
-      {/* Main Section */}
-      <div className="flex mt-[58px]">
-        {/* Sidebar */}
-        <div
-          className={`bg-white transition-all duration-500 ease-in-out 
+      <div
+        className={`bg-white
             ${
               isMobile
-                ? "fixed bottom-0 left-0 right-0 flex justify-around py-2 z-50"
-                : `h-screen ${isHovered ? "md:w-48 w-48" : "w-20"}`
+                ? "fixed bottom-0 left-0 right-0 flex justify-around py-2 z-50 "
+                : `sidebar fixed z-20   ${isHovered ? "" : "collapsedSideBar"}`
             }`}
-          onMouseEnter={() => !isMobile && setIsHovered(true)}
-          onMouseLeave={() => !isMobile && setIsHovered(false)}
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
+      >
+        <nav
+          className={`${
+            isMobile
+              ? "flex justify-evenly w-full bg-white"
+              : "flex flex-col space-y-2 py-10 px-2 "
+          }`}
         >
-          <nav
-            className={`${
-              isMobile
-                ? "flex justify-evenly w-full bg-white"
-                : "flex flex-col space-y-2 py-10 px-2 "
+          {/* Dashboard */}
+          <button
+            onClick={() => setComponentChange("dashboard")}
+            className={` sideBarButton p-2 rounded transition-all duration-200 ${
+              componentChange === "dashboard"
+                ? "bg-gray-300 text-black"
+                : "hover:bg-gray-300 hover:text-white"
             }`}
           >
-            {/* Dashboard */}
-            <button
-              onClick={() => setComponentChange("dashboard")}
-              className={`p-2 rounded flex justify-center items-center transition-all ${
-                componentChange === "dashboard"
-                  ? "bg-gray-300 text-black"
-                  : "hover:bg-gray-300"
-              }`}
-            >
-              <MdSpaceDashboard
-                className={`md:size-6 size-6 transition-all text-black ${
-                  componentChange === "dashboard" ? "text-black" : "text-black "
-                }`}
-              />
-              {!isMobile && (
-                <span
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered
-                      ? "inline opacity-100 text-black"
-                      : "hidden opacity-0"
-                  }`}
-                >
-                  Dashboard
-                </span>
-              )}
-            </button>
+            <MdSpaceDashboard
+              className={`md:size-6 size-6 transition-all duration-200`}
+            />
+            {!isMobile && <span className={`sideBarLabel`}>Dashboard</span>}
+          </button>
 
-            {/* Sales */}
-            <button
-              onClick={() => setComponentChange("sales")}
-              className={`p-2 rounded flex items-center justify-center transition-all text-black ${
-                componentChange === "sales"
-                  ? "bg-gray-300 text-black"
-                  : "hover:bg-gray-300 text-white"
-              }`}
-            >
-              <MdShoppingCart
-                className={`md:size-6 size-6 transition-all ${
-                  componentChange === "sales"
-                    ? "text-black"
-                    : "text-black group-hover:text-white"
-                }`}
-              />
-              {!isMobile && (
-                <span
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered
-                      ? "inline opacity-100 text-black"
-                      : "hidden opacity-0"
-                  }`}
-                >
-                  Sales
-                </span>
-              )}
-            </button>
-            {/*Products */}
-            <button
-              onClick={() => setComponentChange("products")}
-              className={`p-2 rounded flex items-center justify-center transition-all text-black ${
-                componentChange === "products"
-                  ? "bg-gray-300 text-black"
-                  : "hover:bg-gray-300 text-white"
-              }`}
-            >
-              <MdShoppingBag
-                className={`md:size-6 size-6 transition-all ${
-                  componentChange === "products"
-                    ? "text-black"
-                    : "text-black group-hover:text-white"
-                }`}
-              />
-              {!isMobile && (
-                <span
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered
-                      ? "inline opacity-100 text-black"
-                      : "hidden opacity-0"
-                  }`}
-                >
-                  Products
-                </span>
-              )}
-            </button>
-            {/* Settings */}
-            <Link
-              to="/settings"
-              className="p-2 rounded flex items-center justify-center transition-all hover:bg-gray-300 text-black"
-            >
-              <MdSettings className="md:size-6 size-6 transition-all hover:text-white" />
-              {!isMobile && (
-                <span
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered
-                      ? "inline opacity-100 text-black"
-                      : "hidden opacity-0"
-                  }`}
-                >
-                  Settings
-                </span>
-              )}
-            </Link>
+          {/* Sales */}
+          <button
+            onClick={() => setComponentChange("order")}
+            className={`sideBarButton p-2 rounded sideBarButton transition-all duration-200 text-black ${
+              componentChange === "order"
+                ? "bg-gray-300 text-black"
+                : "hover:bg-gray-300 hover:text-white"
+            }`}
+          >
+            <MdShoppingCart className={`md:size-6 size-6 `} />
+            {!isMobile && <span className={`sideBarLabel`}>Order</span>}
+          </button>
+          {/*Products */}
+          <button
+            onClick={() => setComponentChange("products")}
+            className={` sideBarButton p-2 rounded  transition-all duration-200 text-black ${
+              componentChange === "products"
+                ? "bg-gray-300 text-black"
+                : "hover:bg-gray-300 hover:text-white"
+            }`}
+          >
+            <MdShoppingBag className={`md:size-6 size-6`} />
+            {!isMobile && <span className={`sideBarLabel`}>Products</span>}
+          </button>
+          {/* Settings */}
+          <Link
+            to="/settings"
+            className="p-2 rounded sideBarButton transition-all duration-200  hover:text-white hover:bg-gray-300 text-black"
+          >
+            <MdSettings className="md:size-6 size-6 " />
+            {!isMobile && <span className={`sideBarLabel`}>Settings</span>}
+          </Link>
 
-            {/* Log Out */}
-            <Link
-              to="/logout"
-              className="p-2 rounded flex items-center justify-center transition-all hover:bg-gray-300 text-red-400"
-            >
-              <MdLogout className="md:size-6 size-6 transition-all hover:text-white" />
-              {!isMobile && (
-                <span
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered
-                      ? "inline opacity-100 text-red-400"
-                      : "hidden opacity-0"
-                  }`}
-                >
-                  Log Out
-                </span>
-              )}
-            </Link>
-          </nav>
+          {/* Log Out */}
+          <Link
+            to="/logout"
+            className="p-2 rounded sideBarButton transition-all hover:bg-gray-300 text-red-400"
+          >
+            <MdLogout className="md:size-6 size-6" />
+            {!isMobile && <span className={`sideBarLabel`}>Log Out</span>}
+          </Link>
+        </nav>
+      </div>
+      {/* Main Content */}
+      <div className=" flex-1 pb-96 md:ml-[56px] ml-2 me-2 max-w-[1440px]">
+        {/* Header */}
+        <div
+          className={`bg-slate-100 max-w-[1440px] min-w-64 flex sticky top-0 z-10 justify-end pe-10 py-2 gap-4 items-center text-primary   transition-shadow ${
+            shadow ? "shadow-md" : ""
+          }`}
+        >
+          <Link to="/">Back</Link>
+          <Link to="/">Home</Link>
+          <Link>
+            <img
+              src="./assets/profile/profile1.jpeg"
+              alt="Profile pic"
+              className="size-10 rounded-full object-cover object-center"
+            />
+          </Link>
         </div>
-
-        {/* Main Content */}
-        <div className="flex-1 bg-gray-100 md:p-6">
-          {changeSection === "createProduct" ? (
-            <div>
-              <CreateNewProducts
-                changeSection={changeSection}
-                setChangeSection={setChangeSection} // Pass the setter function here
-              />
-            </div>
-          ) : (
-            <>
+        {/* Main Section */}
+        <div className="flex  ">
+          {/* Main Content */}
+          <div className="flex-1  md:p-6">
+            {changeSection === "createProduct" ? (
               <div>
-                <UpdatedNumbers availableNumber={productsNumber} />
+                <CreateNewProducts
+                  changeSection={changeSection}
+                  setChangeSection={setChangeSection} // Pass the setter function here
+                />
               </div>
-              <section>
-                {/* Conditionally render components based on state */}
-                {componentChange === "dashboard" && (
-                  <DashboardTable productNumber={countNumberOfProduct} />
-                )}
-                {componentChange === "products" && (
-                  <div className=" mt-4">
-                    <button
-                      onClick={() => {
-                        console.log("hello");
-                        setChangeSection("createProduct");
-                      }}
-                      className="  justify-self-end flex justify-end overflow-hidden"
-                    >
-                      <Button data={"+ Add product"} width={"w-fit"} />
-                    </button>
-                    <Products
-                      productDataObject={{
-                        componentName: " ",
-                        componentMarginLarg: " ",
-                      }}
-                    />
-                  </div>
-                )}
-
-                {componentChange === "sales" && <></>}
-              </section>
-            </>
-          )}
+            ) : (
+              <>
+                <div>
+                  <UpdatedNumbers availableNumber={productsNumber} />
+                </div>
+                <section>
+                  {componentChange === "dashboard" && (
+                    <DashboardTable productsData={products} loading={loading} />
+                  )}
+                  {componentChange === "products" && (
+                    <div className=" mt-4">
+                      <button
+                        onClick={() => {
+                          console.log("hello");
+                          setChangeSection("createProduct");
+                        }}
+                        className="  justify-self-end flex justify-end overflow-hidden"
+                      >
+                        <Button data={"+ Add product"} width={"w-fit"} />
+                      </button>
+                      <Products
+                        conditionState={"Dashboard"}
+                        productsData={products}
+                        componentStyleData={{
+                          componentName: " ",
+                          componentMarginLarg: " ",
+                        }}
+                      />
+                    </div>
+                  )}
+                  {componentChange === "order" && (
+                    <>
+                      <DashboardTable
+                        productsData={products}
+                        loading={loading}
+                      />
+                    </>
+                  )}
+                </section>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

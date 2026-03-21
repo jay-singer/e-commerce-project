@@ -1,5 +1,5 @@
 import { FaColumns, FaList, FaTh, FaThLarge } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AllBlogs from "../components/ReUsableComponent/AllBlogs";
 import { DropDown } from "../components/specialComponents/dropDown";
 
@@ -11,6 +11,8 @@ const Blog = () => {
     { value: "popularity", label: "Popularity" }, // Based on views, likes, reads
     { value: "comments", label: "Most comments" },
   ];
+  const baseStyle =
+    "lg:text-[15px] md:text-sm mb-1 lg:hover:underline underline-offset-2 lg:hover:text-navColor duration-100 transition-all";
 
   const categories = [
     { value: "", label: "--Select your wish", placeholder: true },
@@ -117,12 +119,16 @@ const Blog = () => {
             <div className=" flex flex-col md:flex-row md:gap-5 gap-3">
               {/** first selection */}
               <div>
-                <Link
-                  to={``}
-                  className="text-textColor lg:text-[15px] md:text-sm mb-1 lg:hover:underline underline-offset-2 lg:hover:text-navColor duration-100 transition-all"
+                <NavLink
+                  to="/Blog"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `text-navColor ${baseStyle}`
+                      : `text-textColor ${baseStyle}`
+                  }
                 >
                   All Blogs
-                </Link>
+                </NavLink>
                 {/* <DropDown
                   dataObject={categories}
                   label={"--Select your wish"}
@@ -131,12 +137,16 @@ const Blog = () => {
               </div>
               {/** Second selection */}
               <div>
-                <Link
-                  to={``}
-                  className="text-textColor text-[15px] mb-1 lg:hover:underline underline-offset-2 lg:hover:text-navColor duration-100 transition-all"
+                <NavLink
+                  to="/Blog/b"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `text-navColor ${baseStyle}`
+                      : `text-textColor ${baseStyle}`
+                  }
                 >
-                  Feactured
-                </Link>
+                  Featured
+                </NavLink>
               </div>
             </div>
             {/** Left side */}

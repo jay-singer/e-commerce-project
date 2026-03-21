@@ -1,55 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner"; // Importing the spinner
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const DashboardTable = ({ productNumber }) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // ✅ Get and decode the token
-  const token = sessionStorage.getItem("authToken");
-
-  if (!token) {
-    console.warn("No token found in sessionStorage");
-    return;
-  }
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-commerce-backend-b8fd.onrender.com/api/Products/seller",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const fetchedProducts = response.data;
-        setProducts(fetchedProducts);
-        countingNumberProduct(fetchedProducts); // Call after setting products
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (token) fetchProducts();
-  }, [token]);
-
-  {
-    /** function that counting the product numbers */
-  }
-  const countingNumberProduct = (products) => {
-    const count = products.length;
-
-    productNumber(count);
-  };
-
+const DashboardTable = ({ productNumber, productsData, loading }) => {
   return (
     <div className="container mx-auto">
       <ToastContainer />
@@ -84,11 +37,11 @@ const DashboardTable = ({ productNumber }) => {
                   </td>
                 </tr>
               ) : (
-                products.map((product) => (
+                productsData?.map((product) => (
                   <tr key={product._id} className="">
                     <td className="px-1 text-start flex gap-2 mb-2 items-end text-[13px]">
                       <img
-                        className="w-[30px]"
+                        className="w-[30px] h-[30px] object-cover object-center"
                         src={product.productImage}
                         alt=""
                       />
@@ -148,11 +101,11 @@ const DashboardTable = ({ productNumber }) => {
                   </td>
                 </tr>
               ) : (
-                products.map((product) => (
+                productsData?.map((product) => (
                   <tr key={product._id} className="text-start">
                     <td className="px-1 text-start flex gap-2 mb-2 items-end text-[13px]">
                       <img
-                        className="w-[30px]"
+                        className="w-[30px] h-[30px] object-cover object-center"
                         src={product.productImage}
                         alt=""
                       />

@@ -39,7 +39,7 @@ const LoginForm = (props) => {
     try {
       const response = await axios.post(
         "https://e-commerce-backend-b8fd.onrender.com/api/signIn",
-        loginData
+        loginData,
       );
 
       if (response.status === 200) {
@@ -74,24 +74,24 @@ const LoginForm = (props) => {
             data?.message || "Bad request. Please check your input.",
             {
               position: "top-right",
-              autoClose: 3000,
-            }
+              autoClose: 100,
+            },
           );
         } else if (status === 401) {
           toast.error("Invalid credentials. Please try again.", {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 100,
           });
         } else {
           toast.error("An error occurred. Please try again later.", {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 100,
           });
         }
       } else {
         toast.error("Something went wrong. Please try again later.", {
           position: "top-right",
-          autoClose: 3000,
+          autoClose: 100,
         });
       }
     }
@@ -107,7 +107,7 @@ const LoginForm = (props) => {
           {/* Left Section */}
           <div className="flex items-center justify-around lg:max-w-[600px] relative md:w-[30%] w-full flex-1">
             <div className="h-full z-50 flex flex-col gap-2 lg:gap-0 justify-center ps-2 flex-1 pt-3 md:pt-0 items-center lg:items-start">
-              <h2 className="text-2xl font-bold md:block hidden">Sign In</h2>
+              <h2 className="text-2xl font-bold md:block hidden">Log In</h2>
               <p>New here?</p>
               <button
                 onClick={() => {

@@ -40,6 +40,8 @@ const SignForm = ({ hideForm, formStatus }) => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
+      console.log("Submitting form with data:", data); // log data before sending
+
       const response = await axios.post(
         "https://e-commerce-backend-b8fd.onrender.com/api/signUp",
         data,
@@ -51,6 +53,8 @@ const SignForm = ({ hideForm, formStatus }) => {
       );
 
       if (response.status === 201) {
+        console.log("Data submitted successfully:", response.data); // ✅ success log
+
         toast.success("Sign-up successful!", {
           position: "top-right",
           autoClose: 3000,
@@ -58,8 +62,11 @@ const SignForm = ({ hideForm, formStatus }) => {
         formHiding(hideForm);
         reset();
         hideForm();
+      } else {
+        console.log("Unexpected response:", response); // edge case log
       }
     } catch (error) {
+      console.error("Error submitting form:", error); // ❌ error log
       toast.error("Error submitting form. Please try again.", {
         position: "top-right",
         autoClose: 3000,
@@ -68,7 +75,6 @@ const SignForm = ({ hideForm, formStatus }) => {
       setIsSubmitting(false);
     }
   };
-
   const handleGoBack = () => {
     if (innerWidth === 400) {
       hideForm();

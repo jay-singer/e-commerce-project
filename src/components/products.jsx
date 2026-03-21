@@ -1,17 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { TailSpin } from "react-loader-spinner"; // Importing the spinner
 import { Link } from "react-router-dom";
 import AddToCartForm from "./ReUsableComponent/addCartProduct";
 import Button from "./ReUsableComponent/button";
 import SingleProduct from "./singleProduct";
 
-const Products = ({ productDataObject }) => {
-  const [products, setProducts] = useState([]);
+const Products = ({ componentStyleData, productsData, conditionState }) => {
   const [loading, setLoading] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [openCartForm, setOpeningCartForm] = useState(false);
-  const [productDeta, setProductDeta] = useState({});
+
   //  Track window size for responsive design
   useEffect(() => {
     const handleResize = () => setIsLargeScreen(window.innerWidth >= 768);
@@ -21,25 +18,25 @@ const Products = ({ productDataObject }) => {
   }, []);
 
   //  Get and decode the token
-  // const token = sessionStorage.getItem("authToken");
+  // const token = localStorage.getItem("authToken");
 
-  //  Fetch products with Bearer token
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-commerce-backend-b8fd.onrender.com/api/getProducts"
-        );
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // //  Fetch products with Bearer token
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://e-commerce-backend-b8fd.onrender.com/api/getProducts",
+  //       );
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
 
   {
     /* OpeningCartForm */
@@ -53,44 +50,32 @@ const Products = ({ productDataObject }) => {
     <div
       className={`flex flex-col justify-center items-center lg:w-full  bg-white ${
         !isLargeScreen
-          ? productDataObject.componentMarginSmall
-          : productDataObject.componentMarginLarge
+          ? componentStyleData.componentMarginSmall
+          : componentStyleData.componentMarginLarge
       }`}
     >
       <>
         {openCartForm && (
           <AddToCartForm
-            product={productDeta}
+            product={productsData}
             openingCartForm={OpeningCartForm}
           />
         )}
       </>
       <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
-        {productDataObject.componentName}
+        {componentStyleData.componentName}
       </h1>
 
       <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4 relative ">
-        {loading ? (
-          <div className="absolute inset-0   flex justify-center items-center">
-            <TailSpin
-              height="50"
-              width="50"
-              color="#4fa94d"
-              ariaLabel="tail-spin-loading"
-              radius="1"
-              visible={true}
+        {productsData.map((product, index) => (
+          <div key={product.id || index} className="">
+            <SingleProduct
+              conditionState={conditionState}
+              items={product}
+              openingCartForm={OpeningCartForm}
             />
           </div>
-        ) : (
-          products.map((product, index) => (
-            <div key={product.id || index}>
-              <SingleProduct
-                items={product}
-                openingCartForm={OpeningCartForm}
-              />
-            </div>
-          ))
-        )}
+        ))}
       </div>
 
       {isLargeScreen ? (

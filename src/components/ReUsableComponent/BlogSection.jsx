@@ -22,7 +22,7 @@ const BlogSection = () => {
         <span className="text-gray-700">Latest Articles</span>
         <Link
           className="flex gap-1 text-sm items-center text-navColor"
-          to={`#`}
+          to={`/Blog`}
         >
           View More{" "}
           <svg

@@ -98,11 +98,11 @@ const ShopCategory = () => {
       </h2>
 
       {/* Loop over each category */}
-      <div className=" flex flex-wrap w-[85%] justify-self-center justify-center ">
+      <div className=" flex flex-col w-[85%] justify-self-center justify-center  items-center">
         {Object.entries(productObject).map(([categoryName, products]) => (
           <div
             key={categoryName}
-            className="mb-8 lg:w-1/2 w-full flex flex-col items-center"
+            className="mb-8  w-full flex flex-col items-center "
           >
             {/* Category Title */}
             <h3 className="lg:text-xl md:text-lg text-sm text-primary underline underline-offset-4 font-semibold mb-2  text-center ">
@@ -110,14 +110,14 @@ const ShopCategory = () => {
             </h3>
 
             {/* Show only first 2 products */}
-            <div className="flex gap-4 justify-around boder  lg:flex-wrap w-full h-full">
-              {products.slice(0, 2).map((product, index) => (
+            <div className="flex flex-col md:flex-row gap-4 justify-around  w-full ">
+              {products.slice(0, 4).map((product, index) => (
                 <Link
                   to={`/product/${product.title
                     .replace(/\s+/g, "-")
                     .toLowerCase()}`}
                   key={index}
-                  className=" p-2 w-[200px] hover:scale-105 transition shadow-gray-300 md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)]"
+                  className=" p-2 flex-1 flex flex-col hover:scale-105 transition shadow-gray-300 md:shadow-[8px_10px_20px_rgba(0,0,0,0.13)] shadow-[0px_10px_20px_rgba(0,0,0,0.13)] "
                 >
                   <img
                     className="w-full  object-cover mb-2"

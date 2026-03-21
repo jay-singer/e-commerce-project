@@ -131,10 +131,10 @@ const Shop = () => {
 
           <div className=" flex flex-col md:flex-row justify-between gap-3 md:gap-0 md:items-center">
             {/** Right side */}
-            <div className=" flex flex-col md:flex-row md:gap-5 gap-3">
+            <div className=" flex flex-col md:flex-row md:gap-5 gap-3   ">
               {/** first selection */}
-              <div>
-                <h1 className="text-textColor lg:text-[15px] md:text-sm mb-1">
+              <div className=" flex flex-col justify-between">
+                <h1 className="text-textColor lg:text-[15px] md:text-sm mb-1 ">
                   CATEGORIES
                 </h1>
                 <DropDown
@@ -144,7 +144,7 @@ const Shop = () => {
                 />
               </div>
               {/** Second selection */}
-              <div>
+              <div className="flex flex-col">
                 <h1 className="text-textColor text-[15px] mb-1">PRICE</h1>
                 <DropDown
                   dataObject={Price}
@@ -154,7 +154,7 @@ const Shop = () => {
               </div>
             </div>
             {/** Left side */}
-            <div className=" flex items-center space-x-3 ">
+            <div className=" flex items-center space-x-3">
               {/** Sorting accordingly */}
               <DropDown
                 dataObject={SortingProducts}
@@ -179,7 +179,7 @@ const Shop = () => {
             </div>
           </div>
           {/** bottom side of second section */}
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 items-stretch justify-center  md:gap-2 gap-1 overflow-hidden  mt-10 py-3 border border-red-900 ">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 items-stretch justify-center  md:gap-2 gap-1 overflow-hidden  mt-10 py-3  ">
             {products.map((items, index) => (
               <div key={index} className="">
                 <SingleProduct items={items} />
