@@ -1,10 +1,9 @@
-import React from "react";
 import { LuSearch } from "react-icons/lu";
 const SearchComp = () => {
   return (
     <>
       <div
-        className={` z-50 flex items-center  border border-navColor bg-navColor md:h-10 h-7 rounded-md overflow-hidden md:gap-2 pe-1 gap-2  `}
+        className={` z-50 flex items-center  border border-navColor bg-navColor md:h-10 h-7 rounded-full overflow-hidden md:gap-2 pe-1 gap-2  `}
       >
         <input
           type="text"

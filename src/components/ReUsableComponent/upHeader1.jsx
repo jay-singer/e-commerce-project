@@ -6,7 +6,7 @@ import SearchComp from "./search";
 
 const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
   const [isTabletOrSmaller, setIsTabletOrSmaller] = useState(
-    window.innerWidth < 768
+    window.innerWidth < 768,
   );
   const [showHeaderOnScroll, setShowHeaderOnScroll] = useState(true);
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
 
   return (
     <div
-      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1440px] mx-auto right-0 bg-white left-0 transition-all ease-in-out   ${
+      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1440px] bg-center bg-cover mx-auto right-0 bg-[url('/assets/illustration/NavBackground.jpg')] left-0 transition-all ease-in-out   ${
         showHeaderOnScroll ? " top-navHeight shadow-md" : "top-0"
       }`}
     >
@@ -77,8 +77,8 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
       </div>
 
       {/* Language & Sign Up */}
-      <div className="flex items-center gap-2 md:flex-row  md:flex">
-        <select className="outline-none w-12">
+      <div className="flex items-center  gap-2 md:flex-row  md:flex">
+        <select className="outline-none w-20 rounded-full">
           <option defaultValue="selected">English</option>
           <option>Kinyarwanda</option>
           <option>France</option>
