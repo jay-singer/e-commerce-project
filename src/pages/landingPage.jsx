@@ -130,7 +130,7 @@ const LandingPage = () => {
             <div className="w-[90%] place-self-center">
               <div>
                 <h3 className=" text-center font-bold text-primary lg:text-[36px] my-4">
-                  What our customers say
+                  What our customers say 
                   <Testimony />
                 </h3>
               </div>
