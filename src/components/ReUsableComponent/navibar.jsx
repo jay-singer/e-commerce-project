@@ -56,9 +56,9 @@ const Navbar = ({ showCategory, setShowCategory }) => {
 
   return (
     <nav
-      className={`fixed left-0 right-0 shadow-md w-full max-w-[1440px] mx-auto transition-all duration-300 flex   ${
+      className={`fixed left-0 right-0 shadow-md w-full max-w-[1910px] bg-black mx-auto transition-all duration-300 flex   ${
         isNavbarVisible
-          ? `md:-translate-y-[51px] -translate-y-[80px] z-50 ${bgColor}`
+          ? `md:translate-y-[-50px] -translate-y-[80px] z-50 ${bgColor}`
           : "translate-y-[-100%] opacity-0 pointer-events-none z-20"
       }`}
     >

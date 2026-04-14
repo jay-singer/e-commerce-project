@@ -35,7 +35,7 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
 
   return (
     <div
-      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1440px] bg-center bg-cover mx-auto right-0 bg-[url('/assets/illustration/NavBackground.jpg')] left-0 transition-all ease-in-out   ${
+      className={`fixed flex items-center top-0 justify-between lg:px-7 px-3 z-50  gap-1 max-w-[1910px] bg-center bg-cover mx-auto right-0 bg-[url('/assets/illustration/NavBackground.jpg')] left-0 transition-all ease-in-out   ${
         showHeaderOnScroll ? " top-navHeight shadow-md" : "top-0"
       }`}
     >
@@ -58,6 +58,7 @@ const UpperHeader1 = ({ displayingForm, handlingShowCartComponent }) => {
       {/* Header Icons */}
       <div className="flex items-center gap-3 ">
         <button
+         title="Cart Products"
           onClick={() => {
             handlingShowCartComponent();
             navigate("CartProducts");

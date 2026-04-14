@@ -21,6 +21,7 @@ import LandingPage from "./pages/landingPage";
 import NotFound from "./pages/notFound";
 import SellerDashboard from "./pages/sellerDashboard";
 import Shop from "./pages/shop";
+import WishList from "./components/UserComponents/BuyerStaff/WishList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,8 @@ const router = createBrowserRouter(
         <Route path="/CartProducts" element={<CartProducts />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/Blog" element={<Blog />} />
+        <Route path="/WishList" element={<WishList/>}/>
+
         <Route path="/Blog/SingleBlog/:id" element={<BlogDetails />} />
       </Route>
 

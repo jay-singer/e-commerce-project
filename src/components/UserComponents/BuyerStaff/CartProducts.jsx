@@ -96,7 +96,7 @@ const CartProducts = () => {
     );
 
   return (
-    <div className="md:flex flex-col-reverse bg-black border border-black   w-full md:mt-[130px] max-w-[1100px] md:justify-between h-full">
+    <div className="md:flex flex-col-reverse bg-black border border-black w-full md:mt-[130px] max-w-[1100px] md:justify-between h-full">
       <div className="w-full grid grid-cols-2 md:grid-cols-3 mt-0 md:gap-4 mb-4 max-w-[720px]">
         {products.length === 0 ? (
           <p className="col-span-full text-center text-gray-500">

@@ -66,10 +66,9 @@ const LandingPage = () => {
       setShowCart(true);
     }
   };
-
   //Computer view of the landing page
   const computerView = (
-    <div className="relative w-full ">
+    <div className="relative w-full">
       {/* Blur content if form is open */}
       <div
         className={`transition duration-300 ease-in-out ${

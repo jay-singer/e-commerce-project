@@ -11,12 +11,13 @@
 body {
   min-height: 100vh; /* Ensure the body takes up the full viewport height */
   margin: 0 auto;
-  max-width: 1440px;
+  max-width: 1910px;
 }
 
 /* Root styling */
 .RootClass {
   width: 100%;
+  margin: 0 auto;
 }
 
 .categoryId {
