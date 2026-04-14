@@ -2,21 +2,21 @@ import React, { useEffect } from 'react'
 import { effect } from 'zod'
 
 
-useEffect (()=>{
+// useEffect (()=>{
    
-       const fetchingData = async () => {
-        try{
- const baseUrl = "http://localhost:3000/products";
-   const response = await fetch(baseUrl);
-   const data = response.json;
-   console.log(data,"this is data")
-  }catch(error){
-    console.log(error);
-  }
-        }
+//        const fetchingData = async () => {
+//         try{
+//  const baseUrl = "http://localhost:3000/products";
+//    const response = await fetch(baseUrl);
+//    const data = response.json;
+//    console.log(data,"this is data")
+//   }catch(error){
+//     console.log(error);
+//   }
+//         }
   
-fetchingData();
-},[])
+// fetchingData();
+// },[])
 
 const WishList = () => {
   return (
