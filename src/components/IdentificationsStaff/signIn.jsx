@@ -84,7 +84,7 @@ const SignForm = ({ hideForm, formStatus }) => {
 
   return (
     <div className=" rounded-lg w-full md:p-8 overflow-hidden h-full lg:h-fit p-4">
-      {formStatus && showOtherForm ? (
+      { showOtherForm ? (
         <LoginForm
           hideForm={hideForm}
           logInFormStat={showOtherForm}
@@ -101,9 +101,9 @@ const SignForm = ({ hideForm, formStatus }) => {
                   onClick={() => {
                     setshowOtherForm(true);
                   }}
-                  className="text-secondary"
+                  className="md:text-secondary bg-secondary md:bg-white text-white md:p-0 px-2 py-1 md:rounded-none rounded-lg"
                 >
-                  Sign In!ff
+                  Sign In!
                 </button>
               </div>
               <img
@@ -119,7 +119,7 @@ const SignForm = ({ hideForm, formStatus }) => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col space-y-6"
               >
-                <div className="border text-center text-2xl block md:hidden">
+                <div className=" text-center text-2xl block md:hidden">
                   Sign Up
                 </div>
 
