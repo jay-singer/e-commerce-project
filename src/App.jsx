@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css"; // make sure css is imported
 import "./App.css";
 
 import BlogDetails from "./components/blogDetals";
-import MobileLogIn from "./components/IdentificationsStaff/logIn1";
+
 import SignForm from "./components/IdentificationsStaff/signIn";
 import ProductDetails from "./components/productDetails";
 import Products from "./components/products";
@@ -42,7 +42,7 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<DashboardTable />} />
       <Route path="*" element={<NotFound />} />
       <Route path="/signIn" element={<SignForm />} />
-      <Route path="/logIn1" element={<MobileLogIn />} />
+      
       <Route path="/aboutUs" element={<AboutUs />} />
     </>
   ),

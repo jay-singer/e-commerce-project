@@ -12,7 +12,7 @@ function MobileFooter() {
           <Link to={"/"} className="">
             <BiHome size={20} />
           </Link>
-          <Link to={"*"}>
+          <Link to={"/sellerDashboard"}>
             {" "}
             <BiCategory size={20} />
           </Link>
