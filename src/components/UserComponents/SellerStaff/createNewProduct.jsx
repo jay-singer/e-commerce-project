@@ -7,6 +7,11 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
   const [categories, setCategories] = useState([]);
   const [imageFile, setImageFile] = useState(null);
 
+  // ✅ NEW: attribute state
+  const [attributes, setAttributes] = useState([
+    { key: "", value: "" },
+  ]);
+
   const {
     register,
     handleSubmit,
@@ -16,7 +21,7 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
     formState: { errors },
   } = useForm();
 
-  const selectedImage = watch("productImage");
+  const selectedImage = watch("images");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -33,17 +38,62 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
     fetchCategories();
   }, []);
 
+  // ✅ attribute handlers
+  const handleAttributeChange = (index, field, value) => {
+    const updated = [...attributes];
+    updated[index][field] = value;
+    setAttributes(updated);
+  };
+
+  const addAttribute = () => {
+    setAttributes([...attributes, { key: "", value: "" }]);
+  };
+
+  const removeAttribute = (index) => {
+    const updated = attributes.filter((_, i) => i !== index);
+    setAttributes(updated);
+  };
+
   const onSubmit = async (data) => {
     try {
       const token = getSellerIdFromToken();
 
       const formDataToSend = new FormData();
+
       formDataToSend.append("productName", data.productName);
-      formDataToSend.append("price", data.price);
-      formDataToSend.append("productDescription", data.productDescription);
-      formDataToSend.append("categoryId", data.category_id);
-      formDataToSend.append("stock", data.stock);
-      formDataToSend.append("productImage", data.productImage[0]);
+      formDataToSend.append("price", Number(data.price));
+      formDataToSend.append(
+        "productDescription",
+        data.productDescription
+      );
+      formDataToSend.append("categoryId", data.categoryId);
+      formDataToSend.append("stock", Number(data.stock));
+      formDataToSend.append("brand", data.brand);
+      formDataToSend.append("discount", Number(data.discount || 0));
+
+      // variants
+      const variantsArray = data.variants
+        ? data.variants.split(",").map((v) => v.trim())
+        : [];
+      formDataToSend.append("variants", JSON.stringify(variantsArray));
+
+      // ✅ attributes (key-value → object)
+      const attributesObject = {};
+      attributes.forEach((attr) => {
+        if (attr.key && attr.value) {
+          attributesObject[attr.key] = attr.value;
+        }
+      });
+
+      formDataToSend.append(
+        "attributes",
+        JSON.stringify(attributesObject)
+      );
+
+      // image
+      if (data.images && data.images[0]) {
+        formDataToSend.append("images", data.images[0]);
+      }
 
       const response = await axios.post(
         "https://e-commerce-backend-b8fd.onrender.com/api/createProduct",
@@ -58,9 +108,9 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
 
       console.log("Product created:", response.data);
 
-      // Reset form and image
       reset();
       setImageFile(null);
+      setAttributes([{ key: "", value: "" }]); // reset attributes
       setChangeSection && setChangeSection("allProducts");
     } catch (error) {
       console.error("Error creating product:", error);
@@ -71,7 +121,7 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file);
-      setValue("productImage", e.target.files); // important to keep react-hook-form in sync
+      setValue("images", e.target.files);
     }
   };
 
@@ -118,8 +168,21 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
             className="w-full p-[4px] border border-gray-300 rounded"
           />
 
+          <input
+            {...register("brand", { required: true })}
+            placeholder="Brand"
+            className="w-full p-[4px] border border-gray-300 rounded"
+          />
+
+          <input
+            type="number"
+            {...register("discount")}
+            placeholder="Discount (%)"
+            className="w-full p-[4px] border border-gray-300 rounded"
+          />
+
           <select
-            {...register("category_id", { required: true })}
+            {...register("categoryId", { required: true })}
             className="w-full p-[4px] border border-gray-300 rounded"
           >
             <option value="">Select Category</option>
@@ -144,8 +207,64 @@ function CreateNewProducts({ changeSection, setChangeSection }) {
           ></textarea>
 
           <input
+            {...register("variants")}
+            placeholder="Variants (e.g. red, blue, large)"
+            className="w-full p-[4px] border border-gray-300 rounded"
+          />
+
+          {/* ✅ ATTRIBUTES UI */}
+          <div className="space-y-2">
+            {attributes.map((attr, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  value={attr.key}
+                  onChange={(e) =>
+                    handleAttributeChange(
+                      index,
+                      "key",
+                      e.target.value
+                    )
+                  }
+                  placeholder="Key (e.g. color)"
+                  className="w-full p-[4px] border border-gray-300 rounded"
+                />
+
+                <input
+                  value={attr.value}
+                  onChange={(e) =>
+                    handleAttributeChange(
+                      index,
+                      "value",
+                      e.target.value
+                    )
+                  }
+                  placeholder="Value (e.g. red)"
+                  className="w-full p-[4px] border border-gray-300 rounded"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => removeAttribute(index)}
+                  className="bg-red-500 text-white px-2 rounded"
+                >
+                  X
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={addAttribute}
+              className="bg-gray-300 px-2 py-1 rounded"
+            >
+              + Add Attribute
+            </button>
+          </div>
+
+          <input
             type="file"
             accept="image/*"
+            {...register("images")}
             onChange={handleImageChange}
             className="w-full p-2 border border-gray-300 rounded text-gray-300"
           />

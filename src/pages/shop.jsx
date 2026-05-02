@@ -9,9 +9,12 @@ import {
 import { Link } from "react-router-dom";
 import SingleProduct from "./../components/singleProduct";
 import { DropDown } from "./../components/specialComponents/dropDown";
+import { useFetchAllProducts } from "../components/utilities/utlilities";
 const Shop = () => {
+    const token = sessionStorage.getItem("authToken");
+    const { products, loading } = useFetchAllProducts(token);
   // const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+
 
   // useEffect(() => {
   //   axios
@@ -25,74 +28,74 @@ const Shop = () => {
   //       setLoading(false);
   //     });
   // }, []);
-  let products = [
-    {
-      _id: "1224",
-      price: "35000",
-      productImage:
-        "/assets/products/furnitureProduct/cea62cb63097d74a9f45d2110909ec266f8b0923.jpg",
-      productName: "White Drawer unit",
-      productDescription:
-        "Super-soft cushion cover in off-white with a tactile pattern that enhances the different tones in the pile and base.",
-      star: 4,
-      id: "5165",
-    },
-    {
-      _id: "12349",
-      price: "2500",
-      productImage:
-        "/assets/products/furnitureProduct/c60e8adb369fff6b1b7c7a4f1fbb444053638a8b.jpg",
-      productName: "Off-white Pilow",
-      productDescription:
-        "Super-soft cushion cover in off-white with a tactile pattern that enhances the different tones in the pile and base.",
-      star: 5,
-      id: "cd36",
-    },
-    {
-      _id: "1234",
-      price: "30000",
-      productImage:
-        "/assets/products/furnitureProduct/ace2f9ac12525d0f50e21a75c61e1ec0d64e4aa4.jpg",
-      productName: "Cozy sofa",
-      productDescription:
-        "Easy transportation was the goal when we created this comfy loveseat with durable beige polyester fabric.",
-      star: 5,
-      id: "8cc4",
-    },
-    {
-      _id: "1234",
-      price: "3000",
-      productImage:
-        "/assets/products/furnitureProduct/3517f37e33f1e0c5a7b0e2f947e18bbaa1f98631.jpg",
-      productName: "Table Lamp",
-      productDescription:
-        "Like small jewels in shiny brass and gray clear glass, pread a soft mood light that creates exciting shadows on walls and ceilings",
-      star: 5,
-      id: "86a5",
-    },
-    {
-      _id: "12344",
-      price: "6000",
-      productImage:
-        "/assets/products/furnitureProduct/730da628fa00ebebad3df271f7911cf7595d715e.jpg",
-      productName: "Bambo Basket",
-      productDescription:
-        "With its soft shape and color, this spacious basket is just as decorative wherever you choose to put it.",
-      star: 3,
-      id: "9525",
-    },
-    {
-      _id: "12348",
-      price: "8000",
-      productImage:
-        "/assets/products/furnitureProduct/a40cc85f069a0857fe7da4976ba73bf5db64a055.jpg",
-      productName: "Black Tray table",
-      productDescription:
-        "Easy to love at a price that’s hard to resist. Buy one or buy a few and make every space where you sit more convenient.",
-      star: 3,
-      id: "061c",
-    },
-  ];
+  // let products = [
+  //   {
+  //     _id: "1224",
+  //     price: "35000",
+  //     productImage:
+  //       "/assets/products/furnitureProduct/cea62cb63097d74a9f45d2110909ec266f8b0923.jpg",
+  //     productName: "White Drawer unit",
+  //     productDescription:
+  //       "Super-soft cushion cover in off-white with a tactile pattern that enhances the different tones in the pile and base.",
+  //     star: 4,
+  //     id: "5165",
+  //   },
+  //   {
+  //     _id: "12349",
+  //     price: "2500",
+  //     productImage:
+  //       "/assets/products/furnitureProduct/c60e8adb369fff6b1b7c7a4f1fbb444053638a8b.jpg",
+  //     productName: "Off-white Pilow",
+  //     productDescription:
+  //       "Super-soft cushion cover in off-white with a tactile pattern that enhances the different tones in the pile and base.",
+  //     star: 5,
+  //     id: "cd36",
+  //   },
+  //   {
+  //     _id: "1234",
+  //     price: "30000",
+  //     productImage:
+  //       "/assets/products/furnitureProduct/ace2f9ac12525d0f50e21a75c61e1ec0d64e4aa4.jpg",
+  //     productName: "Cozy sofa",
+  //     productDescription:
+  //       "Easy transportation was the goal when we created this comfy loveseat with durable beige polyester fabric.",
+  //     star: 5,
+  //     id: "8cc4",
+  //   },
+  //   {
+  //     _id: "1234",
+  //     price: "3000",
+  //     productImage:
+  //       "/assets/products/furnitureProduct/3517f37e33f1e0c5a7b0e2f947e18bbaa1f98631.jpg",
+  //     productName: "Table Lamp",
+  //     productDescription:
+  //       "Like small jewels in shiny brass and gray clear glass, pread a soft mood light that creates exciting shadows on walls and ceilings",
+  //     star: 5,
+  //     id: "86a5",
+  //   },
+  //   {
+  //     _id: "12344",
+  //     price: "6000",
+  //     productImage:
+  //       "/assets/products/furnitureProduct/730da628fa00ebebad3df271f7911cf7595d715e.jpg",
+  //     productName: "Bambo Basket",
+  //     productDescription:
+  //       "With its soft shape and color, this spacious basket is just as decorative wherever you choose to put it.",
+  //     star: 3,
+  //     id: "9525",
+  //   },
+  //   {
+  //     _id: "12348",
+  //     price: "8000",
+  //     productImage:
+  //       "/assets/products/furnitureProduct/a40cc85f069a0857fe7da4976ba73bf5db64a055.jpg",
+  //     productName: "Black Tray table",
+  //     productDescription:
+  //       "Easy to love at a price that’s hard to resist. Buy one or buy a few and make every space where you sit more convenient.",
+  //     star: 3,
+  //     id: "061c",
+  //   },
+  // ];
   const categories = [
     { value: "", label: "--Select your wish", placeholder: true },
     { value: "Furniture", label: "Furniture products " },

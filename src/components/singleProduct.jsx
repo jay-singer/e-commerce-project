@@ -1,8 +1,39 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { addToWishlist, isInWishlist } from "./utilities/utlilities";
 
-const SingleProduct = ({ items, openingCartForm, conditionState }) => {
+const SingleProduct = ({ items, Opening_Cart_Form, conditionState }) => {
   // Function to render star rating
+const [cartProductsInformation, setcartProductsInformation] = useState([])
 
+  useEffect(()=>{
+ localStorage.setItem("productsInf",JSON.stringify(cartProductsInformation)
+ )
+ 
+},[cartProductsInformation]);
+
+// Adding to wishlist by liking and add to wish list
+const [liked, setLiked] = useState(false);
+
+//useEffect with adding to wishlis
+useEffect(() => {
+  setLiked(isInWishlist(items._id));
+}, [items]);
+
+//Wishlist adding 
+const filterProductOnWhichlist = (data) => {
+            setcartProductsInformation((prev) => {
+                const exists = prev.find((item) => item.product_id === data.product_id);
+
+             if (exists) {
+      // remove if exists
+          return prev.filter((item) => item.product_id !== data.product_id);
+       } else {
+      // add if not exists
+      return [...prev, data];
+           }
+             });
+                };
   const renderStars = (rating) => {
     return [...Array(5)].map((_, index) => (
       <span
@@ -18,16 +49,16 @@ const SingleProduct = ({ items, openingCartForm, conditionState }) => {
 
   return (
     <div
-      className={`${conditionState == "Dashboard" ? " border border-black h-full" : "mx-2 mb-3 md:m-0 shadow-md lg:w-full h-full flex gap-2 overflow-hidden text-center rounded-lg  bg-white transition-transform transform md:hover:scale-[1.01] md:hover:shadow-xl shadow-gray-300 -z-1"}`}
+      className={`${conditionState == "Dashboard" ? "  h-full" : "mx-2 mb-3 md:m-0 shadow-md lg:w-full h-full flex gap-2 overflow-hidden text-center rounded-lg  bg-white transition-transform transform md:hover:scale-[1.01] md:hover:shadow-xl shadow-gray-300 -z-1"}`}
     >
       {/** First section */}
       <div
-        className={` ${conditionState == "Dashboard" ? " w-full border border-black h-[200px] " : "w-[300px]"}`}
+        className={` ${conditionState == "Dashboard" ? " w-full  h-[200px] " : "w-[300px]"}`}
       >
         {/** Thumbnail image */}
         <Link
           className=" block h-full w-full"
-          to={`/products/${items._id}`}
+         /* to={`/products/${items._id}`}
           state={{
             ProductStore: {
               id: items._id,
@@ -37,7 +68,7 @@ const SingleProduct = ({ items, openingCartForm, conditionState }) => {
               productDesc: items.productDescription,
               star: items.rating || 4, // Pass the star rating
             },
-          }}
+          }}*/
         >
           <img
             src={items.productImage}
@@ -51,7 +82,12 @@ const SingleProduct = ({ items, openingCartForm, conditionState }) => {
         ) : (
           <span className="absolute bg-white top-0 left-0 h-fit rounded-ee-lg px-1 py-1 gap-1 flex flex-col justify-evenly">
             {/** add to like or whichlish */}
-            <button className="flex justify-center items-center">
+            <button onClick={() => {
+             addToWishlist(null, items);
+
+              // re-check AFTER update
+              setLiked((prev) => !prev);
+            }} className="flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -84,7 +120,10 @@ const SingleProduct = ({ items, openingCartForm, conditionState }) => {
                   product_id: items._id,
                   productName: items.productName,
                 };
-                openingCartForm(data);
+               
+                
+                filterProductOnWhichlist(data)
+                Opening_Cart_Form(data);
               }}
               className="bg-[#7AC751] flex justify-center items-center px-[3px] py-[3px] rounded-full"
             >

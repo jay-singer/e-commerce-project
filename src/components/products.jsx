@@ -4,7 +4,8 @@ import AddToCartForm from "./ReUsableComponent/addCartProduct";
 import Button from "./ReUsableComponent/button";
 import SingleProduct from "./singleProduct";
 
-const Products = ({ componentStyleData, productsData, conditionState }) => {
+
+const Products = ({ onDelete, onUpdate, componentStyleData, productsData, conditionState }) => {
   const [loading, setLoading] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [openCartForm, setOpeningCartForm] = useState(false);
@@ -17,35 +18,7 @@ const Products = ({ componentStyleData, productsData, conditionState }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  //  Get and decode the token
-  // const token = localStorage.getItem("authToken");
 
-  // //  Fetch products with Bearer token
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "https://e-commerce-backend-b8fd.onrender.com/api/getProducts",
-  //       );
-  //       setProducts(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
-
-  {
-    /* OpeningCartForm */
-  }
-
-  const OpeningCartForm = (data) => {
-    setProductDeta(data);
-    setOpeningCartForm((prevState) => !prevState);
-  };
   return (
     <div
       className={`flex flex-col justify-center items-center lg:w-full  bg-white ${
@@ -55,28 +28,81 @@ const Products = ({ componentStyleData, productsData, conditionState }) => {
       }`}
     >
       <>
-        {openCartForm && (
-          <AddToCartForm
-            product={productsData}
-            openingCartForm={OpeningCartForm}
-          />
-        )}
+
       </>
-      <h1 className="mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
+      <h1 className=" mb-3 text-[#555555] lg:text-[25px] md:text-xl text-base font-semibold">
         {componentStyleData.componentName}
       </h1>
 
-      <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-4 md:p-4 lg:flex flex-wrap lg:gap-5 lg:p-5 lg:justify-center xl:grid xl:grid-cols-4 xl:p-5 lg:w-[1020px] max-w-[1440px] xl:gap-5 mb-4 relative ">
-        {productsData.map((product, index) => (
-          <div key={product.id || index} className="">
-            <SingleProduct
-              conditionState={conditionState}
-              items={product}
-              openingCartForm={OpeningCartForm}
-            />
+      <div className=" w-full">
+       
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {productsData.map((product,index) => (
+   
+          <div
+            key={product._id || index}
+            className="group   relative rounded-2xl overflow-hidden bg-white/60 backdrop-blur-lg border border-white/30 shadow-lg hover:shadow-2xl transition duration-500"
+          >
+            <div className=" relative overflow-hidden">
+           
+              <img
+                src={product.productImage}
+                alt={product.productName}
+                className="w-full h-[240px] object-cover transition duration-700 group-hover:scale-110"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+
+              <div className="absolute bottom-0 right-0 flex gap-2 z-10">
+                <button onClick={() => onDelete(product._id)}  className="cursor-pointer backdrop-blur p-2 rounded-full shadow hover:scale-110 transition">
+                <img className="size-[30px]" src="/assets/IconImages/fluent--delete-32-filled.png"/>
+                 
+                </button>
+                <button onClick={() => onUpdate( product)} className=" cursor-pointer backdrop-blur p-2 rounded-full shadow hover:scale-110 transition">
+                 <img className="size-[30px]" src="/assets/IconImages/carbon--update-now.png"/>
+               
+                </button>
+              </div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link
+                 to={`/products/${product._id}`}
+          state={{
+            ProductStore: {
+              id: product._id,
+              name: product.productName,
+              price: product.price,
+              image: product.productImage,
+              productDesc: product.productDescription,
+              star: product.rating || 4, // Pass the star rating
+            },
+          }}
+                 className="bg-white text-gray-800 px-5 py-2 rounded-full font-medium shadow-lg hover:bg-navColor hover:text-white transition">
+                  Quick View
+                </Link>
+              </div>
+            </div>
+
+            <div className="p-4">
+              <h3 className="text-gray-800 font-semibold text-base line-clamp-2 group-hover:text-green-600 transition">
+                {product.productName}
+              </h3>
+
+              <div className="flex items-center gap-1 mt-2 text-yellow-400 text-sm">
+                {product.rating} this is rating
+                <span className="text-gray-400 text-xs ml-1">(120)</span>
+              </div>
+
+             
+            </div>
+
+            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none border border-green-400/30" />
           </div>
         ))}
       </div>
+          </div>
+        
+     
 
       {isLargeScreen ? (
         <div className="w-full flex justify-around items-center">

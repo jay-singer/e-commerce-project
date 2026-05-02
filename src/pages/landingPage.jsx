@@ -104,7 +104,7 @@ const LandingPage = () => {
       )}
 
       {/* Main Content */}
-      <div className=" w-full z-10">
+      <div className=" w-full z-10 ">
         {/* Home page only */}
         {!isProductOrCartPage && location.pathname === "/" && (
           <>

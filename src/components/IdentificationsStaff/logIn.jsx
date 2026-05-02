@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
+import { mergeWishlistOnLogin } from "../utilities/utlilities";
+import { jwtDecode } from "jwt-decode";
 
 // Zod schema definition
 const loginSchema = z.object({
@@ -48,9 +50,17 @@ const LoginForm = (props) => {
         // ✅ Store the token in localStorage
         sessionStorage.setItem("authToken", token);
 
-        // ✅ Decode the token
-        // const decoded = jwtDecode(token);
-
+      // ✅ Get userId (IMPORTANT)
+         // ✅ Decode the token
+        const decoded = jwtDecode(token);
+      const userId = decoded.userId
+      // make sure your backend sends user
+      // ✅ Merge wishlist here
+      if (userId) {
+        mergeWishlistOnLogin(userId);
+      }
+     
+          
         toast.success("Logged in successfully!", {
           position: "top-right",
           autoClose: 3000,
